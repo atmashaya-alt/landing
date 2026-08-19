@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partridg3 — Independent Financial Planning</title>
+<link rel="canonical" href="https://landing-three-vert-77.vercel.app/brochure">
+<meta property="og:url" content="https://landing-three-vert-77.vercel.app/brochure">
+<meta property="og:title" content="Partridg3 — Independent Financial Planning">
+<meta property="og:description" content="Independent advisers for South African families. Life cover, disability, retirement and more — built around your story.">
+<style>
+  /* ── DESIGN TOKENS ── */
+  :root {
+    /* Dark palette */
+    --forest:      #0D2C1A;   /* main dark bg */
+    --forest-deep: #060E08;   /* footer near-black */
+    --forest-mid:  #0A2415;
+    --forest-btn:  #0C3A1C;   /* CTA / button bg */
+    --forest-btn2: #0F4822;   /* CTA hover */
+    /* Gold */
+    --gold:        #C9A96E;
+    --gold-soft:   rgba(201,169,110,0.70);
+    --gold-ghost:  rgba(201,169,110,0.15);
+    --gold-line:   rgba(201,169,110,0.30);
+    /* Light section palette — green-tinted, not plain white */
+    --sage-bg:     #EFF6F1;   /* primary light section bg */
+    --sage-alt:    #E6F0E8;   /* alternate light section bg */
+    --sage-card:   #FFFFFF;   /* cards sit white on the sage bg */
+    --sage-border: #C8DCC9;   /* card borders */
+    --sage-border2:#B8CDB9;   /* hover card borders */
+    /* Text on light */
+    --ink:         #0C2C18;   /* headings — deep forest green (reads like near-black) */
+    --ink-mid:     #3D5445;   /* body copy — green-tinted mid */
+    --ink-light:   #7A9882;   /* muted / caption */
+    /* Shared */
+    --border-dark: rgba(255,255,255,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    font-size: 16px; line-height: 1.6;
+    background: var(--forest);
+    overflow-x: hidden;
+  }
+
+  /* Anchor-scroll targets need clearance so the fixed nav doesn't cover their heading */
+  #services, #how-it-works, #why-us, #contact {
+    scroll-margin-top: 82px;
+  }
+
+  /* ──────────────────────── NAV ──────────────────────── */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: var(--forest);
+    border-bottom: 1px solid rgba(255,255,255,0.055);
+    transition: background 0.3s, backdrop-filter 0.3s;
+  }
+  .nav.scrolled {
+    background: rgba(13,44,26,0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.055);
+  }
+  .nav-inner {
+    max-width: 1152px; margin: 0 auto; padding: 0 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 66px;
+  }
+  .nav-brand { display: flex; align-items: center; gap: 9px; text-decoration: none; }
+  .nav-brand svg { width: 36px; height: 26px; flex-shrink: 0; }
+  .nav-brand-text { color: #fff; font-weight: 800; font-size: 17px; letter-spacing: -0.02em; }
+  .nav-brand-text em { color: var(--gold); font-style: normal; }
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.72); font-size: 14px; font-weight: 500; text-decoration: none; transition: color 0.15s; }
+  .nav-links a:hover { color: #fff; }
+  .nav-cta {
+    display: inline-flex; align-items: center;
+    padding: 9px 20px; border-radius: 9px;
+    background: var(--forest-btn);
+    border: 1px solid var(--gold-ghost);
+    color: #fff; font-size: 13px; font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 0 18px rgba(12,58,28,0.5);
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  .nav-cta:hover { background: var(--forest-btn2); box-shadow: 0 0 22px rgba(201,169,110,0.1); }
+
+  /* ──────────────────────── HERO ──────────────────────── */
+  .hero {
+    position: relative; min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--forest);
+  }
+  .hero-decor {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .hero-radial {
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(circle at 18% 52%, rgba(12,58,28,0.75) 0%, transparent 52%),
+      radial-gradient(circle at 82% 18%, rgba(201,169,110,0.07) 0%, transparent 42%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.024) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.024) 1px, transparent 1px);
+    background-size: 58px 58px; opacity: 0.5;
+  }
+  .hero-orb {
+    position: absolute; top: -12%; right: -6%;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(12,58,28,0.55) 0%, transparent 68%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative; z-index: 1;
+    max-width: 880px; margin: 0 auto;
+    padding: 130px 32px 96px; text-align: center;
+  }
+  .eyebrow-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 5px 16px; border-radius: 999px; margin-bottom: 32px;
+    background: var(--gold-ghost);
+    border: 1px solid var(--gold-line);
+    font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-soft);
+  }
+  .eyebrow-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--gold);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+  .hero h1 {
+    font-size: clamp(40px, 6.5vw, 72px); font-weight: 800;
+    line-height: 1.06; letter-spacing: -0.04em;
+    color: #fff; margin-bottom: 24px; text-wrap: balance;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    max-width: 660px; margin: 0 auto 52px;
+    color: rgba(255,255,255,0.65); font-size: clamp(16px, 2vw, 20px); line-height: 1.74;
+  }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+  .cta-primary {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 36px; border-radius: 12px;
+    background: var(--forest-btn);
+    border: 1px solid var(--gold-ghost);
+    color: #fff; font-weight: 700; font-size: 16px; text-decoration: none;
+    box-shadow: 0 8px 36px rgba(12,58,28,0.65);
+    transition: background 0.15s, transform 0.15s;
+  }
+  .cta-primary:hover { background: var(--forest-btn2); transform: translateY(-1px); }
+  .cta-secondary {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 16px 36px; border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.18);
+    color: #fff; font-weight: 700; font-size: 16px; text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+  .cta-secondary:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.32); }
+  .cta-whatsapp {
+    display: inline-flex; align-items: center; gap: 9px; justify-content: center;
+    padding: 16px 32px; border-radius: 12px;
+    background: #128C7E;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: #fff; font-weight: 700; font-size: 16px; text-decoration: none;
+    transition: background 0.15s, transform 0.15s;
+  }
+  .cta-whatsapp:hover { background: #075E54; transform: translateY(-1px); }
+  .hero-legal { margin-top: 40px; font-size: 12px; color: rgba(255,255,255,0.28); letter-spacing: 0.02em; }
+  .scroll-cue {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: rgba(255,255,255,0.25); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+  }
+  .scroll-cue svg { animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 55%{transform:translateY(6px)} }
+
+  /* ──────────── SHARED SECTION SHELL ──────────── */
+  .sec { padding: 96px 32px; }
+  .sec-inner { max-width: 1152px; margin: 0 auto; }
+  .sec-head { text-align: center; margin-bottom: 64px; }
+
+  /* Eyebrow on light sections — anchored with a gold side-mark */
+  .ew-green {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--forest-btn); margin-bottom: 14px;
+  }
+  .ew-green::before,
+  .ew-green::after {
+    content: '';
+    display: inline-block; width: 20px; height: 2px;
+    background: var(--gold); border-radius: 1px;
+  }
+  /* Eyebrow on dark sections */
+  .ew-gold {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 14px;
+  }
+  .ew-gold::before,
+  .ew-gold::after {
+    content: '';
+    display: inline-block; width: 20px; height: 2px;
+    background: rgba(201,169,110,0.45); border-radius: 1px;
+  }
+  .h2-ink {
+    font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+    line-height: 1.18; letter-spacing: -0.03em;
+    color: var(--ink); margin-bottom: 14px; text-wrap: balance;
+  }
+  .h2-white {
+    font-size: clamp(26px, 4vw, 42px); font-weight: 800;
+    line-height: 1.18; letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 14px; text-wrap: balance;
+  }
+  .sub-ink { max-width: 460px; margin: 0 auto; color: var(--ink-mid); font-size: 15px; line-height: 1.7; }
+  .sub-white { max-width: 460px; margin: 0 auto; color: rgba(255,255,255,0.58); font-size: 15px; line-height: 1.7; }
+
+  /* ──────────────────────── SERVICES (SAGE) ──────────────────────── */
+  .sec-services {
+    background: var(--sage-bg);
+    /* thin green strip at top to bridge from dark hero */
+    border-top: 3px solid var(--forest-btn);
+    padding: 96px 32px;
+    position: relative; overflow: hidden;
+  }
+  .sec-services::before {
+    content: '';
+    position: absolute; top: -120px; left: -80px;
+    width: 480px; height: 480px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.16) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sec-services::after {
+    content: '';
+    position: absolute; bottom: -160px; right: -100px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(12,58,28,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .services-grid {
+    position: relative; z-index: 1;
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+  }
+  .s-card {
+    position: relative; overflow: hidden;
+    background: linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.74) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.75);
+    border-radius: 20px; padding: 28px;
+    box-shadow:
+      0 1px 1px rgba(12,58,28,0.03),
+      0 10px 24px -8px rgba(12,58,28,0.10),
+      0 28px 56px -20px rgba(12,58,28,0.16),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+    transition: transform 0.4s cubic-bezier(.19,1,.22,1), box-shadow 0.4s cubic-bezier(.19,1,.22,1), border-color 0.4s;
+  }
+  .s-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--forest-btn), var(--gold));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .s-card:hover {
+    border-color: rgba(255,255,255,0.95);
+    transform: translateY(-8px);
+    box-shadow:
+      0 2px 2px rgba(12,58,28,0.04),
+      0 18px 32px -10px rgba(12,58,28,0.14),
+      0 44px 80px -24px rgba(12,58,28,0.22),
+      inset 0 1px 0 rgba(255,255,255,1);
+  }
+  .s-card:hover::before { opacity: 1; }
+  .s-icon-wrap {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(150deg, rgba(12,58,28,0.10), rgba(201,169,110,0.14));
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px; font-size: 22px;
+    border: 1px solid rgba(12,58,28,0.10);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 2px 8px rgba(12,58,28,0.06);
+  }
+  .s-num {
+    position: absolute; top: 20px; right: 22px;
+    font-size: 11px; font-weight: 800; letter-spacing: 0.12em;
+    color: var(--gold); opacity: 0.55;
+  }
+  .s-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 9px; letter-spacing: -0.01em; }
+  .s-card p { font-size: 13px; color: var(--ink-mid); line-height: 1.68; }
+
+  /* ──────────────────────── HOW IT WORKS (DARK) ──────────────────────── */
+  .sec-how {
+    background: var(--forest);
+    padding: 96px 32px;
+    position: relative; overflow: hidden;
+  }
+  .sec-how::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.020) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.020) 1px, transparent 1px);
+    background-size: 58px 58px; opacity: 0.5;
+  }
+  /* Gold ambient sweep on right */
+  .sec-how::after {
+    content: '';
+    position: absolute; right: -100px; top: -80px;
+    width: 450px; height: 450px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sec-how-inner { position: relative; z-index: 1; max-width: 1024px; margin: 0 auto; }
+  .steps-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; }
+  .step-num-big {
+    font-size: 60px; font-weight: 900; letter-spacing: -0.05em;
+    color: var(--gold); opacity: 0.52; line-height: 1; margin-bottom: 18px;
+  }
+  .step-title { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .step-body { font-size: 14px; color: rgba(255,255,255,0.58); line-height: 1.74; }
+
+  /* ──────────────────────── WHY US (SAGE ALT) ──────────────────────── */
+  .sec-why {
+    background: var(--sage-alt);
+    border-top: 3px solid var(--forest-btn);
+    padding: 96px 32px;
+    position: relative; overflow: hidden;
+  }
+  .sec-why::before {
+    content: '';
+    position: absolute; top: -140px; right: -80px;
+    width: 460px; height: 460px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,169,110,0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .sec-why::after {
+    content: '';
+    position: absolute; bottom: -140px; left: -100px;
+    width: 400px; height: 400px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(12,58,28,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .why-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .w-card {
+    display: flex; gap: 18px;
+    padding: 24px; border-radius: 20px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.94) 0%, rgba(255,255,255,0.74) 100%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border: 1px solid rgba(255,255,255,0.75);
+    box-shadow:
+      0 1px 1px rgba(12,58,28,0.03),
+      0 10px 24px -8px rgba(12,58,28,0.10),
+      0 28px 56px -20px rgba(12,58,28,0.16),
+      inset 0 1px 0 rgba(255,255,255,0.95);
+    transition: transform 0.4s cubic-bezier(.19,1,.22,1), box-shadow 0.4s cubic-bezier(.19,1,.22,1), border-color 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .w-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+    background: linear-gradient(180deg, var(--forest-btn), var(--gold));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .w-card:hover {
+    border-color: rgba(255,255,255,0.95);
+    transform: translateY(-6px);
+    box-shadow:
+      0 2px 2px rgba(12,58,28,0.04),
+      0 16px 30px -10px rgba(12,58,28,0.14),
+      0 40px 72px -22px rgba(12,58,28,0.20),
+      inset 0 1px 0 rgba(255,255,255,1);
+  }
+  .w-card:hover::before { opacity: 1; }
+  .w-icon {
+    flex-shrink: 0; width: 48px; height: 48px; border-radius: 13px;
+    background: linear-gradient(150deg, rgba(12,58,28,0.10), rgba(201,169,110,0.14));
+    border: 1px solid rgba(12,58,28,0.10);
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 2px 8px rgba(12,58,28,0.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .w-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 5px; letter-spacing: -0.01em; }
+  .w-card p { font-size: 13px; color: var(--ink-mid); line-height: 1.68; }
+
+  /* ──────────────────────── CONTACT (DARK) ──────────────────────── */
+  .sec-contact {
+    background: var(--forest);
+    padding: 96px 32px;
+    position: relative; overflow: hidden;
+  }
+  .sec-contact::before {
+    content: '';
+    position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse at 65% 40%, rgba(201,169,110,0.05) 0%, transparent 60%),
+      linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+    background-size: auto, 58px 58px, 58px 58px; opacity: 1;
+  }
+  .contact-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+  .form-stack { display: flex; flex-direction: column; gap: 20px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-label { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.68); }
+  .form-label b { color: var(--gold); font-weight: 600; }
+  .form-field {
+    width: 100%; padding: 13px 16px; border-radius: 11px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    color: #fff; font-size: 14px; font-family: inherit; outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .form-field::placeholder { color: rgba(255,255,255,0.26); }
+  .form-field:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 0 2px rgba(201,169,110,0.12);
+  }
+  textarea.form-field { resize: none; }
+  .form-submit {
+    width: 100%; padding: 16px; border-radius: 12px;
+    background: var(--forest-btn);
+    border: 1px solid var(--gold-ghost);
+    color: #fff; font-size: 16px; font-weight: 700; font-family: inherit; cursor: pointer;
+    box-shadow: 0 8px 32px rgba(12,58,28,0.55);
+    transition: background 0.15s, box-shadow 0.15s;
+  }
+  .form-submit:hover { background: var(--forest-btn2); box-shadow: 0 8px 32px rgba(201,169,110,0.09); }
+  .form-note { text-align: center; font-size: 11px; color: rgba(255,255,255,0.26); }
+
+  /* ──────────────────────── FOOTER ──────────────────────── */
+  footer {
+    background: var(--forest-deep);
+    padding: 52px 32px 32px;
+    /* thin gold top line */
+    border-top: 1px solid rgba(201,169,110,0.18);
+  }
+  .footer-inner { max-width: 1152px; margin: 0 auto; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; margin-bottom: 44px; }
+  .footer-brand { display: flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+  .footer-brand svg { width: 28px; height: 20px; }
+  .footer-brand-text { color: #fff; font-weight: 800; font-size: 15px; letter-spacing: -0.01em; }
+  .footer-brand-text em { color: var(--gold); font-style: normal; }
+  .footer-tagline { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.68; }
+  .footer-col h4 { color: rgba(255,255,255,0.90); font-size: 12px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color 0.15s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.07);
+    padding-top: 24px; font-size: 11px; color: rgba(255,255,255,0.24);
+    display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1100px) {
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 900px) {
+    .services-grid { grid-template-columns: 1fr 1fr; }
+    .steps-row { grid-template-columns: 1fr; gap: 36px; }
+    .why-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .nav-links, .nav-cta { display: none; }
+    .hero-inner { padding: 100px 24px 56px; }
+    .eyebrow-pill { margin-bottom: 20px; }
+    .hero h1 { margin-bottom: 16px; }
+    .hero-sub { margin-bottom: 32px; }
+    .hero-legal { margin-top: 24px; }
+    .scroll-cue { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ──────── NAV ──────── -->
+<nav class="nav" id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">
+      <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+        <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity="0.82"/>
+        <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity="0.65"/>
+        <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#0C3A1C"/>
+        <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity="0.88"/>
+        <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
+        <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+        <circle cx="73" cy="18" r="3.8" fill="white"/>
+        <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+        <circle cx="72" cy="17.2" r="1" fill="white"/>
+      </svg>
+      <span class="nav-brand-text">PARTRIDG<em>3</em></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#why-us">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Book a Consultation</a>
+  </div>
+</nav>
+
+<!-- ──────── HERO ──────── -->
+<section class="hero">
+  <div class="hero-decor">
+    <div class="hero-radial"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-orb"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="eyebrow-pill">
+      <div class="eyebrow-dot"></div>
+      Wealth · Legacy · Community
+    </div>
+    <h1>Protecting African families.<br><span>One plan at a time.</span></h1>
+    <p class="hero-sub">
+      Partridg3 delivers access to independent, multi-provider financial planning — life cover, disability, income protection, illness cover, funeral cover, savings, estate planning, medical aid, and retirement — all built around your family's story.
+    </p>
+    <div class="hero-ctas">
+      <a href="#contact" class="cta-primary">Book a Free Consultation</a>
+      <a href="#services" class="cta-secondary">Explore Our Services</a>
+      <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" class="cta-whatsapp">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.122 1.532 5.854L.057 23.617a.75.75 0 0 0 .921.921l5.763-1.475A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.907 0-3.686-.528-5.204-1.443l-.373-.22-3.868.99.99-3.868-.22-.373A9.956 9.956 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Join Our WhatsApp Channel
+      </a>
+    </div>
+    <p class="hero-legal">Independent advisers operating under registered FSP licences · FSCA Regulated</p>
+  </div>
+  <div class="scroll-cue">
+    <span>Scroll</span>
+    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ──────── SERVICES (sage green bg, white cards) ──────── -->
+<section class="sec-services" id="services">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="ew-green">What We Do</div>
+      <h2 class="h2-ink">Six pillars of financial protection</h2>
+      <p class="sub-ink">Every Partridg3 client receives a full financial needs analysis before any recommendation is made.</p>
+    </div>
+    <div class="services-grid">
+      <div class="s-card">
+        <span class="s-num">01</span>
+        <div class="s-icon-wrap">🛡️</div>
+        <h3>Life Insurance</h3>
+        <p>Tailored life cover and disability protection for your income and your family's future. We compare across multiple insurers so you never pay more than you should.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">02</span>
+        <div class="s-icon-wrap">💰</div>
+        <h3>Savings &amp; Investments</h3>
+        <p>Unit trusts, endowments, and tax-free savings accounts structured to meet your medium- and long-term goals.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">03</span>
+        <div class="s-icon-wrap">🕊️</div>
+        <h3>Funeral Cover</h3>
+        <p>Dignified, affordable funeral cover structured around your family's needs — ensuring your loved ones are never left to carry that burden alone.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">04</span>
+        <div class="s-icon-wrap">📋</div>
+        <h3>Estate Planning</h3>
+        <p>Wills, trusts, and beneficiary nominations that ensure your wealth reaches the people you intend — efficiently and legally.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">05</span>
+        <div class="s-icon-wrap">🌅</div>
+        <h3>Retirement Planning</h3>
+        <p>Pension and provident fund guidance, living annuities, and drawdown strategy for a dignified retirement.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">06</span>
+        <div class="s-icon-wrap">🤝</div>
+        <h3>Claims &amp; Bereavement Support</h3>
+        <p>End-to-end claims management — from lodgement to pay-out — so your family never has to navigate it alone.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">07</span>
+        <div class="s-icon-wrap">📊</div>
+        <h3>Tax Planning</h3>
+        <p>Structuring your contributions, investments, and income streams to minimise your tax liability — legally, efficiently, and in line with SARS requirements.</p>
+      </div>
+      <div class="s-card">
+        <span class="s-num">08</span>
+        <div class="s-icon-wrap">🏠</div>
+        <h3>Car &amp; Home Insurance</h3>
+        <p>Short-term insurance that protects your vehicles, home, and contents — independently sourced across providers to give you the right cover at the right price.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── HOW IT WORKS (dark forest green) ──────── -->
+<section class="sec-how" id="how-it-works">
+  <div class="sec-how-inner">
+    <div class="sec-head">
+      <div class="ew-gold">The Process</div>
+      <h2 class="h2-white">Simple, honest, and built around you</h2>
+      <p class="sub-white">Most South Africans are over-insured in some areas and dangerously under-protected in others. We fix that.</p>
+    </div>
+    <div class="steps-row">
+      <div>
+        <div class="step-num-big">01</div>
+        <h3 class="step-title">Book a Free Consultation</h3>
+        <p class="step-body">Fill in the contact form or WhatsApp us directly. We'll schedule a 45-minute discovery call — no obligation, no jargon.</p>
+      </div>
+      <div>
+        <div class="step-num-big">02</div>
+        <h3 class="step-title">We Build Your Financial Picture</h3>
+        <p class="step-body">Your adviser conducts a comprehensive financial needs analysis, mapping your income, obligations, protection gaps, and goals.</p>
+      </div>
+      <div>
+        <div class="step-num-big">03</div>
+        <h3 class="step-title">You Get a Plan — Not a Product</h3>
+        <p class="step-body">We present independent recommendations across multiple providers. You decide. We implement and stay accountable to your plan every year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── WHY US (deeper sage bg, white cards) ──────── -->
+<section class="sec-why" id="why-us">
+  <div class="sec-inner">
+    <div class="sec-head">
+      <div class="ew-green">Why Partridg3</div>
+      <h2 class="h2-ink">The practice built for African families</h2>
+      <p class="sub-ink">We started Partridg3 because too many families in our community were sold products instead of plans. That ends here.</p>
+    </div>
+    <div class="why-grid">
+      <div class="w-card">
+        <div class="w-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0C3A1C" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Genuinely Independent</h3>
+          <p>We are not tied to any single insurer. Our recommendations are driven by your needs, not our commissions.</p>
+        </div>
+      </div>
+      <div class="w-card">
+        <div class="w-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0C3A1C" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Family-Centred Advice</h3>
+          <p>We plan for whole families — children, spouses, dependants, and estates — not just the policyholder.</p>
+        </div>
+      </div>
+      <div class="w-card">
+        <div class="w-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0C3A1C" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Always On, Always Available</h3>
+          <p>Our AI-assisted service team means you can reach us on WhatsApp any time. Claims, queries, and reviews — handled.</p>
+        </div>
+      </div>
+      <div class="w-card">
+        <div class="w-icon">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="#0C3A1C" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>FSCA Licensed &amp; Accountable</h3>
+          <p>Our independent advisers operate under their respective registered FSP licences. Your plan is backed by regulatory oversight and a signed FAIS disclosure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── CONTACT (dark forest green) ──────── -->
+<section class="sec-contact" id="contact">
+  <div class="contact-inner">
+    <div class="sec-head">
+      <div class="ew-gold">Get Started</div>
+      <h2 class="h2-white">Let's talk about your family's future</h2>
+      <p class="sub-white">Leave your details and one of our advisers will reach out within one business day.</p>
+    </div>
+    <form id="lead-form" class="form-stack" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label" for="f-name">Full Name <b>*</b></label>
+          <input id="f-name" class="form-field" type="text" placeholder="Thabo Mokoena" autocomplete="name"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="f-phone">WhatsApp / Cell Number <b>*</b></label>
+          <input id="f-phone" class="form-field" type="tel" placeholder="0821234567" autocomplete="tel"/>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-email">Email Address</label>
+        <input id="f-email" class="form-field" type="email" placeholder="thabo@example.com" autocomplete="email"/>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="f-msg">What would you like help with?</label>
+        <textarea id="f-msg" class="form-field" rows="4" placeholder="E.g. I need life cover for my family, or I want to review my existing policies..."></textarea>
+      </div>
+      <div id="form-error" style="display:none;color:#f87171;font-size:13px;"></div>
+      <button type="submit" class="form-submit" id="form-btn">Send Enquiry</button>
+      <p class="form-note">By submitting, you consent to us contacting you via WhatsApp and email. We never share your details.</p>
+    </form>
+    <div id="form-success" style="display:none;background:rgba(12,58,28,0.35);border:1px solid rgba(201,169,110,0.3);border-radius:16px;padding:36px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:12px;">✅</div>
+      <h3 style="color:#fff;font-size:18px;font-weight:700;margin-bottom:8px;">We've received your enquiry</h3>
+      <p style="color:rgba(255,255,255,0.6);font-size:14px;">An adviser will contact you within one business day. Check your WhatsApp — we'll reach out there first.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ──────── FOOTER ──────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 110 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+            <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 Z" fill="#0C3A1C"/>
+            <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+          </svg>
+          <span class="footer-brand-text">PARTRIDG<em>3</em></span>
+        </div>
+        <p class="footer-tagline">Independent financial planning for South African families.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#how-it-works">How it works</a></li>
+          <li><a href="#why-us">Why us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@partridg3.co.za">hello@partridg3.co.za</a></li>
+          <li><a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener">📢 WhatsApp Channel</a></li>
+          <li><a href="#contact">Book a Consultation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="yr"></span> Partridg3. All rights reserved.</span>
+      <p style="margin-top:10px;font-size:10px;color:rgba(201,169,110,.45);line-height:1.7;max-width:720px;">
+        Partridg3 (Pty) Ltd is a technology platform and is not itself a Financial Services Provider (FSP) — it does not give financial advice. Partridg3 connects you with independent advisers who are individually licensed under the
+        <a href="https://www.fsca.co.za" target="_blank" rel="noopener" style="color:rgba(201,169,110,.65);">FAIS Act (No. 37 of 2002)</a>
+        and regulated by the FSCA of South Africa. By submitting a consultation request, you consent to being contacted by a licensed adviser in accordance with POPIA. Calculators are for guidance only, are not guaranteed accurate, and do not constitute financial advice.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ── Nav scroll ── */
+  const nav = document.getElementById('navbar');
+  function updateNav() { nav.classList.toggle('scrolled', window.scrollY > 20); }
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  /* ── Lead submission ── */
+  const SUPA_URL = 'https://aebsqfrfqovyfztmdnkw.supabase.co';
+  const SUPA_KEY = 'sb_publishable_Tj0xe1TlfANh5r9BnRtJYw_LGGAdgTn';
+
+  async function submitLead(e) {
+    e.preventDefault();
+
+    const nameEl  = document.getElementById('f-name');
+    const phoneEl = document.getElementById('f-phone');
+    const emailEl = document.getElementById('f-email');
+    const msgEl   = document.getElementById('f-msg');
+    const btn     = document.getElementById('form-btn');
+    const errEl   = document.getElementById('form-error');
+    const formEl  = document.getElementById('lead-form');
+    const successEl = document.getElementById('form-success');
+
+    const full_name    = nameEl.value.trim();
+    const phone_number = phoneEl.value.trim();
+    const email        = emailEl.value.trim() || null;
+    const message      = msgEl.value.trim() || null;
+
+    /* Validation */
+    errEl.style.display = 'none';
+    if (!full_name) {
+      errEl.textContent = 'Please enter your full name.';
+      errEl.style.display = 'block';
+      nameEl.focus();
+      return;
+    }
+    if (!phone_number) {
+      errEl.textContent = 'Please enter your cell number.';
+      errEl.style.display = 'block';
+      phoneEl.focus();
+      return;
+    }
+
+    /* Loading state */
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    try {
+      const res = await fetch(`${SUPA_URL}/rest/v1/social_media_leads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPA_KEY,
+          'Authorization': `Bearer ${SUPA_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          full_name,
+          whatsapp_number: phone_number,
+          email,
+          message_content: message,
+          platform: 'Website',
+          lead_status: 'NEW'
+        })
+      });
+
+      if (!res.ok) {
+        const body = await res.text();
+        throw new Error(body || `HTTP ${res.status}`);
+      }
+
+      /* Success */
+      formEl.style.display = 'none';
+      successEl.style.display = 'block';
+    } catch (err) {
+      console.error('Lead submission error:', err);
+      errEl.textContent = 'Something went wrong — please try again or WhatsApp us directly.';
+      errEl.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Send Enquiry';
+    }
+  }
+
+  document.getElementById('lead-form').addEventListener('submit', submitLead);
+</script>
+</body>
+</html>

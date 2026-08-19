@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Estate Costs Calculator | Partridg3</title>
+<meta name="description" content="Free South African estate costs calculator. See what executor fees, estate duty and transfer costs will reduce your estate — and what your family actually receives."/>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --deep:#0D2C1A;--gold:#C9A96E;--mint:#34D399;--forest:#0C3A1C;
+    --mid:#0F2418;--w08:rgba(255,255,255,.08);--w15:rgba(255,255,255,.15);
+    --w45:rgba(255,255,255,.45);--w70:rgba(255,255,255,.70);
+    --mint-dim:rgba(52,211,153,.08);--mint-border:rgba(52,211,153,.2);
+    --gold-border:rgba(201,169,110,.2);
+    --f-display:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --f-body:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  }
+  body{
+    font-family:var(--f-body);background:var(--deep);color:#fff;
+    min-height:100vh;line-height:1.6;
+  }
+
+  /* ── Header ── */
+  .hdr{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(8,14,11,.85);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--w08);
+    position:sticky;top:0;z-index:10;
+  }
+  .hdr-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .hdr-logo{width:32px;height:32px;background:var(--forest);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;font-size:16px}
+  .hdr-name{font-size:14px;font-weight:800;letter-spacing:-.02em;color:#fff}
+  .hdr-name span{color:var(--gold)}
+  .hdr-sub{font-size:9px;color:rgba(255,255,255,.3);letter-spacing:.06em;text-transform:uppercase}
+  .hdr-cta{
+    font-size:12px;font-weight:700;padding:8px 16px;border-radius:8px;
+    background:linear-gradient(135deg,#059669,#047857);color:#fff;
+    text-decoration:none;border:none;cursor:pointer;
+  }
+
+  /* ── Hero ── */
+  .hero{
+    text-align:center;padding:48px 20px 32px;
+    background:linear-gradient(180deg,rgba(12,58,28,.6) 0%,transparent 100%);
+  }
+  .eyebrow{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:.15em;
+    text-transform:uppercase;color:var(--gold);margin-bottom:12px;
+  }
+  .hero h1{font-size:clamp(24px,5vw,40px);font-weight:900;line-height:1.15;
+    letter-spacing:-.03em;color:#fff;margin-bottom:12px}
+  .hero p{font-size:15px;color:rgba(255,255,255,.6);max-width:480px;margin:0 auto}
+
+  /* ── Main layout ── */
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px 80px}
+
+  /* ── Card ── */
+  .card{
+    background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);
+    border-radius:18px;padding:24px;margin-bottom:20px;
+  }
+
+  /* ── Form ── */
+  .form-group{margin-bottom:20px}
+  .form-label{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;
+    text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:8px}
+  .form-input,.form-select{
+    width:100%;padding:12px 14px;font-size:14px;color:#fff;
+    background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);
+    border-radius:10px;outline:none;transition:border-color .2s;
+    font-family:var(--f-body);
+  }
+  .form-input:focus,.form-select:focus{border-color:rgba(52,211,153,.5)}
+  .form-input::placeholder{color:rgba(255,255,255,.25)}
+  .form-select option{background:#0F2418;color:#fff}
+  .form-hint{font-size:11px;color:rgba(255,255,255,.35);margin-top:6px}
+  .prop-group{display:none}
+  .prop-group.show{display:block}
+
+  /* ── Toggle row ── */
+  .toggle-row{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+  .toggle{width:42px;height:24px;border-radius:99px;border:none;cursor:pointer;
+    position:relative;transition:background .25s;flex-shrink:0}
+  .toggle.off{background:rgba(255,255,255,.12)}
+  .toggle.on{background:#059669}
+  .toggle-thumb{
+    position:absolute;top:3px;width:18px;height:18px;border-radius:50%;
+    background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transition:left .2s;
+  }
+  .toggle.off .toggle-thumb{left:3px}
+  .toggle.on .toggle-thumb{left:21px}
+  .toggle-label{font-size:13px;color:rgba(255,255,255,.8)}
+  .toggle-hint{font-size:11px;color:rgba(255,255,255,.35);margin-left:54px;margin-top:-14px;margin-bottom:14px}
+
+  /* ── CTA button ── */
+  .calc-btn{
+    width:100%;padding:15px;font-size:14px;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,#059669,#047857);border:none;
+    border-radius:12px;cursor:pointer;letter-spacing:.02em;
+    box-shadow:0 4px 16px rgba(5,150,105,.35);transition:opacity .15s;
+  }
+  .calc-btn:hover{opacity:.9}
+
+  /* ── Results ── */
+  .results{display:none}
+  .results.show{display:block}
+  .result-total{margin-bottom:20px}
+  .result-label-sm{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:rgba(255,255,255,.4);margin-bottom:6px}
+  .result-amount{font-size:clamp(32px,7vw,48px);font-weight:900;line-height:1;letter-spacing:-.03em}
+  .result-pct{font-size:13px;color:rgba(255,255,255,.45);margin-top:4px}
+
+  /* ── Bar rows ── */
+  .bar-rows{margin:18px 0}
+  .bar-row{margin-bottom:12px}
+  .bar-meta{display:flex;justify-content:space-between;font-size:12px;margin-bottom:4px}
+  .bar-meta span:first-child{color:rgba(255,255,255,.6)}
+  .bar-meta span:last-child{font-weight:700;color:#fff;font-variant-numeric:tabular-nums}
+  .bar-track{height:6px;background:rgba(255,255,255,.07);border-radius:99px;overflow:hidden}
+  .bar-fill{height:100%;border-radius:99px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+  .bar-fill.mint{background:linear-gradient(90deg,#34D399,#059669)}
+  .bar-fill.gold{background:linear-gradient(90deg,#C9A96E,#D97706)}
+  .bar-fill.red{background:linear-gradient(90deg,#F87171,#DC2626)}
+
+  /* ── Net result ── */
+  .net-box{
+    background:var(--mint-dim);border:1.5px solid var(--mint-border);
+    border-radius:14px;padding:18px 20px;margin:18px 0;
+  }
+  .net-box .lbl{font-size:11px;font-weight:700;color:var(--mint);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
+  .net-box .amt{font-size:32px;font-weight:900;color:var(--mint);line-height:1}
+
+  /* ── Alert ── */
+  .alert-box{
+    background:rgba(201,169,110,.08);border:1.5px solid var(--gold-border);
+    border-radius:12px;padding:14px 16px;margin:14px 0;
+    font-size:12px;color:var(--gold);line-height:1.5;
+  }
+  .alert-box strong{display:block;margin-bottom:3px}
+
+  /* ── Divider ── */
+  .divider{border:none;border-top:1px solid var(--w08);margin:20px 0}
+
+  /* ── Lead form ── */
+  .lead-section{margin-top:8px}
+  .lead-title{font-size:13px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:14px}
+  .input-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+  @media(max-width:480px){.input-row{grid-template-columns:1fr}}
+  .submit-btn{
+    width:100%;padding:14px;font-size:14px;font-weight:800;
+    background:linear-gradient(135deg,#059669,#047857);color:#fff;
+    border:none;border-radius:12px;cursor:pointer;box-shadow:0 4px 16px rgba(5,150,105,.3);
+    transition:opacity .15s;
+  }
+  .submit-btn:hover{opacity:.9}
+  .submit-btn:disabled{opacity:.5;cursor:not-allowed}
+  .success-box{
+    text-align:center;padding:28px 20px;
+    background:var(--mint-dim);border:1.5px solid var(--mint-border);border-radius:14px;
+  }
+  .success-box .icon{font-size:36px;margin-bottom:10px}
+  .success-box p{font-size:13px;color:rgba(255,255,255,.65)}
+
+  /* ── Disclaimer ── */
+  .disclaimer{font-size:10px;color:rgba(255,255,255,.2);text-align:center;
+    margin-top:32px;line-height:1.6;padding:0 8px}
+
+  /* ── Back link ── */
+  .back-link{display:inline-flex;align-items:center;gap:6px;font-size:12px;
+    color:rgba(255,255,255,.35);text-decoration:none;margin-bottom:24px;
+    transition:color .15s}
+  .back-link:hover{color:rgba(255,255,255,.6)}
+
+  /* ── Footer ── */
+  .footer{border-top:1px solid var(--w08);padding:24px 20px;text-align:center;
+    font-size:11px;color:rgba(255,255,255,.2)}
+  .footer a{color:rgba(255,255,255,.35);text-decoration:none}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <a href="/" class="hdr-brand">
+    <div class="hdr-logo">🌿</div>
+    <div>
+      <div class="hdr-name">PARTRIDG<span>3</span></div>
+      <div class="hdr-sub">Independent advisers</div>
+    </div>
+  </a>
+  <a href="/#contact" class="hdr-cta">Book a consultation</a>
+</header>
+
+<div class="hero">
+  <div class="eyebrow">September is Wills Month</div>
+  <h1>What will your estate<br>actually cost?</h1>
+  <p>See executor fees, estate duty, and transfer costs — and what your family receives after the state and the lawyers are done.</p>
+</div>
+
+<div class="wrap">
+  <a href="/" class="back-link">← Back to Partridg3</a>
+
+  <!-- Input card -->
+  <div class="card">
+    <div class="form-group">
+      <label class="form-label">Total gross estate value (ZAR)</label>
+      <input class="form-input" type="number" id="ec-estate" placeholder="e.g. 5 000 000" min="0"/>
+      <div class="form-hint">Include property, investments, retirement funds, bank accounts, vehicles</div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Outstanding debts (ZAR)</label>
+      <input class="form-input" type="number" id="ec-debts" placeholder="e.g. 0" min="0"/>
+      <div class="form-hint">Bonds, loans, and other liabilities — deductible before estate duty is calculated</div>
+    </div>
+
+    <div class="toggle-row">
+      <button class="toggle off" id="toggle-spouse" onclick="toggleSpouse()" aria-label="Surviving spouse toggle">
+        <div class="toggle-thumb"></div>
+      </button>
+      <span class="toggle-label">Surviving spouse inherits</span>
+    </div>
+    <div class="toggle-hint">Doubles the estate duty abatement from R3.5m to R7m (Section 4A portability)</div>
+
+    <div class="toggle-row">
+      <button class="toggle off" id="toggle-prop" onclick="toggleProp()" aria-label="Property toggle">
+        <div class="toggle-thumb"></div>
+      </button>
+      <span class="toggle-label">Estate includes immovable property</span>
+    </div>
+
+    <div class="prop-group" id="prop-group">
+      <div class="form-group" style="margin-top:10px">
+        <label class="form-label">Property value (ZAR)</label>
+        <input class="form-input" type="number" id="ec-prop" placeholder="e.g. 2 500 000" min="0"/>
+        <div class="form-hint">Transfer costs (conveyancing) apply on property in a deceased estate</div>
+      </div>
+    </div>
+
+    <button class="calc-btn" onclick="calculate()">Calculate my estate costs</button>
+  </div>
+
+  <!-- Results card (hidden until calculated) -->
+  <div class="results card" id="results">
+    <div class="result-total">
+      <div class="result-label-sm">Total estate costs</div>
+      <div class="result-amount" id="res-total" style="color:#F87171"></div>
+      <div class="result-pct" id="res-pct"></div>
+    </div>
+
+    <div class="bar-rows" id="bar-rows"></div>
+    <div class="bar-row" id="debts-row" style="display:none"></div>
+
+    <div class="net-box">
+      <div class="lbl">Net to beneficiaries</div>
+      <div class="amt" id="res-net"></div>
+    </div>
+
+    <div class="alert-box" id="liquidity-alert" style="display:none">
+      <strong>⚠ Liquidity risk</strong>
+      Estate costs exceed 15% of your estate. Every rand must be available in cash before a single asset transfers to your heirs. Life cover structured as estate cover can fund these costs tax-efficiently — speak to an adviser.
+    </div>
+
+    <hr class="divider"/>
+
+    <!-- Lead capture -->
+    <div class="lead-section">
+      <div class="lead-title">Get a personalised estate plan — book a free consultation</div>
+      <div id="lead-form">
+        <div class="input-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">First name</label>
+            <input class="form-input" type="text" id="lf-fname" placeholder="Thabo"/>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Surname</label>
+            <input class="form-input" type="text" id="lf-lname" placeholder="Mokoena"/>
+          </div>
+        </div>
+        <div class="form-group" style="margin:12px 0">
+          <label class="form-label">Phone</label>
+          <input class="form-input" type="tel" id="lf-phone" placeholder="e.g. 083 000 0000"/>
+        </div>
+        <div class="form-group" style="margin-bottom:16px">
+          <label class="form-label">Email (optional)</label>
+          <input class="form-input" type="email" id="lf-email" placeholder="you@example.com"/>
+        </div>
+        <button class="submit-btn" id="submit-btn" onclick="submitLead()">Book my estate planning consultation →</button>
+        <p style="font-size:11px;color:rgba(255,255,255,.25);text-align:center;margin-top:10px;">POPIA compliant. No spam. An adviser responds within 1 business day.</p>
+      </div>
+      <div id="lead-success" style="display:none" class="success-box">
+        <div class="icon">✅</div>
+        <div style="font-size:16px;font-weight:800;color:#34D399;margin-bottom:6px">Consultation booked</div>
+        <p>An independent, FAIS-licensed adviser will be in touch within one business day.</p>
+      </div>
+    </div>
+  </div>
+
+  <p class="disclaimer">
+    Partridg3 is a technology platform, not itself a Financial Services Provider — it does not give financial advice. These estimates are for guidance only, are not guaranteed accurate, and do not constitute financial advice. Executor's fees calculated at 3.5% plus 15% VAT. Estate duty abatement R3,500,000 (R7,000,000 where surviving spouse inherits — Section 4A). Master of the High Court fees per official tariff. Advertising costs approximately R1,500. Conveyancing fees are indicative only. Actual costs will vary. All Partridg3 advisers are independently licensed under the FAIS Act (No. 37 of 2002) and regulated by the FSCA. By submitting your details, you consent to being contacted by a licensed adviser in accordance with POPIA.
+  </p>
+</div>
+
+<footer class="footer">
+  © <span id="yr"></span> Partridg3 · <a href="/">partridg3.co.za</a> · FAIS-licensed independent advisers
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA_URL = 'https://aebsqfrfqovyfztmdnkw.supabase.co';
+const SUPA_KEY = 'sb_publishable_Tj0xe1TlfANh5r9BnRtJYw_LGGAdgTn';
+const SUPA = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+const fmt = n => 'R ' + Math.round(n).toLocaleString('en-ZA');
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+let spouseOn = false, propOn = false;
+
+function toggleSpouse(){
+  spouseOn = !spouseOn;
+  const btn = document.getElementById('toggle-spouse');
+  btn.classList.toggle('on', spouseOn);
+  btn.classList.toggle('off', !spouseOn);
+}
+
+function toggleProp(){
+  propOn = !propOn;
+  const btn = document.getElementById('toggle-prop');
+  btn.classList.toggle('on', propOn);
+  btn.classList.toggle('off', !propOn);
+  document.getElementById('prop-group').classList.toggle('show', propOn);
+}
+
+function calcMastersFee(e){
+  if(e<=250000) return 600;
+  if(e<=500000) return 1000;
+  if(e<=750000) return 1500;
+  if(e<=1000000) return 2000;
+  return Math.min(7000, 2000 + Math.ceil((e-1000000)/100000)*600);
+}
+
+function calcConveyancing(p){
+  if(p<=100000) return 4000;
+  if(p<=250000) return 6000;
+  if(p<=500000) return 9000;
+  if(p<=1000000) return 14000;
+  if(p<=2000000) return 22000;
+  if(p<=5000000) return 35000;
+  return 55000;
+}
+
+let lastResults = null;
+
+function calculate(){
+  const e = parseFloat(document.getElementById('ec-estate').value)||0;
+  if(!e){
+    document.getElementById('ec-estate').focus();
+    return;
+  }
+  const p = propOn ? (parseFloat(document.getElementById('ec-prop').value)||0) : 0;
+
+  const debts     = parseFloat(document.getElementById('ec-debts').value)||0;
+  const execFee   = e * 0.035 * 1.15;
+  const netEstate = Math.max(0, e - debts);
+  const abatement = spouseOn ? 7000000 : 3500000;
+  const dutiable  = Math.max(0, netEstate - abatement);
+  let duty = 0;
+  if(dutiable > 0){
+    const at20 = Math.min(dutiable, 30000000);
+    duty = at20 * 0.20 + Math.max(0, dutiable - at20) * 0.25;
+  }
+  const masters = calcMastersFee(e);
+  const advert  = 1500;
+  const conv    = propOn ? calcConveyancing(p) : 0;
+  const total   = execFee + duty + masters + advert + conv;
+  const net     = Math.max(0, e - debts - total);
+  const pct     = (total/e*100).toFixed(1);
+
+  lastResults = {e, p, execFee, duty, masters, advert, conv, total, net, debts};
+
+  document.getElementById('res-total').textContent = fmt(total);
+  document.getElementById('res-pct').textContent = pct + '% of your gross estate';
+  document.getElementById('res-net').textContent = fmt(net);
+
+  const debtsRow = document.getElementById('debts-row');
+  if(debts > 0){
+    debtsRow.style.display = 'block';
+    debtsRow.innerHTML = `<div class="bar-meta"><span>Outstanding debts (settled from estate)</span><span>−${fmt(debts)}</span></div>`;
+  } else {
+    debtsRow.style.display = 'none';
+  }
+
+  const lines = [
+    {label:"Executor's fees (3.5% + VAT)", val:execFee, cls:'mint'},
+    {label:'Estate duty', val:duty, cls:'gold'},
+    {label:"Master's fees", val:masters, cls:'mint'},
+    {label:'Advertising costs', val:advert, cls:'mint'},
+    ...(propOn ? [{label:'Conveyancing fees', val:conv, cls:'mint'}] : []),
+  ];
+
+  document.getElementById('bar-rows').innerHTML = lines.map(({label,val,cls})=>`
+    <div class="bar-row">
+      <div class="bar-meta"><span>${label}</span><span>${fmt(val)}</span></div>
+      <div class="bar-track"><div class="bar-fill ${cls}" style="width:${Math.round(val/total*100)}%"></div></div>
+    </div>`).join('');
+
+  document.getElementById('liquidity-alert').style.display = total > e*0.15 ? 'block' : 'none';
+
+  const res = document.getElementById('results');
+  res.classList.add('show');
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function submitLead(){
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Sending…';
+
+  const first_name = document.getElementById('lf-fname').value.trim();
+  const last_name  = document.getElementById('lf-lname').value.trim();
+  const data = {
+    first_name, last_name,
+    phone: document.getElementById('lf-phone').value.trim(),
+    email: document.getElementById('lf-email').value.trim() || null,
+  };
+
+  await SUPA.from('social_media_leads').insert({
+    full_name: `${first_name} ${last_name}`.trim(),
+    whatsapp_number: data.phone,
+    email: data.email,
+    product_interest: 'wills_estate',
+    platform: 'Website',
+    lead_status: 'NEW',
+  }).then(()=>{}, ()=>{});
+
+  if(lastResults){
+    await SUPA.from('estate_calculator_submissions').insert({
+      name:              (data.first_name+' '+data.last_name).trim(),
+      email:             data.email,
+      phone:             data.phone,
+      gross_estate:      lastResults.e,
+      has_surviving_spouse: spouseOn,
+      property_value:    lastResults.p,
+      executor_fee:      lastResults.execFee,
+      estate_duty:       lastResults.duty,
+      masters_fee:       lastResults.masters,
+      advertising_cost:  lastResults.advert,
+      conveyancing_cost: lastResults.conv,
+      total_cost:        lastResults.total,
+      net_to_beneficiaries: lastResults.net,
+      source:            'estate_calculator_page',
+    }).then(()=>{}, ()=>{});
+  }
+
+  document.getElementById('lead-form').style.display = 'none';
+  document.getElementById('lead-success').style.display = 'block';
+}
+</script>
+</body>
+</html>

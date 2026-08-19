@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Partridg3 | Financial advice that feels like home</title>
+<meta name="description" content="Independent financial advisers for South African families. Free calculators, daily insights, and a direct connection to a FAIS-licensed adviser."/>
+<meta name="robots" content="index,follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Partridg3 | Financial advice that feels like home"/>
+<meta property="og:description" content="Free financial tools, daily insights, and independent South African advisers. No product bias. No hidden agendas."/>
+<meta property="og:url" content="https://landing-three-vert-77.vercel.app"/>
+<meta property="og:site_name" content="Partridg3"/>
+<meta property="og:locale" content="en_ZA"/>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 80'><rect width='110' height='80' fill='%230B1F17'/><path d='M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z' fill='%23047857'/><path d='M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z' fill='%23C9A96E'/><circle cx='73' cy='18' r='3.8' fill='white'/></svg>"/>
+<style>
+:root{
+  /* Dark palette — aligned with info sheet */
+  --deep:#0D2C1A;--mid:#0A2415;--card:#0C3A1C;
+  /* Forest green buttons */
+  --forest-btn:#0C3A1C;--forest-btn2:#0F4822;
+  /* Gold is primary accent; mint remapped to gold for backward-compat */
+  --gold:#C9A96E;--gold-dim:rgba(201,169,110,.10);--gold-border:rgba(201,169,110,.25);
+  --gold-ghost:rgba(201,169,110,.15);--gold-line:rgba(201,169,110,.30);
+  --mint:var(--gold);--mint-dim:var(--gold-dim);--mint-border:var(--gold-border);
+  --wa:#25D366;
+  --w100:#fff;--w70:rgba(255,255,255,.70);--w45:rgba(255,255,255,.45);
+  --w20:rgba(255,255,255,.20);--w08:rgba(255,255,255,.08);--w04:rgba(255,255,255,.04);
+  --f-display:Georgia,'Times New Roman',serif;
+  --f-body:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--deep);color:var(--w100);font-family:var(--f-body);-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+
+/* Anchor-scroll targets need clearance so the fixed nav doesn't cover their heading */
+#insights,#tools,#how,#contact{scroll-margin-top:80px;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
+  display:flex;align-items:center;justify-content:space-between;padding:0 32px;
+  background:rgba(13,44,26,.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--w08);}
+.nav-logo{display:flex;align-items:center;gap:10px;}
+.nav-wordmark{font-size:15px;font-weight:800;letter-spacing:-.01em;}
+.nav-wordmark span{color:var(--mint);}
+.nav-links{display:flex;align-items:center;gap:24px;}
+.nav-links a{font-size:13px;color:var(--w45);font-weight:500;transition:color .15s;}
+.nav-links a:hover{color:var(--w100);}
+.nav-actions{display:flex;gap:10px;align-items:center;}
+.btn-wa-nav{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;
+  color:#fff;padding:8px 16px;border-radius:8px;background:var(--wa);border:none;cursor:pointer;}
+.btn-wa-nav:hover{opacity:.88;}
+.btn-ghost{font-size:13px;font-weight:600;color:var(--w45);padding:8px 14px;border-radius:8px;
+  border:1px solid var(--w08);background:transparent;cursor:pointer;transition:all .15s;text-decoration:none;}
+.btn-ghost:hover{color:var(--w100);background:var(--w04);}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--w70);border-radius:2px;}
+.mobile-menu{display:none;position:fixed;inset:0;background:var(--deep);z-index:99;
+  flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-size:18px;color:var(--w70);font-weight:500;}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;}
+.hero-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
+.hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;
+  border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.07) 0%,transparent 60%);pointer-events:none;}
+.hero-bird{animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;
+  background:var(--mint-dim);border:1px solid var(--mint-border);font-size:10px;font-weight:800;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:28px;}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--mint);
+  animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,169,110,.4);}50%{box-shadow:0 0 0 5px rgba(201,169,110,0);}}
+.hero h1{font-family:var(--f-display);font-size:clamp(38px,6vw,76px);font-weight:400;
+  line-height:1.06;text-wrap:balance;max-width:820px;margin:24px auto 0;}
+.hero h1 em{font-style:italic;color:var(--mint);}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--w45);line-height:1.72;
+  max-width:520px;margin:18px auto 0;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px;}
+.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;
+  font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .15s;text-decoration:none;}
+.btn-hero-primary{background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);}
+.btn-hero-primary:hover{opacity:.88;transform:translateY(-1px);}
+.btn-hero-secondary{background:transparent;color:var(--w70);border:1px solid var(--w20);}
+.btn-hero-secondary:hover{background:var(--w04);color:var(--w100);}
+.hero-share{display:flex;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;justify-content:center;}
+.hero-share-label{font-size:11px;color:var(--w20);}
+.share-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;
+  font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
+.share-pill-wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.25);}
+.share-pill-wa:hover{background:rgba(37,211,102,.22);}
+.share-pill-copy{background:var(--w04);color:var(--w45);border:1px solid var(--w08);}
+.share-pill-copy:hover{background:var(--w08);color:var(--w100);}
+
+/* TRUST */
+.trust{padding:16px 32px;background:rgba(201,169,110,.03);border-top:1px solid var(--w08);border-bottom:1px solid var(--w08);}
+.trust-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;justify-content:center;flex-wrap:wrap;}
+.trust-item{display:flex;align-items:center;gap:7px;padding:7px 20px;font-size:11px;font-weight:600;color:var(--w45);}
+.trust-div{width:1px;height:20px;background:var(--w08);}
+
+/* SECTION */
+.section{padding:88px 32px;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.eyebrow{font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--mint);margin-bottom:12px;}
+.eyebrow.gold{color:var(--gold);}
+.section-h2{font-family:var(--f-display);font-size:clamp(26px,4vw,48px);font-weight:400;line-height:1.12;text-wrap:balance;}
+.section-sub{font-size:14px;color:var(--w45);line-height:1.72;max-width:520px;margin-top:12px;}
+
+/* TODAY'S INSIGHT */
+.today{background:var(--mid);}
+.today-card{background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(201,169,110,.03));
+  border:1px solid var(--gold-border);border-radius:20px;padding:36px 40px;
+  display:grid;grid-template-columns:1fr auto;gap:24px;align-items:start;}
+.today-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:999px;
+  background:var(--gold-dim);border:1px solid var(--gold-border);font-size:9px;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.today-channel{font-size:10px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;
+  color:var(--mint);margin-bottom:8px;}
+.today-title{font-family:var(--f-display);font-size:clamp(20px,3vw,32px);line-height:1.3;color:var(--w100);margin-bottom:10px;}
+.today-body{font-size:13px;color:var(--w45);line-height:1.68;max-width:640px;}
+.today-author{font-size:11px;color:var(--w20);margin-top:16px;padding-top:14px;border-top:1px solid var(--w08);}
+.today-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.btn-share-insight{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;
+  font-size:13px;font-weight:600;cursor:pointer;border:none;white-space:nowrap;}
+.btn-share-insight.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.2);}
+.btn-share-insight.wa:hover{background:rgba(37,211,102,.22);}
+.btn-share-insight.story{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
+.btn-share-insight.story:hover{background:rgba(201,169,110,.18);}
+.today-empty{text-align:center;padding:40px;color:var(--w20);font-size:13px;grid-column:1/-1;}
+
+/* INSIGHTS GRID */
+.insights{background:var(--deep);}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;}
+.insight-card{background:var(--w04);border:1px solid var(--w08);border-radius:14px;padding:20px;
+  display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s;}
+.insight-card:hover{border-color:var(--w20);transform:translateY(-2px);}
+.insight-ch{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);}
+.insight-title{font-family:var(--f-display);font-size:15px;line-height:1.4;color:var(--w100);flex:1;}
+.insight-footer{display:flex;align-items:center;justify-content:space-between;
+  margin-top:auto;padding-top:10px;border-top:1px solid var(--w08);}
+.insight-author{font-size:10px;color:var(--w20);}
+.btn-share-sm{display:inline-flex;align-items:center;gap:4px;background:rgba(37,211,102,.08);
+  border:1px solid rgba(37,211,102,.14);border-radius:6px;padding:4px 10px;
+  font-size:10px;font-weight:600;color:#25D366;cursor:pointer;}
+.btn-share-sm:hover{background:rgba(37,211,102,.18);}
+.insights-loading{text-align:center;color:var(--w20);font-size:13px;padding:40px;grid-column:1/-1;}
+
+/* TOOLS */
+.tools{background:var(--mid);}
+.tool-tabs-wrap{position:relative;margin-top:36px;}
+.tool-tabs{display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;border-bottom:1px solid var(--w08);padding-bottom:0;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;-ms-overflow-style:none;
+  -webkit-mask-image:linear-gradient(to right,black calc(100% - 44px),transparent);
+  mask-image:linear-gradient(to right,black calc(100% - 44px),transparent);}
+.tool-tabs::-webkit-scrollbar{display:none;}
+.tool-tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--w45);cursor:pointer;white-space:nowrap;flex-shrink:0;
+  border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-1px;scroll-snap-align:start;
+  transition:all .15s;border-radius:8px 8px 0 0;}
+.tool-tab:hover{color:var(--w70);}
+.tool-tab.active{color:var(--mint);border-bottom-color:var(--mint);background:var(--mint-dim);}
+.tool-tabs-hint{display:none;align-items:center;gap:4px;position:absolute;right:0;top:-22px;font-size:10px;
+  color:var(--w20);letter-spacing:.04em;}
+@media(max-width:600px){.tool-tabs-hint{display:flex;}}
+.tool-panels{margin-top:28px;}
+.tool-panel{display:none;}
+.tool-panel.active{display:block;}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;}
+.calc-form{background:var(--w04);border:1px solid var(--w08);border-radius:16px;padding:28px;}
+.calc-result{background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(201,169,110,.03));
+  border:1px solid var(--mint-border);border-radius:16px;padding:28px;min-height:200px;
+  display:flex;flex-direction:column;justify-content:center;}
+.calc-result.gold-theme{background:linear-gradient(135deg,rgba(201,169,110,.08),rgba(201,169,110,.03));
+  border-color:var(--gold-border);}
+.form-group{margin-bottom:14px;}
+.form-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--w45);margin-bottom:6px;display:block;}
+.form-hint{font-size:10px;color:var(--w20);margin-top:3px;}
+.form-input,.form-select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--w08);
+  border-radius:8px;padding:10px 13px;font-size:13px;color:var(--w100);
+  font-family:var(--f-body);outline:none;transition:border-color .15s;}
+.form-input:focus,.form-select:focus{border-color:var(--mint);}
+.form-input::placeholder{color:var(--w20);}
+.form-select{-webkit-appearance:none;cursor:pointer;}
+.form-select option{background:#0a2415;}
+.calc-btn{width:100%;background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);border-radius:10px;
+  padding:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;transition:all .15s;}
+.calc-btn:hover{opacity:.88;}
+.result-label{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mint);margin-bottom:8px;}
+.result-label.gold{color:var(--gold);}
+.result-amount{font-family:var(--f-display);font-size:clamp(28px,4vw,48px);font-weight:400;
+  color:var(--w100);line-height:1.1;margin-bottom:8px;}
+.result-note{font-size:12px;color:var(--w45);line-height:1.6;}
+.result-bars{margin-top:16px;display:flex;flex-direction:column;gap:8px;}
+.result-bar-row{display:flex;flex-direction:column;gap:4px;}
+.result-bar-label{display:flex;justify-content:space-between;font-size:11px;color:var(--w45);}
+.result-bar-track{height:6px;background:var(--w08);border-radius:3px;overflow:hidden;}
+.result-bar-fill{height:100%;border-radius:3px;transition:width .6s ease;}
+.result-bar-fill.mint{background:var(--mint);}
+.result-bar-fill.gold{background:var(--gold);}
+.result-bar-fill.red{background:#ef4444;}
+.result-placeholder{text-align:center;color:var(--w20);font-size:13px;}
+.result-placeholder .big{font-size:36px;margin-bottom:10px;}
+
+/* QUIZ */
+.quiz-step{display:none;}
+.quiz-step.active{display:block;}
+.quiz-q{font-family:var(--f-display);font-size:clamp(18px,2.5vw,26px);color:var(--w100);
+  margin-bottom:20px;line-height:1.3;}
+.quiz-progress{font-size:11px;color:var(--w20);margin-bottom:8px;}
+.quiz-progress-bar{height:3px;background:var(--w08);border-radius:2px;margin-bottom:24px;}
+.quiz-progress-fill{height:100%;background:var(--mint);border-radius:2px;transition:width .3s;}
+.quiz-options{display:flex;flex-direction:column;gap:8px;}
+.quiz-option{background:var(--w04);border:1px solid var(--w08);border-radius:10px;
+  padding:14px 16px;cursor:pointer;font-size:14px;color:var(--w70);text-align:left;
+  transition:all .15s;display:flex;align-items:center;gap:12px;}
+.quiz-option:hover{border-color:var(--mint);color:var(--w100);background:var(--mint-dim);}
+.quiz-option.selected{border-color:var(--mint);background:var(--mint-dim);color:var(--mint);}
+.quiz-nav{display:flex;gap:10px;margin-top:20px;}
+.quiz-btn{padding:10px 22px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;border:none;}
+.quiz-btn-next{background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);}
+.quiz-btn-back{background:var(--w04);color:var(--w45);border:1px solid var(--w08);}
+.quiz-result-score{font-family:var(--f-display);font-size:64px;font-weight:400;
+  text-align:center;line-height:1;margin-bottom:4px;}
+.quiz-result-label{text-align:center;font-size:13px;color:var(--w45);margin-bottom:20px;}
+.quiz-result-items{display:flex;flex-direction:column;gap:8px;}
+.quiz-result-item{display:flex;align-items:flex-start;gap:10px;background:var(--w04);
+  border:1px solid var(--w08);border-radius:10px;padding:12px 14px;font-size:13px;color:var(--w45);}
+.quiz-result-item::before{content:'→';color:var(--mint);flex-shrink:0;margin-top:1px;}
+
+/* HOW */
+.how{background:var(--deep);}
+.how-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:40px;
+  border-radius:16px;overflow:hidden;border:1px solid var(--w08);}
+.how-step{background:var(--w04);padding:32px 26px;}
+.how-step:not(:last-child){border-right:1px solid var(--w08);}
+.how-num{font-family:var(--f-display);font-size:48px;font-weight:400;color:var(--w08);
+  line-height:1;margin-bottom:16px;}
+.how-icon{width:36px;height:36px;border-radius:9px;background:var(--mint-dim);
+  border:1px solid var(--mint-border);display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.how-title{font-size:16px;font-weight:700;color:var(--w100);margin-bottom:7px;}
+.how-body{font-size:13px;color:var(--w45);line-height:1.65;}
+.how-tag{display:inline-block;margin-top:12px;font-size:9px;font-weight:800;letter-spacing:.12em;
+  text-transform:uppercase;padding:3px 9px;border-radius:4px;background:var(--mint-dim);color:var(--mint);}
+
+/* DIFFERENCE */
+.difference{background:var(--mid);}
+.diff-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;}
+.diff-card{background:var(--w04);border:1px solid var(--w08);border-radius:14px;padding:24px;}
+.diff-card.featured{background:rgba(201,169,110,.05);border-color:var(--mint-border);}
+.diff-card.featured-gold{background:rgba(201,169,110,.05);border-color:var(--gold-border);}
+.diff-icon{font-size:22px;margin-bottom:12px;}
+.diff-title{font-size:16px;font-weight:700;margin-bottom:7px;}
+.diff-body{font-size:13px;color:var(--w45);line-height:1.65;}
+.diff-vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;grid-column:1/-1;}
+.diff-vs-col{border-radius:12px;padding:16px;}
+.diff-vs-col.old{background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.10);}
+.diff-vs-col.new{background:var(--mint-dim);border:1px solid var(--mint-border);}
+.diff-vs-label{font-size:9px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px;}
+.diff-vs-col.old .diff-vs-label{color:rgba(239,68,68,.5);}
+.diff-vs-col.new .diff-vs-label{color:var(--mint);}
+.diff-vs-list{list-style:none;display:flex;flex-direction:column;gap:6px;}
+.diff-vs-list li{font-size:12px;color:var(--w45);line-height:1.5;display:flex;gap:7px;}
+.diff-vs-col.old .diff-vs-list li::before{content:'✕';color:rgba(239,68,68,.5);flex-shrink:0;font-size:10px;margin-top:2px;}
+.diff-vs-col.new .diff-vs-list li::before{content:'→';color:var(--mint);flex-shrink:0;font-size:10px;margin-top:2px;}
+
+/* CONTACT */
+.contact{background:var(--deep);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:40px;}
+.contact-channels{display:flex;flex-direction:column;gap:10px;margin-top:20px;}
+.contact-channel{display:flex;align-items:center;gap:12px;background:var(--w04);
+  border:1px solid var(--w08);border-radius:12px;padding:14px 16px;text-decoration:none;transition:border-color .15s;}
+.contact-channel:hover{border-color:var(--w20);}
+.contact-channel-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;
+  justify-content:center;flex-shrink:0;font-size:16px;}
+.contact-channel-icon.wa{background:rgba(37,211,102,.12);}
+.contact-channel-icon.em{background:rgba(201,169,110,.10);}
+.contact-channel-label{font-size:10px;color:var(--w20);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.contact-channel-value{font-size:13px;font-weight:600;color:var(--w100);}
+.contact-form{background:var(--w04);border:1px solid var(--w08);border-radius:16px;padding:26px;}
+.form-title{font-size:15px;font-weight:700;margin-bottom:5px;}
+.form-sub{font-size:12px;color:var(--w45);margin-bottom:18px;line-height:1.5;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.form-submit{width:100%;background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);border-radius:10px;
+  padding:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;margin-top:4px;}
+.form-submit:hover{opacity:.88;}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;}
+.form-success{text-align:center;padding:20px;display:none;}
+.form-success .check{font-size:28px;margin-bottom:8px;}
+
+/* FOOTER */
+.footer{background:#060E0A;border-top:1px solid var(--w08);padding:48px 32px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;
+  padding-bottom:32px;border-bottom:1px solid var(--w08);}
+.footer-brand p{font-size:12px;color:var(--w45);line-height:1.65;margin-top:10px;max-width:220px;}
+.footer-col-title{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--w20);margin-bottom:12px;}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.footer-links a{font-size:13px;color:var(--w45);transition:color .15s;}
+.footer-links a:hover{color:var(--w100);}
+.footer-bottom{padding-top:20px;display:flex;align-items:flex-start;
+  justify-content:space-between;gap:20px;flex-wrap:wrap;}
+.footer-legal{font-size:10px;color:var(--w20);line-height:1.7;max-width:560px;}
+.footer-legal a{color:var(--w45);}
+.footer-copy{font-size:11px;color:var(--w20);flex-shrink:0;}
+.footer-share{display:flex;gap:8px;margin-top:16px;}
+.footer-share-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
+  border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;}
+.footer-share-btn.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.2);}
+.footer-share-btn.wa:hover{background:rgba(37,211,102,.22);}
+.footer-share-btn.story{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
+.footer-share-btn.story:hover{background:rgba(201,169,110,.18);}
+
+/* FLOATING SHARE */
+.float-share{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
+.float-share-panel{display:none;flex-direction:column;gap:6px;background:var(--mid);
+  border:1px solid var(--w08);border-radius:14px;padding:12px;min-width:180px;}
+.float-share-panel.open{display:flex;}
+.float-share-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;
+  font-size:13px;font-weight:600;cursor:pointer;border:none;width:100%;text-align:left;transition:background .15s;}
+.float-share-item.wa{color:#25D366;background:rgba(37,211,102,.08);}
+.float-share-item.wa:hover{background:rgba(37,211,102,.18);}
+.float-share-item.story{color:var(--gold);background:var(--gold-dim);}
+.float-share-item.story:hover{background:rgba(201,169,110,.18);}
+.float-share-item.copy{color:var(--w45);background:var(--w04);}
+.float-share-item.copy:hover{background:var(--w08);color:var(--w100);}
+.float-share-trigger{width:52px;height:52px;border-radius:50%;background:var(--wa);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .15s;}
+.float-share-trigger:hover{transform:scale(1.08);}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;right:24px;z-index:200;background:var(--mid);
+  border:1px solid var(--w08);border-radius:10px;padding:10px 16px;font-size:13px;
+  color:var(--w70);opacity:0;transform:translateY(8px);pointer-events:none;
+  transition:all .25s;max-width:240px;}
+.toast.show{opacity:1;transform:none;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .how-steps{grid-template-columns:1fr;}
+  .how-step:not(:last-child){border-right:none;border-bottom:1px solid var(--w08);}
+  .insights-grid{grid-template-columns:1fr 1fr;}
+  .calc-grid{grid-template-columns:1fr;}
+  .diff-grid{grid-template-columns:1fr;}
+  .diff-vs{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;}
+  .today-card{grid-template-columns:1fr;}
+  .nav{padding:0 20px;}
+  .section{padding:60px 20px;}
+}
+@media(max-width:600px){
+  .insights-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr;}
+  .trust-item{padding:6px 12px;}
+  .hero-ctas{flex-direction:column;align-items:center;}
+  .tool-tabs{gap:2px;}
+  .tool-tab{padding:8px 12px;font-size:12px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <svg width="34" height="25" viewBox="0 0 110 80" aria-hidden="true">
+      <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+      <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+      <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
+      <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+      <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
+      <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
+      <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+      <circle cx="73" cy="18" r="3.8" fill="white"/>
+      <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+    </svg>
+    <span class="nav-wordmark">PARTRIDG<span>3</span></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#insights">Insights</a>
+    <a href="#tools">Calculators</a>
+    <a href="#how">How it works</a>
+    <a href="#contact">Book a consultation</a>
+  </nav>
+  <button class="hamburger" id="ham" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#insights" onclick="closeMobile()">Insights</a>
+  <a href="#tools" onclick="closeMobile()">Calculators</a>
+  <a href="#how" onclick="closeMobile()">How it works</a>
+  <a href="#contact" onclick="closeMobile()">Book a consultation</a>
+  <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" class="btn-wa-nav" style="border-radius:10px;padding:12px 28px;">Join the channel</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-decor">
+    <div class="hero-glow" aria-hidden="true"></div>
+  </div>
+  <div class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>Wealth · Legacy · Community</div>
+  <div class="hero-bird" aria-hidden="true">
+    <svg width="148" height="107" viewBox="0 0 110 80">
+      <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+      <path d="M 27,50 C 18,38 7,24 3,16 C 5,16 10,22 16,32 Z" fill="white" opacity=".20"/>
+      <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+      <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
+      <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+      <path d="M 43,50 C 37,56 30,62 27,53 C 25,58 31,66 44,70 C 52,73 62,72 65,69 C 56,66 46,60 43,50 Z" fill="black" opacity=".28"/>
+      <path d="M 83,13 C 77,7 68,5 61,8 C 57,10 53,14 50,19 C 60,13 74,12 84,20 C 87,23 87,29 87,30 C 89,24 87,17 83,13 Z" fill="white" opacity=".22"/>
+      <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
+      <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
+      <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+      <circle cx="73" cy="18" r="3.8" fill="white"/>
+      <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+      <circle cx="72" cy="17.2" r="1" fill="white"/>
+      <line x1="46" y1="70" x2="44" y2="77" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="44" y1="77" x2="38" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="44" y1="77" x2="44" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="44" y1="77" x2="50" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="60" y1="70" x2="62" y2="77" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
+      <line x1="62" y1="77" x2="56" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="62" y1="77" x2="62" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="62" y1="77" x2="68" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <h1>Financial advice<br>that feels like <em>home.</em></h1>
+  <p class="hero-sub">Independent advisers for South African families. Free tools, daily insights, and advice built for your life — and your community.</p>
+  <div class="hero-ctas">
+    <a href="#tools" class="btn-hero btn-hero-primary">Try our free calculators</a>
+    <a href="#insights" class="btn-hero btn-hero-secondary">Today's insight</a>
+  </div>
+  <div class="hero-share">
+    <span class="hero-share-label">Share this page:</span>
+    <button class="share-pill share-pill-wa" onclick="shareToContact()">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+      Send to a contact
+    </button>
+    <button class="share-pill share-pill-wa" onclick="shareToStory()">✦ Share to story</button>
+    <button class="share-pill share-pill-copy" id="heroCopy" onclick="copyLink()">Copy link</button>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      FAIS Act compliant
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      100% independent
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      No cost to clients
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Built for South Africa
+    </div>
+    <div class="trust-div"></div>
+    <div class="trust-item">🔓 Free calculators</div>
+  </div>
+</div>
+
+<!-- TODAY'S INSIGHT -->
+<section class="section today" id="insights">
+  <div class="section-inner">
+    <div class="eyebrow gold">Today's insight</div>
+    <h2 class="section-h2 reveal" style="margin-bottom:28px;">Fresh from our adviser network.</h2>
+    <div id="todayCard"><div class="today-empty">Loading today's insight…</div></div>
+  </div>
+</section>
+
+<!-- ALL INSIGHTS -->
+<section class="section insights">
+  <div class="section-inner">
+    <div class="eyebrow">From our network</div>
+    <h2 class="section-h2 reveal">Financial knowledge<br>written for South Africans.</h2>
+    <p class="section-sub reveal">Our FAIS-licensed advisers share what they know — in plain language, on the platforms where you spend your time.</p>
+    <div class="insights-grid" id="insightsGrid">
+      <div class="insights-loading">Loading insights…</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOOLS & CALCULATORS -->
+<section class="section tools" id="tools">
+  <div class="section-inner">
+    <div class="eyebrow">Free financial tools</div>
+    <h2 class="section-h2 reveal">Know your numbers<br>before you sit down with an adviser.</h2>
+    <p class="section-sub reveal">These calculators are for guidance only. Your adviser will run a full financial needs analysis tailored to your exact situation.</p>
+    <div class="tool-tabs-wrap">
+    <div class="tool-tabs-hint">Swipe for more →</div>
+    <div class="tool-tabs" role="tablist">
+      <button class="tool-tab active" role="tab" onclick="switchTool('life')">Life Cover</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('income')">Income Protection</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('disability')">Disability Cover</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('dread')">Severe Illness</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('retire')">Retirement Gap</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('emergency')">Emergency Fund</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('estate')">Estate Costs</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('budget')">Budget</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('debt')">Debt Payoff</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('goals')">Savings Goal</button>
+      <button class="tool-tab" role="tab" onclick="switchTool('quiz')">Cover Health Check</button>
+    </div>
+    </div>
+    <div class="tool-panels">
+
+      <!-- LIFE COVER -->
+      <div class="tool-panel active" id="panel-life">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Monthly gross income (ZAR)</label>
+              <input class="form-input" type="number" id="lc-income" placeholder="e.g. 35000" min="0" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current age</label>
+              <input class="form-input" type="number" id="lc-age" placeholder="e.g. 35" min="18" max="64" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Outstanding bond (ZAR)</label>
+              <input class="form-input" type="number" id="lc-bond" placeholder="e.g. 1200000" min="0" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Existing life cover (ZAR)</label>
+              <input class="form-input" type="number" id="lc-existing" placeholder="e.g. 500000" min="0" autocomplete="off"/>
+            </div>
+            <button class="calc-btn" onclick="calcLifeCover()">Calculate my cover need</button>
+          </div>
+          <div class="calc-result" id="lc-result">
+            <div class="result-placeholder"><div class="big">🛡️</div>Enter your details to see how much life cover you need.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INCOME PROTECTION -->
+      <div class="tool-panel" id="panel-income">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Gross monthly income (ZAR)</label>
+              <input class="form-input" type="number" id="ip-income" placeholder="e.g. 35000" min="0" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Benefit level (%)</label>
+              <input class="form-input" type="number" id="ip-benefit" placeholder="e.g. 75" min="50" max="100" value="75" autocomplete="off"/>
+              <div class="form-hint">Income protection typically covers 50–100% of gross income</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Existing monthly IP benefit (ZAR)</label>
+              <input class="form-input" type="number" id="ip-existing" placeholder="e.g. 0" min="0" autocomplete="off"/>
+            </div>
+            <button class="calc-btn" onclick="calcIncome()">Calculate my exposure</button>
+          </div>
+          <div class="calc-result" id="ip-result">
+            <div class="result-placeholder"><div class="big">💼</div>See what you'd lose if you couldn't work for 6 months.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RETIREMENT GAP -->
+      <div class="tool-panel" id="panel-retire">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Monthly gross income (ZAR)</label>
+              <input class="form-input" type="number" id="rg-income" placeholder="e.g. 35000" min="0" autocomplete="off"/>
+              <div class="form-hint">Target retirement income is set to 75% of this</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current age</label>
+              <input class="form-input" type="number" id="rg-age" placeholder="e.g. 35" min="18" max="64" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current retirement savings (ZAR)</label>
+              <input class="form-input" type="number" id="rg-saved" placeholder="e.g. 280000" min="0" autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly contribution (ZAR)</label>
+              <input class="form-input" type="number" id="rg-contrib" placeholder="e.g. 4000" min="0" autocomplete="off"/>
+            </div>
+            <button class="calc-btn" onclick="calcRetirement()">Show my retirement gap</button>
+          </div>
+          <div class="calc-result gold-theme" id="rg-result">
+            <div class="result-placeholder"><div class="big">📈</div>See if you're on track for the retirement you want.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUIZ -->
+      <div class="tool-panel" id="panel-quiz">
+        <div class="calc-grid">
+          <div class="calc-form" id="quizForm">
+            <div id="quiz-q1" class="quiz-step active">
+              <div class="quiz-progress">Question 1 of 5</div>
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:20%"></div></div>
+              <div class="quiz-q">Do you have life insurance?</div>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="quizSelect(1,'a',0)">Yes — I know exactly how much and who the beneficiaries are</button>
+                <button class="quiz-option" onclick="quizSelect(1,'b',1)">Yes — but I'm not sure of the details</button>
+                <button class="quiz-option" onclick="quizSelect(1,'c',2)">No</button>
+              </div>
+              <div class="quiz-nav"><button class="quiz-btn quiz-btn-next" onclick="quizNext(1)">Next →</button></div>
+            </div>
+            <div id="quiz-q2" class="quiz-step">
+              <div class="quiz-progress">Question 2 of 5</div>
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:40%"></div></div>
+              <div class="quiz-q">If you couldn't work for 6 months, could you cover your expenses?</div>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="quizSelect(2,'a',0)">Yes — I have income protection insurance</button>
+                <button class="quiz-option" onclick="quizSelect(2,'b',1)">Partially — my savings would last 1–3 months</button>
+                <button class="quiz-option" onclick="quizSelect(2,'c',2)">No — I'd be in serious trouble</button>
+              </div>
+              <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizBack(2)">← Back</button>
+                <button class="quiz-btn quiz-btn-next" onclick="quizNext(2)">Next →</button>
+              </div>
+            </div>
+            <div id="quiz-q3" class="quiz-step">
+              <div class="quiz-progress">Question 3 of 5</div>
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:60%"></div></div>
+              <div class="quiz-q">Do you have a valid, signed will?</div>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="quizSelect(3,'a',0)">Yes — updated in the last 2 years</button>
+                <button class="quiz-option" onclick="quizSelect(3,'b',1)">Yes — but it's old or I'm not sure it's valid</button>
+                <button class="quiz-option" onclick="quizSelect(3,'c',2)">No will</button>
+              </div>
+              <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizBack(3)">← Back</button>
+                <button class="quiz-btn quiz-btn-next" onclick="quizNext(3)">Next →</button>
+              </div>
+            </div>
+            <div id="quiz-q4" class="quiz-step">
+              <div class="quiz-progress">Question 4 of 5</div>
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:80%"></div></div>
+              <div class="quiz-q">Are you contributing to a retirement fund?</div>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="quizSelect(4,'a',0)">Yes — at least 15% of income monthly</button>
+                <button class="quiz-option" onclick="quizSelect(4,'b',1)">Yes — but less than 15%</button>
+                <button class="quiz-option" onclick="quizSelect(4,'c',2)">No retirement savings</button>
+              </div>
+              <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizBack(4)">← Back</button>
+                <button class="quiz-btn quiz-btn-next" onclick="quizNext(4)">Next →</button>
+              </div>
+            </div>
+            <div id="quiz-q5" class="quiz-step">
+              <div class="quiz-progress">Question 5 of 5</div>
+              <div class="quiz-progress-bar"><div class="quiz-progress-fill" style="width:100%"></div></div>
+              <div class="quiz-q">When last did an adviser review your cover?</div>
+              <div class="quiz-options">
+                <button class="quiz-option" onclick="quizSelect(5,'a',0)">Within the last 12 months</button>
+                <button class="quiz-option" onclick="quizSelect(5,'b',1)">1–3 years ago</button>
+                <button class="quiz-option" onclick="quizSelect(5,'c',2)">Never or more than 3 years ago</button>
+              </div>
+              <div class="quiz-nav">
+                <button class="quiz-btn quiz-btn-back" onclick="quizBack(5)">← Back</button>
+                <button class="quiz-btn quiz-btn-next" onclick="quizSubmit()">See my results →</button>
+              </div>
+            </div>
+          </div>
+          <div class="calc-result" id="quiz-result" style="display:none;">
+            <div id="quiz-result-inner"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ESTATE COSTS -->
+      <div class="tool-panel" id="panel-estate">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Total gross estate value (ZAR)</label>
+              <input class="form-input" type="number" id="ec-estate" placeholder="e.g. 5000000" min="0"/>
+              <div class="form-hint">Include property, investments, RAs, bank accounts, vehicles</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Outstanding debts (ZAR)</label>
+              <input class="form-input" type="number" id="ec-debts" placeholder="e.g. 0" min="0"/>
+              <div class="form-hint">Bonds, loans, and other liabilities — deductible before estate duty is calculated</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Surviving spouse?</label>
+              <select class="form-select" id="ec-spouse">
+                <option value="no">No surviving spouse</option>
+                <option value="yes">Yes — spouse survives me</option>
+              </select>
+              <div class="form-hint">A surviving spouse doubles the estate duty abatement to R7m</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Does the estate include property?</label>
+              <select class="form-select" id="ec-hasprop" onchange="togglePropInput()">
+                <option value="no">No immovable property</option>
+                <option value="yes">Yes — include property</option>
+              </select>
+            </div>
+            <div class="form-group" id="ec-prop-group" style="display:none;">
+              <label class="form-label">Property value (ZAR)</label>
+              <input class="form-input" type="number" id="ec-prop" placeholder="e.g. 2500000" min="0"/>
+            </div>
+            <button class="calc-btn" onclick="calcEstateCosts()">Calculate estate costs</button>
+          </div>
+          <div class="calc-result" id="ec-result">
+            <div class="result-placeholder"><div class="big">⚖️</div>See what it costs to wind up your estate — and what your family actually receives.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DISABILITY COVER -->
+      <div class="tool-panel" id="panel-disability">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Gross monthly income (ZAR)</label>
+              <input class="form-input" type="number" id="dc-income" placeholder="e.g. 35000" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Current age</label>
+              <input class="form-input" type="number" id="dc-age" placeholder="e.g. 35" min="18" max="64"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Existing disability lump sum (ZAR)</label>
+              <input class="form-input" type="number" id="dc-existing" placeholder="e.g. 0"/>
+            </div>
+            <button class="calc-btn" onclick="calcDisability()">Calculate my cover need</button>
+          </div>
+          <div class="calc-result" id="dc-result">
+            <div class="result-placeholder"><div class="big">♿</div>See the lump sum you'd need if you couldn't work again.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SEVERE ILLNESS / DREAD DISEASE -->
+      <div class="tool-panel" id="panel-dread">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Gross monthly income (ZAR)</label>
+              <input class="form-input" type="number" id="dd-income" placeholder="e.g. 35000" min="0"/>
+            </div>
+            <button class="calc-btn" onclick="calcDread()">Calculate recommended cover</button>
+          </div>
+          <div class="calc-result" id="dd-result">
+            <div class="result-placeholder"><div class="big">❤️‍🩹</div>See the cover a cancer, stroke, or heart-attack diagnosis would call for.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EMERGENCY FUND -->
+      <div class="tool-panel" id="panel-emergency">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Monthly living expenses (ZAR)</label>
+              <input class="form-input" type="number" id="ef-expenses" placeholder="e.g. 25000" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Months of cover you want</label>
+              <select class="form-select" id="ef-months">
+                <option value="1">1 month</option>
+                <option value="2">2 months</option>
+                <option value="3" selected>3 months</option>
+                <option value="4">4 months</option>
+                <option value="5">5 months</option>
+                <option value="6">6 months</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Currently saved (ZAR)</label>
+              <input class="form-input" type="number" id="ef-saved" placeholder="e.g. 0" min="0"/>
+            </div>
+            <button class="calc-btn" onclick="calcEmergency()">Calculate my fund gap</button>
+          </div>
+          <div class="calc-result" id="ef-result">
+            <div class="result-placeholder"><div class="big">🏦</div>See how much of a buffer you need for the unexpected.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BUDGET (single-session preview, nothing saved) -->
+      <div class="tool-panel" id="panel-budget">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">Monthly take-home income (ZAR)</label>
+              <input class="form-input" type="number" id="bg-income" placeholder="e.g. 35000" min="0"/>
+            </div>
+            <div class="form-group"><label class="form-label">Housing (rent/bond, rates, utilities)</label><input class="form-input" type="number" id="bg-housing" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Transport</label><input class="form-input" type="number" id="bg-transport" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Food & groceries</label><input class="form-input" type="number" id="bg-food" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Insurance & medical aid</label><input class="form-input" type="number" id="bg-insurance" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Debt repayments</label><input class="form-input" type="number" id="bg-debt" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Savings & investments</label><input class="form-input" type="number" id="bg-savings" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Education</label><input class="form-input" type="number" id="bg-education" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Lifestyle & entertainment</label><input class="form-input" type="number" id="bg-lifestyle" placeholder="0" min="0"/></div>
+            <div class="form-group"><label class="form-label">Other</label><input class="form-input" type="number" id="bg-other" placeholder="0" min="0"/></div>
+            <button class="calc-btn" onclick="calcBudget()">See my budget breakdown</button>
+            <div class="form-hint" style="margin-top:10px;">Nothing here is saved — this preview resets when you leave the page. Track it month-to-month in your free Covey client portal.</div>
+          </div>
+          <div class="calc-result" id="bg-result">
+            <div class="result-placeholder"><div class="big">📊</div>See your surplus, your 50/30/20 split, and where you're over target.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEBT PAYOFF (single-session preview, nothing saved) -->
+      <div class="tool-panel" id="panel-debt">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div id="dp-rows"></div>
+            <button type="button" class="calc-btn" style="background:transparent;border-style:dashed;margin-bottom:14px;" onclick="addDebtRow()">+ Add a debt</button>
+            <div class="form-group">
+              <label class="form-label">Extra you can put toward debt each month (ZAR)</label>
+              <input class="form-input" type="number" id="dp-extra" placeholder="e.g. 1000" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Payoff strategy</label>
+              <select class="form-select" id="dp-strategy">
+                <option value="avalanche" selected>Avalanche — highest interest rate first (saves the most)</option>
+                <option value="snowball">Snowball — smallest balance first (fastest early wins)</option>
+              </select>
+            </div>
+            <button class="calc-btn" onclick="calcDebt()">Calculate my payoff plan</button>
+            <div class="form-hint" style="margin-top:10px;">Nothing here is saved — this preview resets when you leave the page.</div>
+          </div>
+          <div class="calc-result" id="dp-result">
+            <div class="result-placeholder"><div class="big">💳</div>See how fast you could be debt-free, and how much interest a plan saves you.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SAVINGS GOAL (single-session preview, nothing saved) -->
+      <div class="tool-panel" id="panel-goals">
+        <div class="calc-grid">
+          <div class="calc-form">
+            <div class="form-group">
+              <label class="form-label">What are you saving for?</label>
+              <input class="form-input" type="text" id="gl-name" placeholder="e.g. House deposit, Family holiday"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Target amount (ZAR)</label>
+              <input class="form-input" type="number" id="gl-target" placeholder="e.g. 100000" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Already saved (ZAR)</label>
+              <input class="form-input" type="number" id="gl-current" placeholder="0" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Monthly contribution (ZAR)</label>
+              <input class="form-input" type="number" id="gl-monthly" placeholder="e.g. 1500" min="0"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected growth (% per year)</label>
+              <input class="form-input" type="number" id="gl-growth" placeholder="e.g. 8" value="8"/>
+              <div class="form-hint">A guide: ~5% cash savings, ~8% money market, ~10% unit trust/TFSA</div>
+            </div>
+            <button class="calc-btn" onclick="calcGoal()">See when I'll get there</button>
+            <div class="form-hint" style="margin-top:10px;">Nothing here is saved — this preview resets when you leave the page. Track real goals in your free Covey client portal.</div>
+          </div>
+          <div class="calc-result" id="gl-result">
+            <div class="result-placeholder"><div class="big">🎯</div>See the date you'll hit your goal at this contribution rate.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section how" id="how">
+  <div class="section-inner">
+    <div class="eyebrow">How it works</div>
+    <h2 class="section-h2 reveal">From first question<br>to lifelong financial security.</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num" aria-hidden="true">01</div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-title">Read and learn</div>
+        <div class="how-body">Browse daily insights from our FAIS-licensed advisers — real knowledge for real South African families.</div>
+        <span class="how-tag">Daily on this page</span>
+      </div>
+      <div class="how-step">
+        <div class="how-num" aria-hidden="true">02</div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-title">Run the numbers</div>
+        <div class="how-body">Use our free calculators to understand your life cover need, retirement gap, and income protection exposure before you meet an adviser.</div>
+        <span class="how-tag">Free, no sign-up</span>
+      </div>
+      <div class="how-step">
+        <div class="how-num" aria-hidden="true">03</div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-title">Get a plan built for you</div>
+        <div class="how-body">Book a free consultation. Your adviser runs a full FNA, identifies your gaps, and builds a plan — all in your Covey client portal.</div>
+        <span class="how-tag">No cost, no obligation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY PARTRIDG3 -->
+<section class="section difference">
+  <div class="section-inner">
+    <div class="eyebrow">Why Partridg3</div>
+    <h2 class="section-h2 reveal">The industry was built for the insurer.<br>We were built for you.</h2>
+    <div class="diff-grid">
+      <div class="diff-card featured">
+        <div class="diff-icon">🔓</div>
+        <div class="diff-title">100% independent</div>
+        <div class="diff-body">Not tied to any insurer or product house. Your adviser compares across the full market and recommends what is right for your situation.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🛡️</div>
+        <div class="diff-title">FAIS-compliant at every step</div>
+        <div class="diff-body">Disclosure documents, meeting records, and compliance checks happen automatically. You are protected by the FAIS Act at every touchpoint.</div>
+      </div>
+      <div class="diff-card featured-gold">
+        <div class="diff-icon">🌍</div>
+        <div class="diff-title">African-centred by design</div>
+        <div class="diff-body">Partridg3 is the English translation of <em>Nkwali</em> — our clan name. Built for South African families, in South African contexts.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">⚡</div>
+        <div class="diff-title">Technology that serves, not replaces</div>
+        <div class="diff-body">AI handles admin. Your adviser handles advice. The system removes friction so the human relationship can be everything it's meant to be.</div>
+      </div>
+      <div class="diff-vs">
+        <div class="diff-vs-col old">
+          <div class="diff-vs-label">The old way</div>
+          <ul class="diff-vs-list">
+            <li>One adviser, one insurer, one bias</li>
+            <li>Clients never know if they have the right cover</li>
+            <li>Compliance is a paper trail, not protection</li>
+            <li>Relationships fade after the policy is signed</li>
+            <li>Claims are a maze with no guide</li>
+          </ul>
+        </div>
+        <div class="diff-vs-col new">
+          <div class="diff-vs-label">The Partridg3 way</div>
+          <ul class="diff-vs-list">
+            <li>Independent — compare all providers</li>
+            <li>Gap analysis shows exactly what you need</li>
+            <li>FAIS-compliant at every touchpoint</li>
+            <li>Retained for life — reviews at Month 6 and 11</li>
+            <li>Claims guided from day one to resolution</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="section-inner">
+    <div class="eyebrow">Book a consultation</div>
+    <h2 class="section-h2 reveal">Ready to meet your adviser?</h2>
+    <div class="contact-grid">
+      <div>
+        <p class="section-sub">Leave your details and an independent, FAIS-licensed adviser will reach out within one business day. No obligation. No pressure. Just a conversation.</p>
+        <div class="contact-channels">
+          <a href="#" id="wa-direct-contact" class="contact-channel">
+            <div class="contact-channel-icon wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+            </div>
+            <div>
+              <div class="contact-channel-label">WhatsApp</div>
+              <div class="contact-channel-value">Message us directly</div>
+            </div>
+          </a>
+          <a href="mailto:hello@partridg3.co.za" class="contact-channel">
+            <div class="contact-channel-icon em">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <div class="contact-channel-label">Email</div>
+              <div class="contact-channel-value">hello@partridg3.co.za</div>
+            </div>
+          </a>
+        </div>
+        <div style="margin-top:24px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:10px;">Share this page</div>
+          <div class="footer-share">
+            <button class="footer-share-btn wa" onclick="shareToContact()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+              Send to a contact
+            </button>
+            <button class="footer-share-btn story" onclick="shareToStory()">✦ Share to story</button>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-title">Request a consultation</div>
+        <div class="form-sub">An adviser will reach out within one business day.</div>
+        <form id="contactForm" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fname">First name</label>
+              <input class="form-input" type="text" id="fname" placeholder="Thembi" required autocomplete="given-name"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="lname">Last name</label>
+              <input class="form-input" type="text" id="lname" placeholder="Dlamini" required autocomplete="family-name"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="phone">Phone / WhatsApp</label>
+            <input class="form-input" type="tel" id="phone" placeholder="+27 82 000 0000" required autocomplete="tel"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email (optional)</label>
+            <input class="form-input" type="email" id="email" placeholder="thembi@email.com" autocomplete="email"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="topic">What do you need help with?</label>
+            <select class="form-select form-input" id="topic">
+              <option value="">Select a topic</option>
+              <option value="life_cover">Life insurance &amp; funeral cover</option>
+              <option value="income_protection">Income protection / disability</option>
+              <option value="retirement">Retirement planning</option>
+              <option value="investment">Investments</option>
+              <option value="estate">Wills &amp; estate planning</option>
+              <option value="medical_aid">Medical aid &amp; gap cover</option>
+              <option value="short_term">Short-term insurance</option>
+              <option value="general">Not sure — general advice</option>
+            </select>
+          </div>
+          <button type="submit" class="form-submit" id="formSubmit">Send my request</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="check">✓</div>
+          <p style="color:var(--mint);font-weight:700;margin-bottom:6px;">Request received.</p>
+          <p style="font-size:13px;color:var(--w45);">An adviser will reach out within one business day. Check your WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" style="margin-bottom:10px;">
+          <svg width="28" height="20" viewBox="0 0 110 80" aria-hidden="true">
+            <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+            <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+            <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+            <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+            <circle cx="73" cy="18" r="3.8" fill="white"/>
+          </svg>
+          <span class="nav-wordmark" style="font-size:13px;">PARTRIDG<span>3</span></span>
+        </a>
+        <p>Protecting families. Building communities. Growing together.</p>
+        <div class="footer-share" style="margin-top:14px;">
+          <button class="footer-share-btn wa" onclick="shareToContact()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+            Share
+          </button>
+          <button class="footer-share-btn story" onclick="shareToStory()">✦ Story</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="#insights">Today's insight</a></li>
+          <li><a href="#tools">Free calculators</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#contact">Book a consultation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#" id="wa-direct-footer">WhatsApp us</a></li>
+          <li><a href="mailto:hello@partridg3.co.za">hello@partridg3.co.za</a></li>
+          <li><a href="https://covey-tau.vercel.app">Client login</a></li>
+        </ul>
+        <div style="margin-top:18px;">
+          <div class="footer-col-title">Follow</div>
+          <ul class="footer-links">
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">TikTok</a></li>
+          </ul>
+          <button onclick="openChannelModal()" style="
+            display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+            padding:9px 16px;border-radius:10px;border:1px solid rgba(37,211,102,.25);
+            background:rgba(37,211,102,.10);color:#25D366;
+            font-size:12px;font-weight:700;cursor:pointer;
+          ">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2z"/></svg>
+            📢 WhatsApp Channel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">
+        Partridg3 (Pty) Ltd is a technology platform and is not itself a Financial Services Provider (FSP) — it does not give financial advice. Partridg3 connects you with independent advisers who are individually licensed under the
+        <a href="https://www.fsca.co.za" target="_blank" rel="noopener">FAIS Act (No. 37 of 2002)</a>
+        and regulated by the FSCA of South Africa.
+        By submitting a consultation request, you consent to being contacted by a licensed adviser in accordance with POPIA.
+        Calculators are for guidance only, are not guaranteed accurate, and do not constitute financial advice.
+      </p>
+      <p class="footer-copy">&copy; <span id="yr"></span> Partridg3</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING SHARE -->
+<div class="float-share">
+  <div class="float-share-panel" id="floatPanel">
+    <button class="float-share-item wa" onclick="shareToContact()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+      Send to a contact
+    </button>
+    <button class="float-share-item story" onclick="shareToStory()">✦ Share to story</button>
+    <button class="float-share-item copy" onclick="copyLink()">🔗 Copy link</button>
+  </div>
+  <button class="float-share-trigger" onclick="toggleFloatPanel()" aria-label="Share this page">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA = supabase.createClient(
+  'https://aebsqfrfqovyfztmdnkw.supabase.co',
+  'sb_publishable_Tj0xe1TlfANh5r9BnRtJYw_LGGAdgTn'
+);
+const PAGE_URL = window.location.href;
+const PAGE_TITLE = 'Partridg3 | Financial advice that feels like home';
+const SHARE_TEXT = '🌿 Free financial tools + daily insights for South African families. Check your life cover, retirement gap, and more — no sign-up needed.';
+
+// TODO: replace with the real registered WhatsApp number once set up, e.g. '27821234567'.
+// Every "message us directly" link reads from this single constant.
+const DIRECT_WHATSAPP_NUMBER = '27000000000';
+document.getElementById('wa-direct-contact').href =
+  `https://wa.me/${DIRECT_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi, I'd like to book a free financial consultation with Partridg3.")}`;
+document.getElementById('wa-direct-footer').href = `https://wa.me/${DIRECT_WHATSAPP_NUMBER}`;
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// ── NAV MOBILE ──
+const ham = document.getElementById('ham');
+const menu = document.getElementById('mobileMenu');
+ham.addEventListener('click', () => {
+  const o = menu.classList.toggle('open');
+  ham.setAttribute('aria-expanded', o);
+  document.body.style.overflow = o ? 'hidden' : '';
+});
+function closeMobile(){ menu.classList.remove('open'); document.body.style.overflow=''; }
+
+// ── REVEAL ──
+const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.12});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// ── TOAST ──
+function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
+
+// ── SHARE ──
+function shareToContact(){
+  const text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+function shareToStory(){
+  if(navigator.share){
+    navigator.share({ title: PAGE_TITLE, text: SHARE_TEXT, url: PAGE_URL })
+      .catch(()=>{});
+  } else {
+    // Desktop fallback — deep link attempt then clipboard
+    const text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
+    window.open('whatsapp://send?text=' + text, '_blank');
+    setTimeout(()=> showToast('On desktop? Copy the link and paste into WhatsApp Status.'), 800);
+  }
+}
+function copyLink(){
+  navigator.clipboard.writeText(PAGE_URL).then(()=> showToast('Link copied!')).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = PAGE_URL;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast('Link copied!');
+  });
+}
+function toggleFloatPanel(){ document.getElementById('floatPanel').classList.toggle('open'); }
+document.addEventListener('click', e => {
+  const fp = document.querySelector('.float-share');
+  if(fp && !fp.contains(e.target)) document.getElementById('floatPanel').classList.remove('open');
+});
+
+function shareInsight(title, channel){
+  const text = encodeURIComponent(`💡 ${title}\n\nFrom the Partridg3 adviser network — ${channel}\n\nMore insights: ${PAGE_URL}`);
+  window.open('https://wa.me/?text=' + text, '_blank');
+}
+
+// ── INSIGHTS ──
+const CH_COLOUR = { LinkedIn:'#0A66C2', Instagram:'#E1306C', Facebook:'#1877F2', TikTok:'rgba(255,255,255,.6)', Substack:'#FF6719', YouTube:'#FF0000' };
+
+async function loadInsights(){
+  try {
+    const [insRes, colRes] = await Promise.all([
+      SUPA.from('collaborator_insights').select('id,title,body,channel,user_id,created_at,approved_at').eq('status','APPROVED').order('approved_at',{ascending:false}).limit(7),
+      SUPA.from('collaborators').select('user_id,full_name,fsp_number').eq('status','APPROVED')
+    ]);
+    const insights = insRes.data || [];
+    const profiles = Object.fromEntries((colRes.data||[]).map(c=>[c.user_id,c]));
+
+    // TODAY'S INSIGHT (most recent)
+    const todayEl = document.getElementById('todayCard');
+    if(insights.length){
+      const t = insights[0];
+      const auth = profiles[t.user_id];
+      const colClr = CH_COLOUR[t.channel] || 'var(--mint)';
+      todayEl.innerHTML = `
+        <div class="today-card reveal">
+          <div>
+            <div class="today-badge">✦ Latest insight</div>
+            <div class="today-channel" style="color:${colClr}">${t.channel||'Insight'}</div>
+            <div class="today-title">${t.title}</div>
+            ${t.body ? `<div class="today-body">${t.body.substring(0,280)}${t.body.length>280?'…':''}</div>` : ''}
+            <div class="today-author">${auth ? auth.full_name + (auth.fsp_number?' · FSP '+auth.fsp_number:'') : 'Partridg3 Network'}</div>
+          </div>
+          <div class="today-actions">
+            <button class="btn-share-insight wa" onclick="shareInsight(${JSON.stringify(t.title)},${JSON.stringify(t.channel||'Partridg3')})">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+              Share to contact
+            </button>
+            <button class="btn-share-insight story" onclick="shareToStory()">✦ Share to story</button>
+          </div>
+        </div>`;
+      io.observe(todayEl.querySelector('.today-card'));
+    } else {
+      todayEl.innerHTML = '<div class="today-empty">Insights coming soon — check back shortly.</div>';
+    }
+
+    // INSIGHTS GRID (remaining)
+    const grid = document.getElementById('insightsGrid');
+    grid.innerHTML = '';
+    const rest = insights.slice(1);
+    if(!rest.length){ grid.innerHTML='<div class="insights-loading">More insights coming soon.</div>'; return; }
+    rest.forEach(ins => {
+      const auth = profiles[ins.user_id];
+      const clr = CH_COLOUR[ins.channel] || 'var(--mint)';
+      const card = document.createElement('article');
+      card.className = 'insight-card reveal';
+      card.innerHTML = `
+        <div class="insight-ch" style="color:${clr}">${ins.channel||'Insight'}</div>
+        <div class="insight-title">${ins.title}</div>
+        <div class="insight-footer">
+          <div class="insight-author">${auth?auth.full_name:'Partridg3 Network'}</div>
+          <button class="btn-share-sm" onclick="shareInsight(${JSON.stringify(ins.title)},${JSON.stringify(ins.channel||'Partridg3')})">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+            Share
+          </button>
+        </div>`;
+      grid.appendChild(card);
+      io.observe(card);
+    });
+  } catch(e){ console.warn('Insights error:', e); }
+}
+loadInsights();
+
+// ── TOOL TABS ──
+const TOOL_IDS = ['life','income','disability','dread','retire','emergency','estate','budget','debt','goals','quiz'];
+function switchTool(id){
+  document.querySelectorAll('.tool-tab').forEach((t,i) => {
+    const isActive = TOOL_IDS[i]===id;
+    t.classList.toggle('active', isActive);
+    if(isActive) t.scrollIntoView({ behavior:'smooth', inline:'center', block:'nearest' });
+  });
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.toggle('active', p.id==='panel-'+id));
+}
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.form-input, .form-select').forEach(el => { el.autocomplete = 'off'; });
+});
+
+function togglePropInput(){
+  const show = document.getElementById('ec-hasprop').value==='yes';
+  document.getElementById('ec-prop-group').style.display = show ? 'block' : 'none';
+}
+
+function calcMastersFee(e){
+  if(e<=250000) return 600;
+  if(e<=500000) return 1000;
+  if(e<=750000) return 1500;
+  if(e<=1000000) return 2000;
+  return Math.min(7000, 2000 + Math.ceil((e-1000000)/100000)*600);
+}
+function calcConveyancing(p){
+  if(p<=100000) return 4000;
+  if(p<=250000) return 6000;
+  if(p<=500000) return 9000;
+  if(p<=1000000) return 14000;
+  if(p<=2000000) return 22000;
+  if(p<=5000000) return 35000;
+  return 55000;
+}
+
+function calcEstateCosts(){
+  const e = parseFloat(document.getElementById('ec-estate').value)||0;
+  if(!e){ showToast('Enter your estate value to continue.'); return; }
+  const debts = parseFloat(document.getElementById('ec-debts').value)||0;
+  const hasSpouse = document.getElementById('ec-spouse').value==='yes';
+  const hasProp = document.getElementById('ec-hasprop').value==='yes';
+  const p = hasProp ? (parseFloat(document.getElementById('ec-prop').value)||0) : 0;
+
+  const execFee = e * 0.035 * 1.15;
+  const netEstate = Math.max(0, e - debts);
+  const abatement = hasSpouse ? 7000000 : 3500000;
+  const dutiable = Math.max(0, netEstate - abatement);
+  let duty = 0;
+  if(dutiable > 0){
+    const at20 = Math.min(dutiable, 30000000);
+    duty = at20 * 0.20 + Math.max(0, dutiable - at20) * 0.25;
+  }
+  const masters = calcMastersFee(e);
+  const advert = 1500;
+  const conv = hasProp ? calcConveyancing(p) : 0;
+  const total = execFee + duty + masters + advert + conv;
+  const net = Math.max(0, e - debts - total);
+  const pct = (total/e*100).toFixed(1);
+  const liquidityRisk = total > e * 0.15;
+  const premium = estimatedMonthlyPremium(total, 35, 'life');
+
+  const lines = [
+    ["Executor's fees (3.5% + VAT)", execFee],
+    ['Estate duty', duty],
+    ["Master's fees", masters],
+    ['Advertising costs', advert],
+    ...(hasProp ? [['Conveyancing fees', conv]] : []),
+  ];
+
+  document.getElementById('ec-result').innerHTML = `
+    <div class="result-label" style="color:#ef4444">Total estate costs</div>
+    <div class="result-amount" style="color:#ef4444">${fmt(total)}</div>
+    <div class="result-note">${pct}% of your gross estate — before a cent reaches your beneficiaries.</div>
+    <div class="result-bars" style="margin-top:14px;">
+      ${lines.map(([label,val])=>`
+        <div class="result-bar-row">
+          <div class="result-bar-label"><span>${label}</span><span>${fmt(val)}</span></div>
+          <div class="result-bar-track"><div class="result-bar-fill ${val===duty&&duty>0?'gold':'mint'}" style="width:${Math.round(val/total*100)}%"></div></div>
+        </div>`).join('')}
+    </div>
+    ${debts>0?`<div class="result-bar-row" style="margin-top:8px;"><div class="result-bar-label"><span>Outstanding debts (settled from estate)</span><span>−${fmt(debts)}</span></div></div>`:''}
+    <div style="margin-top:14px;padding:12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:10px;">
+      <div style="font-size:11px;color:var(--mint);font-weight:600;margin-bottom:2px;">Net to beneficiaries</div>
+      <div style="font-size:24px;font-weight:800;color:var(--mint);">${fmt(net)}</div>
+    </div>
+    ${liquidityRisk?`<div style="margin-top:10px;padding:10px 12px;background:rgba(201,169,110,.08);border:1px solid var(--gold-border);border-radius:8px;font-size:11px;color:var(--gold);">
+      ⚠ Liquidity risk: estate costs exceed 15% of your estate. Cash must be available before assets transfer.
+    </div>`:''}
+    ${ctaBlock(premium, 'Covering this with a life policy costs roughly', 'Illustrative estimate for a 35-year-old non-smoker — your adviser quotes your exact premium.')}
+    <a href="#contact" style="display:block;margin-top:14px;text-align:center;padding:11px;background:var(--mint);color:var(--deep);border-radius:9px;font-size:13px;font-weight:700;">Book an estate planning consultation →</a>`;
+}
+
+// ── FORMATTERS ──
+const fmt = n => 'R ' + Math.round(n).toLocaleString('en-ZA');
+
+// ── "WHAT THIS COSTS YOU" — everyday-spend index ──
+// A basket of South African goods spanning small treats to bigger monthly
+// costs, priced descending, illustrative 2026 estimates. Greedy decomposition
+// below consumes the basket top-down so the total genuinely adds up (within
+// one chocolate bar's worth) instead of stopping early and quietly dropping
+// most of the value — that gap was the original bug.
+const BASKET_ITEMS = [
+  { price: 1035, singular: 'tank of petrol',            plural: 'tanks of petrol' },
+  { price: 949,  singular: 'month of DStv Premium',     plural: 'months of DStv Premium' },
+  { price: 650,  singular: 'month of gym membership',   plural: 'months of gym membership' },
+  { price: 450,  singular: 'Uber Eats family order',    plural: 'Uber Eats family orders' },
+  { price: 250,  singular: 'Uber Eats order',           plural: 'Uber Eats orders' },
+  { price: 155,  singular: 'Debonairs large pizza',     plural: 'Debonairs large pizzas' },
+  { price: 110,  singular: "Nando's quarter chicken meal", plural: "Nando's quarter chicken meals" },
+  { price: 89,   singular: 'Big Mac meal',              plural: 'Big Mac meals' },
+  { price: 66,   singular: 'KFC Streetwise 5',          plural: 'KFC Streetwise 5s' },
+  { price: 38,   singular: 'beer',                      plural: 'beers' },
+  { price: 32,   singular: 'coffee',                     plural: 'coffees' },
+  { price: 22,   singular: 'chocolate bar',              plural: 'chocolate bars' },
+];
+function article(word){ return /^[aeiou]/i.test(word) ? 'an' : 'a'; }
+function foodIndex(monthlyAmount){
+  const target = Math.round(monthlyAmount);
+  if (target < 20) return null;
+  let remaining = target;
+  const picks = [];
+  for (const item of BASKET_ITEMS){
+    const count = Math.floor(remaining / item.price);
+    if (count > 0){
+      picks.push({ ...item, count });
+      remaining -= count * item.price;
+    }
+  }
+  if (picks.length === 0) return null;
+  // Show the items that account for the most value first — for typical
+  // amounts this is 2-4 items and covers nearly the whole total; anything
+  // smaller left over gets folded into a trailing "plus about RX more".
+  picks.sort((a, b) => (b.count * b.price) - (a.count * a.price));
+  const shown = picks.slice(0, 4);
+  const shownValue = shown.reduce((s, p) => s + p.count * p.price, 0);
+  const leftover = target - shownValue;
+  const parts = shown.map(p => p.count === 1 ? `${article(p.singular)} ${p.singular}` : `${p.count} ${p.plural}`);
+  let sentence = parts.length === 1 ? parts[0]
+    : parts.length === 2 ? parts.join(' and ')
+    : parts.slice(0, -1).join(', ') + ', and ' + parts[parts.length - 1];
+  if (leftover >= 20) sentence += ` (plus about ${fmt(leftover)} more)`;
+  return sentence;
+}
+// Ballpark term-cover premium per R100k of cover, by age band — for illustration
+// only where a calculator has no real quote to work from. Your adviser quotes
+// the real number against your actual age, health, and insurer.
+function estimatedMonthlyPremium(coverAmount, age, type){
+  let ratePer100k;
+  if (age < 30) ratePer100k = 25;
+  else if (age < 40) ratePer100k = 35;
+  else if (age < 50) ratePer100k = 60;
+  else if (age < 60) ratePer100k = 110;
+  else ratePer100k = 200;
+  const multiplier = type === 'disability' ? 1.3 : type === 'dread' ? 1.15 : 1.0;
+  return Math.max(0, coverAmount / 100000) * ratePer100k * multiplier;
+}
+// Monthly payment needed to close a future-value gap over n months at monthly rate r.
+function monthlyToClose(gap, annualRatePct, months){
+  const r = annualRatePct / 100 / 12;
+  if (months <= 0) return gap;
+  if (r === 0) return gap / months;
+  return gap * r / (Math.pow(1 + r, months) - 1);
+}
+function ctaBlock(monthlyAmount, actionLabel, note){
+  if (monthlyAmount <= 0) return '';
+  const food = foodIndex(monthlyAmount);
+  const foodLine = food ? `<div style="font-size:12px;color:var(--w45);margin-top:4px;">That's about ${food} a month.</div>` : '';
+  return `
+    <div style="margin-top:14px;padding:12px 14px;background:rgba(201,169,110,.08);border:1px solid var(--gold-border);border-radius:10px;">
+      <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;">${actionLabel}</div>
+      <div style="font-size:22px;font-weight:800;color:#fff;">${fmt(monthlyAmount)}<span style="font-size:13px;font-weight:600;color:var(--w45);"> /month</span></div>
+      ${foodLine}
+      ${note ? `<div style="font-size:10px;color:var(--w20);margin-top:6px;">${note}</div>` : ''}
+    </div>`;
+}
+
+// ── LIFE COVER CALC ── (aligned to Covey's canonical formula)
+function calcLifeCover(){
+  const inc = parseFloat(document.getElementById('lc-income').value)||0;
+  const age = parseFloat(document.getElementById('lc-age').value)||35;
+  const bond = parseFloat(document.getElementById('lc-bond').value)||0;
+  const existing = parseFloat(document.getElementById('lc-existing').value)||0;
+  if(!inc){ showToast('Enter your monthly income to continue.'); return; }
+  const yearsToRetirement = Math.max(0, 65-age);
+  const inflation = 0.06, growth = 0.10;
+  const realRate = (1+growth)/(1+inflation) - 1;
+  const incomeNeeds = inc * 12 * 0.75;
+  const capitalNeeds = realRate > 0 ? incomeNeeds/realRate : incomeNeeds*yearsToRetirement;
+  const total = capitalNeeds + bond;
+  const gap = Math.max(0, total - existing);
+  const premium = estimatedMonthlyPremium(gap, age, 'life');
+  document.getElementById('lc-result').innerHTML = `
+    <div class="result-label">Estimated life cover gap</div>
+    <div class="result-amount">${fmt(gap)}</div>
+    <div class="result-note">Total need ${fmt(total)} (income replacement + bond settlement) against your existing ${fmt(existing)} cover.</div>
+    <div class="result-bars">
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Income replacement capital</span><span>${fmt(capitalNeeds)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill mint" style="width:${Math.round(capitalNeeds/total*100)}%"></div></div>
+      </div>
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Bond settlement</span><span>${fmt(bond)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill gold" style="width:${Math.round(bond/total*100)}%"></div></div>
+      </div>
+    </div>
+    ${ctaBlock(premium, 'Closing this gap with a policy costs roughly', `Illustrative estimate for a ${age}-year-old non-smoker — your adviser quotes your exact premium.`)}
+    <div style="margin-top:12px;padding:10px 12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:8px;font-size:11px;color:var(--mint);">Book a consultation to find the best policy for this cover amount.</div>`;
+}
+
+// ── INCOME PROTECTION CALC ── (aligned to Covey's canonical formula)
+function calcIncome(){
+  const inc = parseFloat(document.getElementById('ip-income').value)||0;
+  const benefit = parseFloat(document.getElementById('ip-benefit').value)||75;
+  const existing = parseFloat(document.getElementById('ip-existing').value)||0;
+  if(!inc){ showToast('Enter your monthly income to continue.'); return; }
+  const targetBenefit = Math.round(inc * benefit/100);
+  const gap = Math.max(0, targetBenefit - existing);
+  const premium = gap * 0.04; // rough IP premium ballpark: ~4% of the monthly benefit gap
+  document.getElementById('ip-result').innerHTML = `
+    <div class="result-label">Monthly income protection gap</div>
+    <div class="result-amount">${fmt(gap)}</div>
+    <div class="result-note">Target benefit ${fmt(targetBenefit)}/month (${benefit}% of income) against your existing ${fmt(existing)}/month benefit.</div>
+    <div class="result-bars">
+      <div class="result-bar-row"><div class="result-bar-label"><span>Gross monthly income</span><span>${fmt(inc)}</span></div></div>
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Target benefit (${benefit}%)</span><span>${fmt(targetBenefit)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill mint" style="width:100%"></div></div>
+      </div>
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Existing benefit</span><span>${fmt(existing)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill gold" style="width:${targetBenefit>0?Math.min(100,Math.round(existing/targetBenefit*100)):0}%"></div></div>
+      </div>
+    </div>
+    ${ctaBlock(premium, 'Closing this monthly benefit gap costs roughly', 'Illustrative estimate (~4% of the benefit gap) — your actual premium depends on age, health, occupation, and insurer.')}`;
+}
+
+// ── RETIREMENT GAP CALC ── (aligned to Covey's canonical formula)
+function calcRetirement(){
+  const inc = parseFloat(document.getElementById('rg-income').value)||0;
+  const age = parseFloat(document.getElementById('rg-age').value)||35;
+  const saved = parseFloat(document.getElementById('rg-saved').value)||0;
+  const contrib = parseFloat(document.getElementById('rg-contrib').value)||0;
+  if(!inc){ showToast('Enter your monthly income to continue.'); return; }
+  const years = Math.max(0, 65-age);
+  const growthRate = 0.10, inflationRate = 0.06;
+  const realRate = (1+growthRate)/(1+inflationRate) - 1;
+  const retirementIncome = inc * 0.75 * 12;
+  const targetNestEgg = realRate > 0 ? retirementIncome/realRate : retirementIncome*20;
+  const fvExisting = saved * Math.pow(1+growthRate, years);
+  const fvContributions = contrib * 12 * ((Math.pow(1+growthRate, years)-1)/growthRate);
+  const projected = fvExisting + fvContributions;
+  const gap = Math.max(0, targetNestEgg - projected);
+  const onTrack = projected >= targetNestEgg;
+  const annuityFactor = 12 * ((Math.pow(1+growthRate, years)-1)/growthRate);
+  const extraMonthly = onTrack || annuityFactor<=0 ? 0 : gap/annuityFactor;
+  const el = document.getElementById('rg-result');
+  el.className = 'calc-result gold-theme';
+  el.innerHTML = `
+    <div class="result-label gold">${onTrack ? '✓ On track' : 'Estimated retirement savings gap'}</div>
+    <div class="result-amount" style="color:${onTrack?'var(--mint)':'#ef4444'}">${onTrack ? fmt(projected-targetNestEgg)+' surplus' : fmt(gap)}</div>
+    <div class="result-note">Target ${fmt(targetNestEgg)} (75% income replacement) · projected ${fmt(projected)} by age 65.</div>
+    <div class="result-bars" style="margin-top:14px;">
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Projected savings</span><span>${fmt(projected)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill ${onTrack?'mint':'gold'}" style="width:${Math.min(100,Math.round(projected/targetNestEgg*100))}%"></div></div>
+      </div>
+      <div class="result-bar-row">
+        <div class="result-bar-label"><span>Target nest egg</span><span>${fmt(targetNestEgg)}</span></div>
+        <div class="result-bar-track"><div class="result-bar-fill gold" style="width:100%"></div></div>
+      </div>
+    </div>
+    ${!onTrack?ctaBlock(extraMonthly, 'Close this by adding, on top of what you already contribute', 'Assumes 10% growth over the years remaining to age 65.'):''}
+    ${!onTrack?`<div style="margin-top:12px;padding:10px 12px;background:rgba(201,169,110,.08);border:1px solid var(--gold-border);border-radius:8px;font-size:11px;color:var(--gold);">An adviser can show you how to close this gap with a structured plan.</div>`:''}`;
+}
+
+// ── DISABILITY COVER CALC ──
+function calcDisability(){
+  const inc = parseFloat(document.getElementById('dc-income').value)||0;
+  const age = parseFloat(document.getElementById('dc-age').value)||35;
+  const existing = parseFloat(document.getElementById('dc-existing').value)||0;
+  if(!inc){ showToast('Enter your monthly income to continue.'); return; }
+  const inflation = 0.06, growth = 0.10;
+  const realRate = (1+growth)/(1+inflation) - 1;
+  const incomeNeeds = inc * 12 * 0.75;
+  const capitalNeeds = realRate > 0 ? incomeNeeds / realRate : incomeNeeds * Math.max(0, 65-age);
+  const adaptation = capitalNeeds * 0.15;
+  const total = capitalNeeds + adaptation;
+  const gap = Math.max(0, total - existing);
+  const premium = estimatedMonthlyPremium(gap, age, 'disability');
+  document.getElementById('dc-result').innerHTML = `
+    <div class="result-label">Estimated disability cover gap</div>
+    <div class="result-amount">${fmt(gap)}</div>
+    <div class="result-note">Total need ${fmt(total)} (income replacement + adaptation costs) against your existing ${fmt(existing)} cover.</div>
+    <div class="result-bars">
+      <div class="result-bar-row"><div class="result-bar-label"><span>Income replacement capital</span><span>${fmt(capitalNeeds)}</span></div><div class="result-bar-track"><div class="result-bar-fill mint" style="width:${Math.round(capitalNeeds/total*100)}%"></div></div></div>
+      <div class="result-bar-row"><div class="result-bar-label"><span>Adaptation costs (15%)</span><span>${fmt(adaptation)}</span></div><div class="result-bar-track"><div class="result-bar-fill gold" style="width:${Math.round(adaptation/total*100)}%"></div></div></div>
+    </div>
+    ${ctaBlock(premium, 'Closing this gap with cover costs roughly', `Illustrative estimate for a ${age}-year-old non-smoker — your adviser quotes your exact premium.`)}
+    <div style="margin-top:12px;padding:10px 12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:8px;font-size:11px;color:var(--mint);">Book a consultation to find the right disability cover for this gap.</div>`;
+}
+
+// ── SEVERE ILLNESS / DREAD DISEASE CALC ──
+function calcDread(){
+  const inc = parseFloat(document.getElementById('dd-income').value)||0;
+  if(!inc){ showToast('Enter your monthly income to continue.'); return; }
+  const annual = inc * 12;
+  const incomeComp = annual * 2;
+  const rehab = incomeComp * 0.10;
+  const total = incomeComp + rehab;
+  const premium = estimatedMonthlyPremium(total, 35, 'dread');
+  document.getElementById('dd-result').innerHTML = `
+    <div class="result-label">Recommended severe illness cover</div>
+    <div class="result-amount">${fmt(total)}</div>
+    <div class="result-note">2× annual income + 10% rehabilitation allowance. This excludes medical costs — your adviser will size that separately against your medical aid (typically R500k–R2m).</div>
+    <div class="result-bars">
+      <div class="result-bar-row"><div class="result-bar-label"><span>Income component (2×)</span><span>${fmt(incomeComp)}</span></div><div class="result-bar-track"><div class="result-bar-fill mint" style="width:${Math.round(incomeComp/total*100)}%"></div></div></div>
+      <div class="result-bar-row"><div class="result-bar-label"><span>Rehabilitation (10%)</span><span>${fmt(rehab)}</span></div><div class="result-bar-track"><div class="result-bar-fill gold" style="width:${Math.round(rehab/total*100)}%"></div></div></div>
+    </div>
+    ${ctaBlock(premium, 'Covering this costs roughly', 'Illustrative estimate for a 35-year-old non-smoker — your adviser quotes your exact premium.')}
+    <div style="margin-top:12px;padding:10px 12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:8px;font-size:11px;color:var(--mint);">Book a consultation to compare severe illness cover across insurers.</div>`;
+}
+
+// ── EMERGENCY FUND CALC ──
+function calcEmergency(){
+  const exp = parseFloat(document.getElementById('ef-expenses').value)||0;
+  const months = parseFloat(document.getElementById('ef-months').value)||3;
+  const saved = parseFloat(document.getElementById('ef-saved').value)||0;
+  if(!exp){ showToast('Enter your monthly expenses to continue.'); return; }
+  const target = exp * months;
+  const gap = Math.max(0, target - saved);
+  document.getElementById('ef-result').innerHTML = `
+    <div class="result-label">Emergency fund gap</div>
+    <div class="result-amount">${fmt(gap)}</div>
+    <div class="result-note">Target of ${fmt(target)} (${months} months of expenses) against your current ${fmt(saved)} saved.</div>
+    <div class="result-bars">
+      <div class="result-bar-row"><div class="result-bar-label"><span>Target (${months} months)</span><span>${fmt(target)}</span></div><div class="result-bar-track"><div class="result-bar-fill gold" style="width:100%"></div></div></div>
+      <div class="result-bar-row"><div class="result-bar-label"><span>Currently saved</span><span>${fmt(saved)}</span></div><div class="result-bar-track"><div class="result-bar-fill mint" style="width:${Math.min(100,Math.round(saved/target*100))}%"></div></div></div>
+    </div>
+    ${ctaBlock(gap/12, 'Build this in a year by saving', null)}`;
+}
+
+// ── BUDGET PREVIEW (single-session — nothing saved) ──
+const BUDGET_CATS = [
+  { key:'housing',    label:'Housing',                   group:'needs'   },
+  { key:'transport',  label:'Transport',                 group:'needs'   },
+  { key:'food',       label:'Food & groceries',          group:'needs'   },
+  { key:'insurance',  label:'Insurance & medical aid',    group:'needs'   },
+  { key:'debt',       label:'Debt repayments',           group:'needs'   },
+  { key:'savings',    label:'Savings & investments',     group:'savings' },
+  { key:'education',  label:'Education',                 group:'wants'   },
+  { key:'lifestyle',  label:'Lifestyle & entertainment', group:'wants'   },
+  { key:'other',      label:'Other',                     group:'wants'   },
+];
+function calcBudget(){
+  const income = parseFloat(document.getElementById('bg-income').value)||0;
+  if(!income){ showToast('Enter your monthly income to continue.'); return; }
+  const vals = {};
+  BUDGET_CATS.forEach(c => vals[c.key] = parseFloat(document.getElementById('bg-'+c.key).value)||0);
+  const totalExpenses = BUDGET_CATS.reduce((s,c)=>s+vals[c.key],0);
+  const surplus = income - totalExpenses;
+  const needsTotal   = BUDGET_CATS.filter(c=>c.group==='needs').reduce((s,c)=>s+vals[c.key],0);
+  const wantsTotal   = BUDGET_CATS.filter(c=>c.group==='wants').reduce((s,c)=>s+vals[c.key],0);
+  const savingsTotal = vals.savings;
+  const pct = v => income>0 ? Math.round(v/income*100) : 0;
+  const savingsRate = pct(savingsTotal), debtRatio = pct(vals.debt), housingRatio = pct(vals.housing);
+  const surplusColor = surplus>=0 ? 'var(--mint)' : '#ef4444';
+  const rows = [
+    ['Needs',                  needsTotal,   50, 'mint'],
+    ['Savings & Investments',  savingsTotal, 20, 'gold'],
+    ['Wants & Lifestyle',      wantsTotal,   30, 'red'],
+  ];
+  const health = [
+    ['Savings Rate',      savingsRate, savingsRate>=20 ? 'On target (≥20%)'  : 'Below 20% target'],
+    ['Debt-to-Income',    debtRatio,   debtRatio<=10   ? 'On target (≤10%)'  : 'Above 10% target'],
+    ['Housing Cost Ratio',housingRatio,housingRatio<=30? 'On target (≤30%)'  : 'Above 30% target'],
+  ];
+  document.getElementById('bg-result').innerHTML = `
+    <div class="result-label" style="color:${surplusColor}">${surplus>=0?'Monthly surplus':'Monthly deficit'}</div>
+    <div class="result-amount" style="color:${surplusColor}">${fmt(Math.abs(surplus))}</div>
+    <div class="result-note">${surplus>=0 ? Math.round(surplus/income*100)+'% of income unallocated' : 'Spending '+Math.round(Math.abs(surplus)/income*100)+'% above income'}</div>
+    <div class="result-bars">
+      ${rows.map(([label,val,target,cls])=>`
+        <div class="result-bar-row">
+          <div class="result-bar-label"><span>${label} (target ${target}%)</span><span>${fmt(val)} · ${pct(val)}%</span></div>
+          <div class="result-bar-track"><div class="result-bar-fill ${cls}" style="width:${Math.min(100,pct(val))}%"></div></div>
+        </div>`).join('')}
+    </div>
+    <div class="result-bars" style="margin-top:8px;">
+      ${health.map(([label,val,note])=>`
+        <div class="result-bar-row"><div class="result-bar-label"><span>${label}</span><span>${val}% — ${note}</span></div></div>`).join('')}
+    </div>
+    ${surplus<0
+      ? ctaBlock(Math.abs(surplus), 'Close the gap by finding', null)
+      : (savingsRate<20 ? ctaBlock(surplus, "You've got this much spare to redirect to savings", null) : '')}`;
+}
+
+// ── DEBT PAYOFF PREVIEW (single-session — nothing saved) ──
+let dpRowCount = 0;
+function addDebtRow(){
+  dpRowCount++;
+  const id = dpRowCount;
+  const div = document.createElement('div');
+  div.className = 'form-group';
+  div.innerHTML = `
+    <label class="form-label">Debt ${id}</label>
+    <input class="form-input" type="text" placeholder="Name (e.g. Credit card)" id="dp-name-${id}" style="margin-bottom:6px;"/>
+    <input class="form-input" type="number" placeholder="Balance (ZAR)" id="dp-balance-${id}" style="margin-bottom:6px;" min="0"/>
+    <input class="form-input" type="number" placeholder="Interest rate (% p.a.)" id="dp-rate-${id}" style="margin-bottom:6px;" min="0"/>
+    <input class="form-input" type="number" placeholder="Minimum monthly payment (ZAR)" id="dp-min-${id}" min="0"/>`;
+  document.getElementById('dp-rows').appendChild(div);
+}
+function collectDebts(){
+  const debts = [];
+  for(let i=1;i<=dpRowCount;i++){
+    const nameEl = document.getElementById('dp-name-'+i);
+    if(!nameEl) continue;
+    const balance = parseFloat(document.getElementById('dp-balance-'+i).value)||0;
+    if(balance<=0) continue;
+    debts.push({
+      name: nameEl.value || ('Debt '+i),
+      balance,
+      rate: parseFloat(document.getElementById('dp-rate-'+i).value)||0,
+      minPayment: parseFloat(document.getElementById('dp-min-'+i).value)||0,
+    });
+  }
+  return debts;
+}
+function amortizeRun(debts, extra){
+  const ds = debts.map(d => ({ ...d, bal: d.balance, paid: false }));
+  let month = 0, totalInterest = 0, rollingExtra = extra;
+  while(ds.some(d => d.bal > 0.01) && month < 600){
+    month++;
+    for(const d of ds){
+      if(d.bal <= 0.01) continue;
+      const mr = d.rate/100/12;
+      const interest = d.bal * mr;
+      totalInterest += interest;
+      const principal = Math.min(Math.max(0, d.minPayment - interest), d.bal);
+      d.bal = Math.max(0, d.bal - principal);
+    }
+    let remaining = rollingExtra;
+    for(const d of ds){
+      if(d.bal <= 0.01) continue;
+      const pay = Math.min(remaining, d.bal);
+      d.bal = Math.max(0, d.bal - pay);
+      remaining -= pay;
+      if(remaining <= 0.01) break;
+    }
+    for(const d of ds){
+      if(!d.paid && d.bal <= 0.01){ d.paid = true; rollingExtra += d.minPayment; }
+    }
+  }
+  return { months: month, totalInterest };
+}
+function monthsToStrLanding(m){
+  if(m >= 600) return '50+ yrs';
+  const yrs = Math.floor(m/12), mo = m%12;
+  if(yrs === 0) return `${mo}mo`;
+  if(mo === 0) return `${yrs}yr`;
+  return `${yrs}yr ${mo}mo`;
+}
+function calcDebt(){
+  const debts = collectDebts();
+  if(debts.length === 0){ showToast('Add at least one debt with a balance to continue.'); return; }
+  const extra = parseFloat(document.getElementById('dp-extra').value)||0;
+  const strategy = document.getElementById('dp-strategy').value;
+  const sorted = [...debts];
+  if(strategy === 'snowball') sorted.sort((a,b) => a.balance - b.balance);
+  else sorted.sort((a,b) => b.rate - a.rate);
+  const withExtra = amortizeRun(sorted, extra);
+  const minOnly = amortizeRun(sorted, 0);
+  const savings = Math.max(0, minOnly.totalInterest - withExtra.totalInterest);
+  const monthsSaved = Math.max(0, minOnly.months - withExtra.months);
+  const totalBalance = debts.reduce((s,d) => s + d.balance, 0);
+  document.getElementById('dp-result').innerHTML = `
+    <div class="result-label">Debt-free in</div>
+    <div class="result-amount" style="font-size:clamp(22px,3vw,34px);">${monthsToStrLanding(withExtra.months)}</div>
+    <div class="result-note">Across ${debts.length} debt${debts.length>1?'s':''} totalling ${fmt(totalBalance)}, using the ${strategy} strategy.</div>
+    <div class="result-bars">
+      <div class="result-bar-row"><div class="result-bar-label"><span>Interest paid with this plan</span><span>${fmt(withExtra.totalInterest)}</span></div></div>
+      <div class="result-bar-row"><div class="result-bar-label"><span style="color:var(--mint)">Interest saved vs. minimum payments</span><span style="color:var(--mint)">${fmt(savings)}</span></div></div>
+      <div class="result-bar-row"><div class="result-bar-label"><span>Time saved vs. minimum payments</span><span>${monthsToStrLanding(monthsSaved)}</span></div></div>
+    </div>
+    ${extra>0
+      ? ctaBlock(extra, "You're already committing extra of", null)
+      : ctaBlock(500, 'Even a small extra payment compounds — try adding just', 'Add it in the field above to see the real impact.')}
+    <div style="margin-top:12px;padding:10px 12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:8px;font-size:11px;color:var(--mint);">Your adviser can help you consolidate or restructure high-interest debt.</div>`;
+}
+
+// ── SAVINGS GOAL PREVIEW (single-session — nothing saved) ──
+function monthsToGoalLanding(current, target, monthly, annualRatePct){
+  if(target <= 0 || current >= target) return 0;
+  const r = annualRatePct/100/12;
+  let bal = current, months = 0;
+  while(bal < target && months < 600){ bal = bal*(1+r) + monthly; months++; }
+  return months;
+}
+function calcGoal(){
+  const name = document.getElementById('gl-name').value || 'your goal';
+  const target = parseFloat(document.getElementById('gl-target').value)||0;
+  const current = parseFloat(document.getElementById('gl-current').value)||0;
+  const monthly = parseFloat(document.getElementById('gl-monthly').value)||0;
+  const growth = parseFloat(document.getElementById('gl-growth').value)||8;
+  if(!target){ showToast('Enter a target amount to continue.'); return; }
+  const el = document.getElementById('gl-result');
+  if(current >= target){
+    el.innerHTML = `
+      <div class="result-label">Goal reached 🎉</div>
+      <div class="result-note">You've already saved ${fmt(current)} toward ${fmt(target)} for ${name}.</div>`;
+    return;
+  }
+  const r = growth/100/12;
+  const fvCurrent12 = current * Math.pow(1+r, 12);
+  const monthlyFor12 = monthlyToClose(Math.max(0, target - fvCurrent12), growth, 12);
+
+  if(monthly <= 0){
+    const pct = Math.min(100, Math.round(current/target*100));
+    el.innerHTML = `
+      <div class="result-label" style="color:#ef4444">No monthly contribution set</div>
+      <div class="result-note">At this rate, ${name} won't move. Add a monthly amount to see a projected date.</div>
+      <div class="result-bars"><div class="result-bar-row"><div class="result-bar-label"><span>Progress</span><span>${pct}%</span></div><div class="result-bar-track"><div class="result-bar-fill gold" style="width:${pct}%"></div></div></div></div>
+      ${ctaBlock(monthlyFor12, `To reach ${name} within a year, you'll need to contribute`, `${growth}% growth assumed.`)}`;
+    return;
+  }
+  const months = monthsToGoalLanding(current, target, monthly, growth);
+  const date = new Date(); date.setMonth(date.getMonth() + months);
+  const dateStr = date.toLocaleDateString('en-ZA', { month:'long', year:'numeric' });
+  const pct = Math.min(100, Math.round(current/target*100));
+  const extraFor12 = Math.max(0, monthlyFor12 - monthly);
+  el.innerHTML = `
+    <div class="result-label">You'll reach it by</div>
+    <div class="result-amount" style="font-size:clamp(22px,3vw,34px);">${dateStr}</div>
+    <div class="result-note">At ${fmt(monthly)}/month (${growth}% growth), you'll reach ${fmt(target)} for ${name} in ${monthsToStrLanding(months)}.</div>
+    <div class="result-bars"><div class="result-bar-row"><div class="result-bar-label"><span>Progress so far</span><span>${pct}%</span></div><div class="result-bar-track"><div class="result-bar-fill mint" style="width:${pct}%"></div></div></div></div>
+    ${extraFor12>0 ? ctaBlock(extraFor12, `Want it within a year instead? Add a further`, `On top of what you already contribute — ${growth}% growth assumed.`) : ''}
+    <div style="margin-top:12px;padding:10px 12px;background:var(--mint-dim);border:1px solid var(--mint-border);border-radius:8px;font-size:11px;color:var(--mint);">Track this goal for real — with monthly history — in your free Covey client portal.</div>`;
+}
+
+// ── QUIZ ──
+const quizScores = {};
+function quizSelect(q, opt, score){
+  quizScores[q] = score;
+  document.querySelectorAll(`#quiz-q${q} .quiz-option`).forEach(b => b.classList.remove('selected'));
+  event.currentTarget.classList.add('selected');
+}
+function quizNext(q){
+  if(quizScores[q]===undefined){ showToast('Please select an answer.'); return; }
+  document.getElementById(`quiz-q${q}`).classList.remove('active');
+  document.getElementById(`quiz-q${q+1}`).classList.add('active');
+}
+function quizBack(q){
+  document.getElementById(`quiz-q${q}`).classList.remove('active');
+  document.getElementById(`quiz-q${q-1}`).classList.add('active');
+}
+function quizSubmit(){
+  if(quizScores[5]===undefined){ showToast('Please select an answer.'); return; }
+  const total = Object.values(quizScores).reduce((a,b)=>a+b,0);
+  const pct = Math.round((1 - total/10)*100);
+  let label, colour, recs;
+  if(pct>=80){ label='Cover looks strong'; colour='var(--mint)';
+    recs=['Book an annual review to keep your cover current','Make sure your will beneficiaries are updated','Consider a review of your retirement contribution rate']; }
+  else if(pct>=50){ label='Some gaps to address'; colour='var(--gold)';
+    recs=['Review your income protection — most South Africans are underinsured here','Check your life cover amount against your current debts and dependants','Update your will if it\'s more than 2 years old']; }
+  else { label='Significant gaps identified'; colour='#ef4444';
+    recs=['Book a consultation urgently — you may have significant unprotected exposure','Start with income protection: it protects your ability to earn','Life cover and a valid will should follow immediately']; }
+  document.getElementById('quizForm').style.display='none';
+  const res = document.getElementById('quiz-result');
+  res.style.display='flex';
+  document.getElementById('quiz-result-inner').innerHTML=`
+    <div class="quiz-result-score" style="color:${colour}">${pct}%</div>
+    <div class="quiz-result-label">${label}</div>
+    <div class="quiz-result-items">${recs.map(r=>`<div class="quiz-result-item">${r}</div>`).join('')}</div>
+    <a href="#contact" style="display:block;margin-top:18px;text-align:center;padding:11px;background:var(--mint);color:var(--deep);border-radius:9px;font-size:13px;font-weight:700;">Book a free consultation →</a>
+    <button onclick="resetQuiz()" style="display:block;width:100%;margin-top:8px;padding:8px;background:transparent;border:1px solid var(--w08);border-radius:9px;font-size:12px;color:var(--w45);cursor:pointer;">Retake quiz</button>`;
+}
+function resetQuiz(){
+  Object.keys(quizScores).forEach(k=>delete quizScores[k]);
+  document.querySelectorAll('.quiz-option').forEach(b=>b.classList.remove('selected'));
+  document.querySelectorAll('.quiz-step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('quiz-q1').classList.add('active');
+  document.getElementById('quizForm').style.display='block';
+  document.getElementById('quiz-result').style.display='none';
+}
+
+// ── CONTACT FORM ──
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const btn = document.getElementById('formSubmit');
+  btn.disabled=true; btn.textContent='Sending…';
+  const fname = document.getElementById('fname').value.trim();
+  const lname = document.getElementById('lname').value.trim();
+  const data = {
+    full_name: `${fname} ${lname}`.trim(),
+    whatsapp_number: document.getElementById('phone').value.trim(),
+    email: document.getElementById('email').value.trim()||null,
+    product_interest: document.getElementById('topic').value||null,
+    platform: 'Website', lead_status: 'NEW'
+  };
+  await SUPA.from('social_media_leads').insert(data).then(()=>{}, ()=>{});
+  document.getElementById('contactForm').style.display='none';
+  document.getElementById('formSuccess').style.display='block';
+});
+</script>
+
+<!-- ── WHATSAPP CHANNEL MODAL ── -->
+<div id="wa-channel-modal" style="
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.60);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:24px;
+" onclick="closeChannelModal()">
+  <div style="
+    background:#fff;border-radius:24px;padding:32px 28px;
+    max-width:320px;width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;
+    box-shadow:0 24px 64px rgba(0,0,0,0.25);
+  " onclick="event.stopPropagation()">
+
+    <div style="text-align:center">
+      <div style="font-size:16px;font-weight:800;color:#0D2C1A;letter-spacing:-0.02em;">Partridg3 WhatsApp Channel</div>
+      <div style="font-size:12px;color:#6B7280;margin-top:4px;">Scan to join · or share with someone</div>
+    </div>
+
+    <div style="padding:16px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=0D2C1A&bgcolor=F9FAFB&qzone=2&data=https%3A%2F%2Fwhatsapp.com%2Fchannel%2F0029Vb8omRh5fM5epo1EwH2l"
+        alt="Partridg3 WhatsApp Channel QR Code"
+        width="180" height="180"
+        style="display:block;"
+      />
+    </div>
+
+    <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" style="
+      display:block;width:100%;padding:13px;border-radius:12px;
+      background:#128C7E;color:#fff;text-align:center;
+      font-size:14px;font-weight:700;text-decoration:none;
+    ">Join Channel</a>
+
+    <div style="display:flex;gap:10px;width:100%;">
+      <a id="wa-fwd-btn" href="" target="_blank" rel="noopener" style="
+        flex:1;padding:11px 8px;border-radius:12px;text-align:center;
+        font-size:12px;font-weight:600;text-decoration:none;
+        background:#F0FDF4;color:#128C7E;border:1px solid #BBF7D0;
+      ">📤 Send to Contact</a>
+      <button id="wa-copy-btn" onclick="copyChannelLink()" style="
+        flex:1;padding:11px 8px;border-radius:12px;
+        font-size:12px;font-weight:600;cursor:pointer;
+        background:#F9FAFB;color:#374151;border:1px solid #E5E7EB;
+      ">🔗 Copy Link</button>
+    </div>
+
+    <button onclick="closeChannelModal()" style="font-size:12px;color:#9CA3AF;background:none;border:none;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+  const CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l';
+  const SHARE_MSG   = encodeURIComponent('Join the Partridg3 WhatsApp Channel for independent financial planning insights: ' + CHANNEL_URL);
+  document.getElementById('wa-fwd-btn').href = 'https://wa.me/?text=' + SHARE_MSG;
+
+  function openChannelModal() {
+    const m = document.getElementById('wa-channel-modal');
+    m.style.display = 'flex';
+  }
+  function closeChannelModal() {
+    document.getElementById('wa-channel-modal').style.display = 'none';
+  }
+  async function copyChannelLink() {
+    const btn = document.getElementById('wa-copy-btn');
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Partridg3 WhatsApp Channel', url: CHANNEL_URL });
+        return;
+      } catch(e) { /* cancelled */ }
+    }
+    await navigator.clipboard.writeText(CHANNEL_URL);
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '🔗 Copy Link', 2500);
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChannelModal(); });
+</script>
+</body>
+</html>

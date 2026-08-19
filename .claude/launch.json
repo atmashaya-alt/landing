@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "partridg3-landing",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "5175", "--directory", "C:\\Users\\AkhonaTheophylusMash\\Partridg3\\landing"],
+      "port": 5175
+    }
+  ]
+}
