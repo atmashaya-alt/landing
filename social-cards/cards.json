@@ -1,0 +1,359 @@
+[
+  {
+    "id": "benefit-independent",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app",
+    "cfg": {
+      "eyebrow": "WHY PARTRIDG3",
+      "category": "Independent advice",
+      "headline": "Advice that isn't <span class=\"hl\">tied to one insurer</span>",
+      "subhead": "Partridg3 connects you with independent, FSCA-licensed advisers who compare across providers — not just one book of products.",
+      "cta": "See how it works",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "FSCA",
+          "label": "licensed advisers"
+        },
+        {
+          "num": "9+",
+          "label": "product categories"
+        }
+      ]
+    }
+  },
+  {
+    "id": "benefit-everything-in-one-place",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app",
+    "cfg": {
+      "eyebrow": "WHY PARTRIDG3",
+      "category": "One place, every product",
+      "headline": "Life, health, and <span class=\"hl\">everything between</span>",
+      "subhead": "Life cover, disability, income protection, severe illness, funeral cover, savings, estate planning, medical aid, retirement — all built around your family's story.",
+      "cta": "Explore Partridg3",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "benefit-family-wellness",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app",
+    "cfg": {
+      "eyebrow": "WHY PARTRIDG3",
+      "category": "Wealth · Legacy · Community",
+      "headline": "Protecting <span class=\"hl\">your family's story</span>, not just your assets",
+      "subhead": "Financial planning that starts with what matters to you — then builds the cover, savings, and structure around it.",
+      "cta": "Start your story",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "calc-life",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-life",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "LIFE COVER",
+      "headline": "A lump sum paid to your family <span class=\"hl\">if you pass away</span>",
+      "subhead": "Settles debt, replaces your income, and keeps their life on track — sized to your real numbers, not a guess.",
+      "cta": "Calculate your cover need",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-income",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-income",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "INCOME PROTECTION",
+      "headline": "A monthly benefit <span class=\"hl\">if illness or injury stops you working</span>",
+      "subhead": "Replaces part of your income for as long as you can't work — so your bills still get paid.",
+      "cta": "Calculate your protection gap",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "75%",
+          "label": "of income, protected"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-disability",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-disability",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "DISABILITY COVER",
+      "headline": "A lump sum paid <span class=\"hl\">if you're permanently disabled</span>",
+      "subhead": "Clears debt and funds the changes your life needs — home, vehicle, and care — when it changes for good.",
+      "cta": "Calculate your cover need",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-dread",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-dread",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "SEVERE ILLNESS COVER",
+      "headline": "A lump sum paid <span class=\"hl\">on diagnosis of a critical illness</span>",
+      "subhead": "Covers the treatment costs your medical aid doesn't — private care, income buffer, recovery.",
+      "cta": "Calculate your cover need",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-retire",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-retire",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "RETIREMENT PLANNING",
+      "headline": "The savings you'll need to <span class=\"hl\">retire without running out</span>",
+      "subhead": "Projects what you have against what you'll actually need, and what closing the gap costs per month.",
+      "cta": "Calculate your retirement gap",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-emergency",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-emergency",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "EMERGENCY FUND",
+      "headline": "Cash set aside so a crisis <span class=\"hl\">doesn't become a disaster</span>",
+      "subhead": "3+ months of essential expenses, accessible immediately — the buffer between a setback and a spiral.",
+      "cta": "Calculate your target",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "1 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "calc-estate",
+    "category": "calculator",
+    "destination": "https://partridg3-landing.vercel.app/#tools-estate",
+    "cfg": {
+      "eyebrow": "CALCULATOR",
+      "category": "ESTATE PLANNING",
+      "headline": "What it actually costs to <span class=\"hl\">wind up your estate</span>",
+      "subhead": "Executor's fees, estate duty, Master's fees — before your family sees a cent of what you leave them.",
+      "cta": "Calculate your estate costs",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "7",
+          "label": "free calculators"
+        },
+        {
+          "num": "2 min",
+          "label": "to your number"
+        }
+      ]
+    }
+  },
+  {
+    "id": "feature-wellness-score",
+    "category": "feature",
+    "destination": "https://covey-tau.vercel.app",
+    "cfg": {
+      "eyebrow": "COVEY · CLIENT APP",
+      "category": "Your financial wellness",
+      "headline": "Know your <span class=\"hl\">financial wellness score</span> — not just your portfolio",
+      "subhead": "Covey tracks the full picture: cover, savings, debt, and goals — in one score you can actually act on.",
+      "cta": "Open Covey",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "feature-tools-in-app",
+    "category": "feature",
+    "destination": "https://covey-tau.vercel.app/tools",
+    "cfg": {
+      "eyebrow": "COVEY · CLIENT APP",
+      "category": "10 tools, one app",
+      "headline": "Budget, debt, goals, and every <span class=\"hl\">cover calculator</span> — in your pocket",
+      "subhead": "The same calculators from partridg3.com, plus a budget builder, debt payoff planner, and savings goal tracker — saved to your profile.",
+      "cta": "Open Covey",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": [
+        {
+          "num": "10",
+          "label": "tools in one app"
+        }
+      ]
+    }
+  },
+  {
+    "id": "feature-community",
+    "category": "feature",
+    "destination": "https://covey-tau.vercel.app/community",
+    "cfg": {
+      "eyebrow": "COVEY · CLIENT APP",
+      "category": "You're not doing this alone",
+      "headline": "A community built around <span class=\"hl\">wealth, legacy, and family</span>",
+      "subhead": "Connect with others on the same journey — right inside your Covey app.",
+      "cta": "Open Covey",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "feature-wills-referral",
+    "category": "feature",
+    "destination": "https://covey-tau.vercel.app/wills",
+    "cfg": {
+      "eyebrow": "COVEY · CLIENT APP",
+      "category": "Estate planning, sorted",
+      "headline": "Don't have a will yet? <span class=\"hl\">We'll connect you.</span>",
+      "subhead": "Refer yourself or a family member for a will — straight from your Covey app, no extra admin.",
+      "cta": "Open Covey",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "feature-paperless",
+    "category": "feature",
+    "destination": "https://covey-tau.vercel.app",
+    "cfg": {
+      "eyebrow": "COVEY · CLIENT APP",
+      "category": "No more paperwork chases",
+      "headline": "Sign, consent, and track claims — <span class=\"hl\">all from your phone</span>",
+      "subhead": "Documents, e-signatures, and claims status, all in one app — no more chasing PDFs over email.",
+      "cta": "Open Covey",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "share-whatsapp-channel",
+    "category": "share",
+    "destination": "https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l",
+    "cfg": {
+      "eyebrow": "JOIN US",
+      "category": "Free, twice-daily tips",
+      "headline": "Join the <span class=\"hl\">Partridg3 WhatsApp channel</span>",
+      "subhead": "Practical financial tips, calculator prompts, and real talk about money — straight to WhatsApp, no spam.",
+      "cta": "Join the channel",
+      "footer": "Link in bio · <span class=\"link\">WhatsApp</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "share-forward",
+    "category": "share",
+    "destination": "https://partridg3-landing.vercel.app",
+    "cfg": {
+      "eyebrow": "SHARE THIS",
+      "category": "Know someone who needs this?",
+      "headline": "Forward this to <span class=\"hl\">someone who needs it</span>",
+      "subhead": "A parent starting a family, a friend buying a first home, anyone without cover — send them this.",
+      "cta": "Share Partridg3",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "book-consultation",
+    "category": "book",
+    "destination": "https://covey-tau.vercel.app/book",
+    "cfg": {
+      "eyebrow": "GET STARTED",
+      "category": "Free, no obligation",
+      "headline": "Book a <span class=\"hl\">free consultation</span> with an independent adviser",
+      "subhead": "Pick a time that works for you — no pressure, no obligation, just a real conversation about your plan.",
+      "cta": "Book now",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "book-get-started",
+    "category": "book",
+    "destination": "https://covey-tau.vercel.app",
+    "cfg": {
+      "eyebrow": "GET STARTED",
+      "category": "Your plan, in your pocket",
+      "headline": "Your whole financial plan, <span class=\"hl\">in one app</span>",
+      "subhead": "Sign up for Covey — your policies, calculators, and adviser, all in one place.",
+      "cta": "Get started free",
+      "footer": "Link in bio · <span class=\"link\">covey app</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "brochure-full",
+    "category": "brochure",
+    "destination": "https://partridg3-landing.vercel.app/brochure",
+    "cfg": {
+      "eyebrow": "READ MORE",
+      "category": "The full picture, one link",
+      "headline": "Protecting African families. <span class=\"hl\">One plan at a time.</span>",
+      "subhead": "Our full digital brochure — every service, every step, one place to start.",
+      "cta": "Read the brochure",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  }
+]

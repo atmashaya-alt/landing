@@ -1,0 +1,175 @@
+[
+  {
+    "id": "adv-benefit-independent-leads",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "FOR ADVISERS",
+      "category": "Stay independent, gain a pipeline",
+      "headline": "Keep your <span class=\"hl\">own FSP licence</span>. Get warm leads anyway.",
+      "subhead": "Partridg3 routes prospects to you — you stay independently licensed under your own FSP, not ours.",
+      "cta": "Enquire about joining",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-benefit-less-admin",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "FOR ADVISERS",
+      "category": "One practice, one platform",
+      "headline": "Spend less time on admin, <span class=\"hl\">more time advising</span>",
+      "subhead": "Clients, leads, FNA, compliance, and commission — one system instead of five spreadsheets.",
+      "cta": "Enquire about joining",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-benefit-compliance-handled",
+    "category": "benefit",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "FOR ADVISERS",
+      "category": "FAIS compliance, built in",
+      "headline": "Compliant records, <span class=\"hl\">without the paperwork chase</span>",
+      "subhead": "Meeting records, disclosures, and audit logs are captured automatically as you work, not bolted on afterward.",
+      "cta": "Enquire about joining",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-feature-fna-wizard",
+    "category": "feature",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "ADVISER TOOLING",
+      "category": "Full needs analysis, one sitting",
+      "headline": "A complete FNA in the time it takes to <span class=\"hl\">have the conversation</span>",
+      "subhead": "Life cover, disability, dread disease, retirement, estate liquidity, funeral — one wizard, one client meeting.",
+      "cta": "See it in action",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": [
+        {
+          "num": "8",
+          "label": "needs covered in one wizard"
+        }
+      ]
+    }
+  },
+  {
+    "id": "adv-feature-lead-pipeline",
+    "category": "feature",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "ADVISER TOOLING",
+      "category": "Leads, tracked end to end",
+      "headline": "See every lead from <span class=\"hl\">first click to closed case</span>",
+      "subhead": "A real pipeline view — where each lead came from, what stage they're at, and what's next.",
+      "cta": "See it in action",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-feature-commission",
+    "category": "feature",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "ADVISER TOOLING",
+      "category": "Know what's coming in",
+      "headline": "Commission you can actually <span class=\"hl\">see and track</span>",
+      "subhead": "No more waiting on a statement to know what's owed — track it as cases close.",
+      "cta": "See it in action",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-feature-referral-tracking",
+    "category": "feature",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "ADVISER TOOLING",
+      "category": "Referrals, with real numbers",
+      "headline": "Monthly targets, conversion rates — <span class=\"hl\">your referral pipeline, measured</span>",
+      "subhead": "Know exactly how many referrals came in this month and how many became clients.",
+      "cta": "See it in action",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-feature-compliance-suite",
+    "category": "feature",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "ADVISER TOOLING",
+      "category": "Audit-ready, always",
+      "headline": "Every meeting, every disclosure — <span class=\"hl\">logged automatically</span>",
+      "subhead": "Meeting compliance and a full audit log, built into your everyday workflow, not a separate task.",
+      "cta": "See it in action",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-share-refer-adviser",
+    "category": "share",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "KNOW SOMEONE?",
+      "category": "Refer a fellow adviser",
+      "headline": "Know an adviser who'd <span class=\"hl\">thrive here?</span>",
+      "subhead": "Independent advisers looking for a warmer pipeline and less admin — send them our way.",
+      "cta": "Refer an adviser",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-share-whatsapp-channel",
+    "category": "share",
+    "destination": "https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l",
+    "cfg": {
+      "eyebrow": "JOIN US",
+      "category": "Industry tips, twice daily",
+      "headline": "Join the <span class=\"hl\">Partridg3 WhatsApp channel</span>",
+      "subhead": "Practical updates for advisers and clients alike — straight to WhatsApp, no spam.",
+      "cta": "Join the channel",
+      "footer": "Link in bio · <span class=\"link\">WhatsApp</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-book-apply",
+    "category": "book",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "GET STARTED",
+      "category": "No obligation to apply",
+      "headline": "Ready to <span class=\"hl\">grow your practice</span> with Partridg3?",
+      "subhead": "Tell us a bit about your practice — our team will reach out to walk you through how it works.",
+      "cta": "Apply to join",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  },
+  {
+    "id": "adv-book-talk-to-team",
+    "category": "book",
+    "destination": "https://partridg3-landing.vercel.app/#contact",
+    "cfg": {
+      "eyebrow": "GET STARTED",
+      "category": "A real conversation, no pitch deck",
+      "headline": "Talk to our <span class=\"hl\">practice team</span> before you decide anything",
+      "subhead": "No pressure, no obligation — just a conversation about whether Partridg3 is a fit for your practice.",
+      "cta": "Talk to us",
+      "footer": "Link in bio · <span class=\"link\">partridg3.com</span>",
+      "stats": []
+    }
+  }
+]
