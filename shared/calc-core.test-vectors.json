@@ -1,0 +1,193 @@
+[
+  {
+    "description": "Life Cover — mid-career (income R420k/yr net, age 35, 30yr horizon)",
+    "fn": "calcLifeCover",
+    "inputs": {
+      "netAnnualIncome": 420000,
+      "incomeNeedPct": 75,
+      "realReturnRate": 0.0377358,
+      "yearsToRetirement": 30,
+      "outstandingBond": 1500000,
+      "otherDebt": 0,
+      "educationLumpSum": 0,
+      "estateCosts": 0,
+      "existingLiquidAssets": 0,
+      "existingLifeCover": 500000,
+      "spouseAnnualIncome": 0
+    },
+    "result": {
+      "incomeReplacementCapital": 5599913.991581377,
+      "spousePV": 0,
+      "total": 6599913.991581377,
+      "motivation": "Income Replacement (30-year finite annuity): net income R35 000/month × 75% = R26 250/month needed. PV over 30 years at 3.8% real return = R 5 599 914. + Bond/debt R 1 500 000 + Education R 0 + Estate costs R 0 − Liquid assets R 0 − Existing cover R 500 000 = R 6 599 914. (Real return = net of CPI. Income need grows with inflation; capital is fully deployed — not preserved as a perpetuity.)"
+    }
+  },
+  {
+    "description": "Life Cover — near-retirement (income R420k/yr net, age 60, 5yr horizon)",
+    "fn": "calcLifeCover",
+    "inputs": {
+      "netAnnualIncome": 420000,
+      "incomeNeedPct": 75,
+      "realReturnRate": 0.0377358,
+      "yearsToRetirement": 5,
+      "outstandingBond": 0,
+      "otherDebt": 0,
+      "educationLumpSum": 0,
+      "estateCosts": 0,
+      "existingLiquidAssets": 0,
+      "existingLifeCover": 0,
+      "spouseAnnualIncome": 0
+    },
+    "result": {
+      "incomeReplacementCapital": 1411288.678969163,
+      "spousePV": 0,
+      "total": 1411288.678969163,
+      "motivation": "Income Replacement (5-year finite annuity): net income R35 000/month × 75% = R26 250/month needed. PV over 5 years at 3.8% real return = R 1 411 289. + Bond/debt R 0 + Education R 0 + Estate costs R 0 − Liquid assets R 0 − Existing cover R 0 = R 1 411 289. (Real return = net of CPI. Income need grows with inflation; capital is fully deployed — not preserved as a perpetuity.)"
+    }
+  },
+  {
+    "description": "pvFiniteAnnuity — zero real return edge case (r=0)",
+    "fn": "pvFiniteAnnuity",
+    "inputs": {
+      "annualAmount": 100000,
+      "r": 0,
+      "n": 10
+    },
+    "result": 1000000
+  },
+  {
+    "description": "Retirement Gap — mid-career",
+    "fn": "calcRetirementGap",
+    "inputs": {
+      "currentSavings": 150000,
+      "monthlyContribution": 3000,
+      "grossAnnual": 420000,
+      "yearsToRetirement": 30,
+      "retirementAge": 65,
+      "realReturnRate": 0.0377358,
+      "drawdownRate": 0.04,
+      "replacementRatio": 75,
+      "marginalTaxRate": 0.26
+    },
+    "result": {
+      "targetCapital": 7875000,
+      "targetIncome": 315000,
+      "monthlyIncomeRetirement": 26250,
+      "fvSavings": 455717.0107121693,
+      "fvContributions": 2006428.053743973,
+      "projectedPortfolio": 2462145.064456142,
+      "gap": 5412854.9355438575,
+      "additionalMonthlyNeeded": 8093.2704147206205,
+      "additionalMonthlyAfterTax": 5989.020106893259,
+      "earlyRetirementFlag": false,
+      "motivation": "WHAT THE CLIENT HAS: Current savings R 150 000 → R 455 717 in 30 years at 3.8% real return. Monthly contributions R 3 000/month → R 2 006 428 at retirement. Projected portfolio: R 2 462 145. WHAT THE CLIENT NEEDS: 75% of gross income = R 315 000/year (R 26 250/month) in today's rand. At 4.0% sustainable drawdown, target capital = R 7 875 000. SHORTFALL: R 5 412 855. Additional contribution needed: R 8 093/month in real terms. After-tax cost (26% marginal rate RA deduction): R 5 989/month. "
+    }
+  },
+  {
+    "description": "Estate Costs — R10m estate, R1m debt, spouse, R3m property",
+    "fn": "calcEstateCosts",
+    "inputs": {
+      "grossEstate": 10000000,
+      "debts": 1000000,
+      "hasSpouse": true,
+      "hasProperty": true,
+      "propertyValue": 3000000
+    },
+    "result": {
+      "execFee": 402500.00000000006,
+      "duty": 400000,
+      "masters": 7000,
+      "advert": 1500,
+      "conv": 35000,
+      "total": 846000,
+      "net": 8154000,
+      "pct": 8.459999999999999,
+      "liquidityRisk": false,
+      "abatement": 7000000,
+      "dutiable": 2000000
+    }
+  },
+  {
+    "description": "Income Protection — R35k gross monthly, no existing benefit",
+    "fn": "calcIncomeProtection",
+    "inputs": {
+      "grossMonthly": 35000,
+      "existingBenefit": 0,
+      "label": "group"
+    },
+    "result": {
+      "amount": 26250,
+      "motivation": "75% of gross monthly income R 35 000 = R 26 250 (industry aggregate cap — applies across all IP policies and employer benefits combined). Recommended additional monthly benefit: R 26 250. Benefit period: to age 65. Waiting period and escalation rate to be confirmed with insurer."
+    }
+  },
+  {
+    "description": "calculateTax — SARS 2026/27, R600k gross, age 35 (locks in the 2026-08-19 bracket/rebate/CGT reconciliation)",
+    "fn": "calculateTax",
+    "inputs": {
+      "grossAnnual": 600000,
+      "age": 35,
+      "tp": {
+        "tax_year": "2026/27",
+        "effective_date": "2026-03-01",
+        "brackets": [
+          { "from": 0,       "to": 245100,  "rate": 0.18, "base_tax": 0 },
+          { "from": 245100,  "to": 383100,  "rate": 0.26, "base_tax": 44118 },
+          { "from": 383100,  "to": 530200,  "rate": 0.31, "base_tax": 79998 },
+          { "from": 530200,  "to": 695800,  "rate": 0.36, "base_tax": 125599 },
+          { "from": 695800,  "to": 887000,  "rate": 0.39, "base_tax": 185215 },
+          { "from": 887000,  "to": 1878600, "rate": 0.41, "base_tax": 259783 },
+          { "from": 1878600, "to": null,    "rate": 0.45, "base_tax": 666339 }
+        ],
+        "primary_rebate": 17820,
+        "secondary_rebate": 9765,
+        "tertiary_rebate": 3249,
+        "medical_credit_main": 376,
+        "medical_credit_additional": 254,
+        "ra_deduction_rate": 0.275,
+        "ra_annual_cap": 430000,
+        "tfsa_annual_limit": 46000,
+        "tfsa_lifetime_limit": 500000,
+        "interest_exemption_under65": 23800,
+        "interest_exemption_over65": 34500,
+        "cgt_annual_exclusion": 50000,
+        "cgt_death_exemption": 300000,
+        "cgt_inclusion_rate": 0.40,
+        "estate_duty_abatement": 3500000,
+        "estate_duty_rate_standard": 0.20,
+        "estate_duty_rate_high": 0.25,
+        "estate_duty_high_threshold": 30000000,
+        "executor_fee_rate": 0.035,
+        "executor_fee_vat": 0.15,
+        "dividend_withholding_tax": 0.20
+      }
+    },
+    "result": {
+      "grossAnnual": 600000,
+      "taxBeforeRebates": 150727,
+      "totalRebates": 17820,
+      "totalTax": 132907,
+      "netAnnual": 467093,
+      "netMonthly": 38924.41666666667,
+      "marginalRate": 0.36,
+      "effectiveRate": 0.22151166666666667,
+      "raMaxDeductible": 165000,
+      "raTaxSaving": 59400,
+      "interestExemption": 23800,
+      "effectiveCgtRate": 0.144
+    }
+  },
+  {
+    "description": "Emergency Fund — R25k/mo essential, 3 months, R10k saved",
+    "fn": "calcEmergencyFund",
+    "inputs": {
+      "monthlyEssential": 25000,
+      "monthsTarget": 3,
+      "existingLiquid": 10000
+    },
+    "result": {
+      "target": 75000,
+      "gap": 65000,
+      "motivation": "Essential monthly expenses R 25 000 × 3 months = R 75 000. Existing liquid savings: R 10 000. Shortfall: R 65 000."
+    }
+  }
+]

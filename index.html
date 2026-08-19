@@ -722,7 +722,7 @@ a{color:inherit;text-decoration:none;}
               <label class="form-label">Property value (ZAR)</label>
               <input class="form-input" type="number" id="ec-prop" placeholder="e.g. 2500000" min="0"/>
             </div>
-            <button class="calc-btn" onclick="calcEstateCosts()">Calculate estate costs</button>
+            <button class="calc-btn" onclick="calcEstateCostsUI()">Calculate estate costs</button>
           </div>
           <div class="calc-result" id="ec-result">
             <div class="result-placeholder"><div class="big">⚖️</div>See what it costs to wind up your estate — and what your family actually receives.</div>
@@ -1152,6 +1152,17 @@ a{color:inherit;text-decoration:none;}
 <div class="toast" id="toast"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script type="module">
+  // Canonical calculator core (partridg3-shared-calc) — see that repo's
+  // README for the sync workflow. Exposed on window so the classic <script>
+  // block below (not a module) can call these as globals; module scripts run
+  // before any user interaction can trigger the calculators, so ordering is
+  // safe despite modules deferring relative to classic scripts.
+  import { pvFiniteAnnuity, calcRetirementGap, calcEstateCosts } from './shared/calc-core.js';
+  window.pvFiniteAnnuity = pvFiniteAnnuity;
+  window.calcRetirementGap = calcRetirementGap;
+  window.calcEstateCosts = calcEstateCosts;
+</script>
 <script>
 const SUPA = supabase.createClient(
   'https://aebsqfrfqovyfztmdnkw.supabase.co',
@@ -1311,24 +1322,11 @@ function togglePropInput(){
   document.getElementById('ec-prop-group').style.display = show ? 'block' : 'none';
 }
 
-function calcMastersFee(e){
-  if(e<=250000) return 600;
-  if(e<=500000) return 1000;
-  if(e<=750000) return 1500;
-  if(e<=1000000) return 2000;
-  return Math.min(7000, 2000 + Math.ceil((e-1000000)/100000)*600);
-}
-function calcConveyancing(p){
-  if(p<=100000) return 4000;
-  if(p<=250000) return 6000;
-  if(p<=500000) return 9000;
-  if(p<=1000000) return 14000;
-  if(p<=2000000) return 22000;
-  if(p<=5000000) return 35000;
-  return 55000;
-}
-
-function calcEstateCosts(){
+// calcMastersFee/calcConveyancing and the duty-tier logic used to be
+// hand-duplicated here (a 4th independent copy alongside
+// estate-calculator.html, client-portal, and practice-manager-portal) —
+// retired 2026-08-19 in favour of the canonical window.calcEstateCosts().
+function calcEstateCostsUI(){
   const e = parseFloat(document.getElementById('ec-estate').value)||0;
   if(!e){ showToast('Enter your estate value to continue.'); return; }
   const debts = parseFloat(document.getElementById('ec-debts').value)||0;
@@ -1336,22 +1334,10 @@ function calcEstateCosts(){
   const hasProp = document.getElementById('ec-hasprop').value==='yes';
   const p = hasProp ? (parseFloat(document.getElementById('ec-prop').value)||0) : 0;
 
-  const execFee = e * 0.035 * 1.15;
-  const netEstate = Math.max(0, e - debts);
-  const abatement = hasSpouse ? 7000000 : 3500000;
-  const dutiable = Math.max(0, netEstate - abatement);
-  let duty = 0;
-  if(dutiable > 0){
-    const at20 = Math.min(dutiable, 30000000);
-    duty = at20 * 0.20 + Math.max(0, dutiable - at20) * 0.25;
-  }
-  const masters = calcMastersFee(e);
-  const advert = 1500;
-  const conv = hasProp ? calcConveyancing(p) : 0;
-  const total = execFee + duty + masters + advert + conv;
-  const net = Math.max(0, e - debts - total);
-  const pct = (total/e*100).toFixed(1);
-  const liquidityRisk = total > e * 0.15;
+  const c = window.calcEstateCosts({ grossEstate: e, debts, hasSpouse, hasProperty: hasProp, propertyValue: p });
+  const execFee = c.execFee, duty = c.duty, masters = c.masters, advert = c.advert, conv = c.conv;
+  const total = c.total, net = c.net, liquidityRisk = c.liquidityRisk;
+  const pct = c.pct.toFixed(1);
   const premium = estimatedMonthlyPremium(total, 35, 'life');
 
   const lines = [
@@ -1476,11 +1462,13 @@ function calcLifeCover(){
   const bond = parseFloat(document.getElementById('lc-bond').value)||0;
   const existing = parseFloat(document.getElementById('lc-existing').value)||0;
   if(!inc){ showToast('Enter your monthly income to continue.'); return; }
-  const yearsToRetirement = Math.max(0, 65-age);
-  const inflation = 0.06, growth = 0.10;
-  const realRate = (1+growth)/(1+inflation) - 1;
+  const yearsToRetirement = Math.max(1, 65-age);
+  // Real (above-inflation) return, sourced 2026-08-19 actuarial review: FSCA
+  // fund returns 10.79%/8.41% nominal 1yr/5yr avg; JSE All Share ~8.4% real
+  // over 90yrs. Matches adviser-app's own reviewed-conservative default.
+  const REAL_RETURN_RATE = 0.045;
   const incomeNeeds = inc * 12 * 0.75;
-  const capitalNeeds = realRate > 0 ? incomeNeeds/realRate : incomeNeeds*yearsToRetirement;
+  const capitalNeeds = window.pvFiniteAnnuity(incomeNeeds, REAL_RETURN_RATE, yearsToRetirement);
   const total = capitalNeeds + bond;
   const gap = Math.max(0, total - existing);
   const premium = estimatedMonthlyPremium(gap, age, 'life');
@@ -1536,18 +1524,29 @@ function calcRetirement(){
   const saved = parseFloat(document.getElementById('rg-saved').value)||0;
   const contrib = parseFloat(document.getElementById('rg-contrib').value)||0;
   if(!inc){ showToast('Enter your monthly income to continue.'); return; }
-  const years = Math.max(0, 65-age);
-  const growthRate = 0.10, inflationRate = 0.06;
-  const realRate = (1+growthRate)/(1+inflationRate) - 1;
-  const retirementIncome = inc * 0.75 * 12;
-  const targetNestEgg = realRate > 0 ? retirementIncome/realRate : retirementIncome*20;
-  const fvExisting = saved * Math.pow(1+growthRate, years);
-  const fvContributions = contrib * 12 * ((Math.pow(1+growthRate, years)-1)/growthRate);
-  const projected = fvExisting + fvContributions;
-  const gap = Math.max(0, targetNestEgg - projected);
+  const years = Math.max(1, 65-age);
+  // Real return + drawdown rate, sourced 2026-08-19 actuarial review — see
+  // calcLifeCover() above for the real-return citation. Drawdown: SA
+  // research (Maré 2016; Van Appel et al. 2021, both SAAJ) supports a 4-5%
+  // sustainable band, 4% is the conservative end (SA retirees actually draw
+  // an average of 6.66% per ASISA 2022 — materially hotter than "safe").
+  const REAL_RETURN_RATE = 0.045, DRAWDOWN_RATE = 0.04;
+  const r = window.calcRetirementGap({
+    currentSavings: saved,
+    monthlyContribution: contrib,
+    grossAnnual: inc * 12,
+    yearsToRetirement: years,
+    retirementAge: 65,
+    realReturnRate: REAL_RETURN_RATE,
+    drawdownRate: DRAWDOWN_RATE,
+    replacementRatio: 75,
+    marginalTaxRate: 0,
+  });
+  const targetNestEgg = r.targetCapital;
+  const projected = r.projectedPortfolio;
+  const gap = r.gap;
   const onTrack = projected >= targetNestEgg;
-  const annuityFactor = 12 * ((Math.pow(1+growthRate, years)-1)/growthRate);
-  const extraMonthly = onTrack || annuityFactor<=0 ? 0 : gap/annuityFactor;
+  const extraMonthly = onTrack ? 0 : r.additionalMonthlyNeeded;
   const el = document.getElementById('rg-result');
   el.className = 'calc-result gold-theme';
   el.innerHTML = `
@@ -1564,7 +1563,7 @@ function calcRetirement(){
         <div class="result-bar-track"><div class="result-bar-fill gold" style="width:100%"></div></div>
       </div>
     </div>
-    ${!onTrack?ctaBlock(extraMonthly, 'Close this by adding, on top of what you already contribute', 'Assumes 10% growth over the years remaining to age 65.'):''}
+    ${!onTrack?ctaBlock(extraMonthly, 'Close this by adding, on top of what you already contribute', 'Assumes 4.5% real (above-inflation) growth over the years remaining to age 65.'):''}
     ${!onTrack?`<div style="margin-top:12px;padding:10px 12px;background:rgba(201,169,110,.08);border:1px solid var(--gold-border);border-radius:8px;font-size:11px;color:var(--gold);">An adviser can show you how to close this gap with a structured plan.</div>`:''}`;
 }
 
@@ -1574,10 +1573,10 @@ function calcDisability(){
   const age = parseFloat(document.getElementById('dc-age').value)||35;
   const existing = parseFloat(document.getElementById('dc-existing').value)||0;
   if(!inc){ showToast('Enter your monthly income to continue.'); return; }
-  const inflation = 0.06, growth = 0.10;
-  const realRate = (1+growth)/(1+inflation) - 1;
+  // Real return rate — see calcLifeCover() above for citation.
+  const REAL_RETURN_RATE = 0.045;
   const incomeNeeds = inc * 12 * 0.75;
-  const capitalNeeds = realRate > 0 ? incomeNeeds / realRate : incomeNeeds * Math.max(0, 65-age);
+  const capitalNeeds = window.pvFiniteAnnuity(incomeNeeds, REAL_RETURN_RATE, Math.max(1, 65-age));
   const adaptation = capitalNeeds * 0.15;
   const total = capitalNeeds + adaptation;
   const gap = Math.max(0, total - existing);
