@@ -1315,6 +1315,14 @@ function switchTool(id){
 }
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.form-input, .form-select').forEach(el => { el.autocomplete = 'off'; });
+  // Deep-link a specific calculator tab, e.g. #tools-retire — added 2026-08-19
+  // so social-media cards can link straight to the right tool instead of
+  // always landing on the default (Life Cover) tab.
+  const hash = window.location.hash.replace('#tools-', '');
+  if (TOOL_IDS.includes(hash)) {
+    switchTool(hash);
+    document.getElementById('tools').scrollIntoView();
+  }
 });
 
 function togglePropInput(){
