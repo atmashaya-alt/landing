@@ -179,6 +179,12 @@ a{color:inherit;text-decoration:none;}
 .form-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--w45);margin-bottom:6px;display:block;}
 .form-hint{font-size:10px;color:var(--w20);margin-top:3px;}
+.calc-assumptions{display:flex;gap:10px;align-items:flex-start;background:var(--w04);border:1px solid var(--w08);
+  border-radius:10px;padding:12px 14px;margin-bottom:18px;}
+.calc-assumptions .icon{font-size:14px;line-height:1.4;flex-shrink:0;}
+.calc-assumptions .label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--w45);margin-bottom:3px;}
+.calc-assumptions p{font-size:12px;line-height:1.55;color:var(--w70);margin:0;}
 .form-input,.form-select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--w08);
   border-radius:8px;padding:10px 13px;font-size:13px;color:var(--w100);
   font-family:var(--f-body);outline:none;transition:border-color .15s;}
@@ -531,6 +537,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- LIFE COVER -->
       <div class="tool-panel active" id="panel-life">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>We calculate the lump sum that, invested today, would fund 75% of your income every year until age 65 — a finite-term annuity, not a rough income multiple — assuming a 4.5% real (above-inflation) return. Your bond is added and existing cover subtracted.</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -559,6 +570,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- INCOME PROTECTION -->
       <div class="tool-panel" id="panel-income">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>Your target monthly benefit is a percentage of gross income you choose (default 75% — the typical industry range is 50–100%, an aggregate cap across all IP policies and employer benefits combined). We subtract any existing benefit to show the gap.</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -584,6 +600,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- RETIREMENT GAP -->
       <div class="tool-panel" id="panel-retire">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>We project your current savings and contributions to age 65 at a 4.5% real return, then compare that to the capital needed to sustainably draw 75% of your income at a 4% withdrawal rate — the conservative end of the safe range for South African retirees (research shows the real average is closer to 6.66%, which carries more longevity risk).</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -691,6 +712,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- ESTATE COSTS -->
       <div class="tool-panel" id="panel-estate">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>We apply the actual SARS estate duty tiers (20% up to R30m, 25% above) and abatement (R3.5m, or R7m with a surviving spouse), the standard 3.5% + VAT executor's fee, Master's Office tariffs, and a property-value-based conveyancing estimate — the same estate-costs methodology used across every Partridg3 calculator.</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -732,6 +758,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- DISABILITY COVER -->
       <div class="tool-panel" id="panel-disability">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>Same income-replacement math as Life Cover (75% of income, 4.5% real return, finite-term to age 65), plus 15% on top for adapting your home, vehicle, and life to a permanent disability.</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -756,6 +787,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- SEVERE ILLNESS / DREAD DISEASE -->
       <div class="tool-panel" id="panel-dread">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>A starting estimate of 2× your annual income, plus 10% for rehabilitation costs. This is a Partridg3 house benchmark, not an external industry standard — it doesn't yet account for your specific medical aid gap, which your adviser will factor in.</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
@@ -772,6 +808,11 @@ a{color:inherit;text-decoration:none;}
 
       <!-- EMERGENCY FUND -->
       <div class="tool-panel" id="panel-emergency">
+        <div class="calc-assumptions">
+          <span class="icon">ℹ️</span>
+          <div><div class="label">Assumptions &amp; how this works</div>
+          <p>Simple multiple: your essential monthly expenses × the number of months of cover you choose (default 3, the common minimum recommendation for South African households).</p></div>
+        </div>
         <div class="calc-grid">
           <div class="calc-form">
             <div class="form-group">
