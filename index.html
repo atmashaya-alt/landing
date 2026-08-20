@@ -401,6 +401,7 @@ a{color:inherit;text-decoration:none;}
     <a href="#tools">Calculators</a>
     <a href="#how">How it works</a>
     <a href="#contact">Book a consultation</a>
+    <a href="#" onclick="openCoveyModal();return false;" class="btn-ghost">Sign in</a>
   </nav>
   <button class="hamburger" id="ham" aria-label="Open menu">
     <span></span><span></span><span></span>
@@ -412,6 +413,7 @@ a{color:inherit;text-decoration:none;}
   <a href="#tools" onclick="closeMobile()">Calculators</a>
   <a href="#how" onclick="closeMobile()">How it works</a>
   <a href="#contact" onclick="closeMobile()">Book a consultation</a>
+  <a href="#" onclick="closeMobile();openCoveyModal();return false;">Client sign in</a>
   <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" class="btn-wa-nav" style="border-radius:10px;padding:12px 28px;">Join the channel</a>
 </div>
 
@@ -1140,7 +1142,7 @@ a{color:inherit;text-decoration:none;}
         <ul class="footer-links">
           <li><a href="#" id="wa-direct-footer">WhatsApp us</a></li>
           <li><a href="mailto:hello@partridg3.co.za">hello@partridg3.co.za</a></li>
-          <li><a href="https://covey-tau.vercel.app">Client login</a></li>
+          <li><a href="#" onclick="openCoveyModal();return false;">Client login</a></li>
         </ul>
         <div style="margin-top:18px;">
           <div class="footer-col-title">Follow</div>
@@ -2019,6 +2021,91 @@ document.getElementById('contactForm').addEventListener('submit', async function
     setTimeout(() => btn.textContent = '🔗 Copy Link', 2500);
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChannelModal(); });
+</script>
+
+<!-- ── COVEY WINDOW ── -->
+<style>
+  #covey-modal{padding:24px;}
+  @media(max-width:600px){
+    #covey-modal{padding:0;}
+    #covey-window{width:100%!important;height:100%!important;max-height:none!important;border-radius:0!important;}
+  }
+</style>
+<div id="covey-modal" style="
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+" onclick="closeCoveyModal(event)">
+  <div id="covey-window" style="
+    background:#fff;border-radius:20px;overflow:hidden;
+    width:420px;max-width:100%;height:88vh;max-height:860px;
+    display:flex;flex-direction:column;
+    box-shadow:0 24px 64px rgba(0,0,0,0.35);
+  " onclick="event.stopPropagation()">
+
+    <!-- Header -->
+    <div style="flex-shrink:0;background:#0D2C1A;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="26" height="19" viewBox="0 0 110 80" aria-hidden="true">
+          <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+          <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+          <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
+          <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+          <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
+          <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
+          <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+          <circle cx="73" cy="18" r="3.8" fill="white"/>
+          <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+        </svg>
+        <span style="color:#fff;font-size:14px;font-weight:800;letter-spacing:-0.01em;">Covey <span style="color:rgba(255,255,255,0.4);font-weight:600;">by Partridg3</span></span>
+      </div>
+      <button onclick="closeCoveyModal()" aria-label="Close" style="
+        background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.7);
+        width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:15px;line-height:1;
+      ">✕</button>
+    </div>
+
+    <!-- Install-the-app banner -->
+    <a href="https://covey-tau.vercel.app" target="_blank" rel="noopener" style="
+      flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
+      background:#F0FDF4;border-bottom:1px solid #BBF7D0;padding:10px 16px;
+      text-decoration:none;
+    ">
+      <span style="font-size:12px;color:#065F46;font-weight:600;">📲 Get the full experience — install Covey as an app</span>
+      <span style="font-size:11px;color:#059669;font-weight:700;white-space:nowrap;">Open →</span>
+    </a>
+
+    <!-- App iframe -->
+    <iframe
+      id="covey-iframe"
+      src="about:blank"
+      title="Covey by Partridg3"
+      style="flex:1;border:none;width:100%;background:#F9FAFB;"
+      loading="lazy"
+    ></iframe>
+  </div>
+</div>
+
+<script>
+  const COVEY_URL = 'https://covey-tau.vercel.app';
+  let coveyLoaded = false;
+
+  function openCoveyModal() {
+    if (!coveyLoaded) {
+      document.getElementById('covey-iframe').src = COVEY_URL;
+      coveyLoaded = true;
+    }
+    document.getElementById('covey-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCoveyModal(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('covey-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('covey-modal').style.display === 'flex') closeCoveyModal();
+  });
 </script>
 </body>
 </html>
