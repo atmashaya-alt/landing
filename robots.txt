@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://landing-three-vert-77.vercel.app/sitemap.xml

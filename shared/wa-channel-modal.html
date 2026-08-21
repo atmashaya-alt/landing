@@ -1,0 +1,76 @@
+<!-- ── WHATSAPP CHANNEL MODAL — shared across every page. ── -->
+<div id="wa-channel-modal" style="
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.60);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;padding:24px;
+" onclick="closeChannelModal()">
+  <div style="
+    background:#fff;border-radius:24px;padding:32px 28px;
+    max-width:320px;width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;
+    box-shadow:0 24px 64px rgba(0,0,0,0.25);
+  " onclick="event.stopPropagation()">
+
+    <div style="text-align:center">
+      <div style="font-size:16px;font-weight:800;color:#0D2C1A;letter-spacing:-0.02em;">Partridg3 WhatsApp Channel</div>
+      <div style="font-size:12px;color:#6B7280;margin-top:4px;">Scan to join · or share with someone</div>
+    </div>
+
+    <div style="padding:16px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=0D2C1A&bgcolor=F9FAFB&qzone=2&data=https%3A%2F%2Fwhatsapp.com%2Fchannel%2F0029Vb8omRh5fM5epo1EwH2l"
+        alt="Partridg3 WhatsApp Channel QR Code"
+        width="180" height="180"
+        style="display:block;"
+      />
+    </div>
+
+    <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" style="
+      display:block;width:100%;padding:13px;border-radius:12px;
+      background:#128C7E;color:#fff;text-align:center;
+      font-size:14px;font-weight:700;text-decoration:none;
+    ">Join Channel</a>
+
+    <div style="display:flex;gap:10px;width:100%;">
+      <a id="wa-fwd-btn" href="" target="_blank" rel="noopener" style="
+        flex:1;padding:11px 8px;border-radius:12px;text-align:center;
+        font-size:12px;font-weight:600;text-decoration:none;
+        background:#F0FDF4;color:#128C7E;border:1px solid #BBF7D0;
+      ">📤 Send to Contact</a>
+      <button id="wa-copy-btn" onclick="copyChannelLink()" style="
+        flex:1;padding:11px 8px;border-radius:12px;
+        font-size:12px;font-weight:600;cursor:pointer;
+        background:#F9FAFB;color:#374151;border:1px solid #E5E7EB;
+      ">🔗 Copy Link</button>
+    </div>
+
+    <button onclick="closeChannelModal()" style="font-size:12px;color:#9CA3AF;background:none;border:none;cursor:pointer;">Close</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l';
+  var SHARE_MSG   = encodeURIComponent('Join the Partridg3 WhatsApp Channel for independent financial planning insights: ' + CHANNEL_URL);
+  document.getElementById('wa-fwd-btn').href = 'https://wa.me/?text=' + SHARE_MSG;
+
+  window.openChannelModal = function() {
+    document.getElementById('wa-channel-modal').style.display = 'flex';
+  };
+  window.closeChannelModal = function() {
+    document.getElementById('wa-channel-modal').style.display = 'none';
+  };
+  window.copyChannelLink = async function() {
+    var btn = document.getElementById('wa-copy-btn');
+    if (navigator.share) {
+      try {
+        await navigator.share({ title: 'Partridg3 WhatsApp Channel', url: CHANNEL_URL });
+        return;
+      } catch(e) { /* cancelled */ }
+    }
+    await navigator.clipboard.writeText(CHANNEL_URL);
+    btn.textContent = '✓ Copied!';
+    setTimeout(function(){ btn.textContent = '🔗 Copy Link'; }, 2500);
+  };
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') window.closeChannelModal(); });
+})();
+</script>

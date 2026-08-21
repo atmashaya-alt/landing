@@ -1,0 +1,146 @@
+<!-- FOOTER — shared across every page. Social links point to the real
+     Partridg3 profiles (sourced from adviser-app/src/pages/PublicCalc.tsx,
+     which already had them) instead of the old href="#" placeholders. -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:10px;">
+          <svg width="28" height="20" viewBox="0 0 110 80" aria-hidden="true">
+            <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+            <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+            <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+            <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+            <circle cx="73" cy="18" r="3.8" fill="white"/>
+          </svg>
+          <span class="nav-wordmark" style="font-size:13px;">PARTRIDG<span>3</span></span>
+        </a>
+        <p>Building wealth. Leaving legacies. Growing together.</p>
+        <div class="footer-share" style="margin-top:14px;">
+          <button class="footer-share-btn wa" onclick="shareToContact()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+            Share
+          </button>
+          <button class="footer-share-btn story" onclick="shareToStory()">✦ Story</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigate</div>
+        <ul class="footer-links">
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="index.html#insights">Latest insights</a></li>
+          <li><a href="index.html#tools">Free calculators</a></li>
+          <li><a href="index.html#contact">Book a consultation</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="#" id="wa-direct-footer">WhatsApp us</a></li>
+          <li><a href="mailto:hello@partridg3.co.za">hello@partridg3.co.za</a></li>
+          <li><a href="#" onclick="openCoveyModal();return false;">Client login</a></li>
+        </ul>
+        <div style="margin-top:18px;">
+          <div class="footer-col-title">Follow</div>
+          <ul class="footer-links">
+            <li><a href="https://www.linkedin.com/company/partridg3" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><a href="https://www.instagram.com/partridg3" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="https://www.facebook.com/partridg3" target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href="https://www.tiktok.com/@partridg3" target="_blank" rel="noopener">TikTok</a></li>
+          </ul>
+          <button onclick="openChannelModal()" style="
+            display:inline-flex;align-items:center;gap:7px;margin-top:14px;
+            padding:9px 16px;border-radius:10px;border:1px solid rgba(37,211,102,.25);
+            background:rgba(37,211,102,.10);color:#25D366;
+            font-size:12px;font-weight:700;cursor:pointer;
+          ">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2z"/></svg>
+            📢 WhatsApp Channel
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-legal">
+        Partridg3 (Pty) Ltd is a technology platform and is not itself a Financial Services Provider (FSP) — it does not give financial advice. Partridg3 connects you with independent advisers who are individually licensed under the
+        <a href="https://www.fsca.co.za" target="_blank" rel="noopener">FAIS Act (No. 37 of 2002)</a>
+        and regulated by the FSCA of South Africa.
+        By submitting a consultation request, you consent to being contacted by a licensed adviser in accordance with POPIA.
+        Calculators are for guidance only, are not guaranteed accurate, and do not constitute financial advice.
+        <a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a>
+      </p>
+      <p class="footer-copy">&copy; <span id="yr"></span> Partridg3</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING SHARE -->
+<div class="float-share">
+  <div class="float-share-panel" id="floatPanel">
+    <button class="float-share-item wa" onclick="shareToContact()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+      Send to a contact
+    </button>
+    <button class="float-share-item story" onclick="shareToStory()">✦ Share to story</button>
+    <button class="float-share-item copy" onclick="copyLink()">🔗 Copy link</button>
+    <button class="float-share-item channel" onclick="toggleFloatPanel();openChannelModal();">📢 Join WhatsApp Channel</button>
+  </div>
+  <button class="float-share-trigger" onclick="toggleFloatPanel()" aria-label="Share this page">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+  </button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var PAGE_URL = window.location.href;
+  var SHARE_TEXT = '🌿 Free financial tools + daily insights for every South African. Check your life cover, retirement gap, and more — no sign-up needed.';
+
+  // TODO: replace with the real registered WhatsApp number once set up, e.g. '27821234567'.
+  var DIRECT_WHATSAPP_NUMBER = '27000000000';
+  var waFooter = document.getElementById('wa-direct-footer');
+  if (waFooter) waFooter.href = 'https://wa.me/' + DIRECT_WHATSAPP_NUMBER;
+
+  var yr = document.getElementById('yr');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  function showToast(msg){
+    var t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(function(){ t.classList.remove('show'); }, 2500);
+  }
+
+  window.shareToContact = function(){
+    var text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
+    window.open('https://wa.me/?text=' + text, '_blank');
+  };
+  window.shareToStory = function(){
+    if (navigator.share) {
+      navigator.share({ title: document.title, text: SHARE_TEXT, url: PAGE_URL }).catch(function(){});
+    } else {
+      var text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
+      window.open('whatsapp://send?text=' + text, '_blank');
+      setTimeout(function(){ showToast('On desktop? Copy the link and paste into WhatsApp Status.'); }, 800);
+    }
+  };
+  window.copyLink = function(){
+    navigator.clipboard.writeText(PAGE_URL).then(function(){ showToast('Link copied!'); }).catch(function(){
+      var ta = document.createElement('textarea');
+      ta.value = PAGE_URL;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Link copied!');
+    });
+  };
+  window.toggleFloatPanel = function(){ document.getElementById('floatPanel').classList.toggle('open'); };
+  document.addEventListener('click', function(e){
+    var fp = document.querySelector('.float-share');
+    if (fp && !fp.contains(e.target)) document.getElementById('floatPanel').classList.remove('open');
+  });
+})();
+</script>

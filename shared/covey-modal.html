@@ -1,0 +1,160 @@
+<!-- COVEY WINDOW — client sign-in, shared across every page. -->
+<div id="covey-modal" style="
+  display:none;position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);
+  align-items:center;justify-content:center;
+" onclick="closeCoveyModal(event)">
+  <div id="covey-window" style="
+    background:#fff;border-radius:20px;overflow:hidden;
+    width:420px;max-width:100%;height:88vh;max-height:860px;
+    display:flex;flex-direction:column;
+    box-shadow:0 24px 64px rgba(0,0,0,0.35);
+  " onclick="event.stopPropagation()">
+
+    <!-- Header -->
+    <div style="flex-shrink:0;background:#0D2C1A;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <svg width="26" height="19" viewBox="0 0 110 80" aria-hidden="true">
+          <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
+          <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
+          <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
+          <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
+          <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
+          <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
+          <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
+          <circle cx="73" cy="18" r="3.8" fill="white"/>
+          <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+        </svg>
+        <span id="covey-window-title" style="color:#fff;font-size:14px;font-weight:800;letter-spacing:-0.01em;">Partridg3</span>
+      </div>
+      <button onclick="closeCoveyModal()" aria-label="Close" style="
+        background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.7);
+        width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:15px;line-height:1;
+      ">✕</button>
+    </div>
+
+    <!-- Chooser — the router. Every "Sign up" entry point lands here first. -->
+    <div id="covey-chooser" style="flex:1;overflow:auto;padding:28px 24px;display:flex;flex-direction:column;gap:14px;">
+      <div style="text-align:center;margin-bottom:4px;">
+        <div style="font-size:17px;font-weight:800;color:#0D2C1A;letter-spacing:-0.01em;">How would you like to continue?</div>
+        <div style="font-size:12px;color:#6B7280;margin-top:4px;">Every Partridg3 platform starts here.</div>
+      </div>
+
+      <button onclick="selectTrack('client')" style="
+        display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+        background:#F0FDF4;border:1px solid #BBF7D0;border-radius:16px;padding:16px;cursor:pointer;
+      ">
+        <span style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:#059669;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20.5c0-3.6 2.9-6.5 6.5-6.5s6.5 2.9 6.5 6.5"/><line x1="18.5" y1="7.5" x2="18.5" y2="12.5"/><line x1="16" y1="10" x2="21" y2="10"/></svg>
+        </span>
+        <span>
+          <span style="display:block;font-size:14px;font-weight:700;color:#0D2C1A;">I need financial advice</span>
+          <span style="display:block;font-size:12px;color:#5A7870;margin-top:2px;">Free calculators, daily insights, and a licensed adviser matched to you — via Covey.</span>
+        </span>
+      </button>
+
+      <button onclick="selectTrack('practitioner')" style="
+        display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+        background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:16px;cursor:pointer;
+      ">
+        <span style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:#0D2C1A;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/></svg>
+        </span>
+        <span>
+          <span style="display:block;font-size:14px;font-weight:700;color:#0D2C1A;">I'm a SARS-registered tax practitioner</span>
+          <span style="display:block;font-size:12px;color:#6B7280;margin-top:2px;">Apply to join the Partridg3 referral network — reviewed before going live.</span>
+        </span>
+      </button>
+
+      <button onclick="selectTrack('adviser')" style="
+        display:flex;align-items:center;gap:14px;text-align:left;width:100%;
+        background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;padding:16px;cursor:pointer;
+      ">
+        <span style="flex-shrink:0;width:40px;height:40px;border-radius:10px;background:#0D2C1A;display:flex;align-items:center;justify-content:center;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+        </span>
+        <span>
+          <span style="display:block;font-size:14px;font-weight:700;color:#0D2C1A;">I'm a financial adviser</span>
+          <span style="display:block;font-size:12px;color:#6B7280;margin-top:2px;">Apply to join the Partridg3 adviser network — reviewed before going live.</span>
+        </span>
+      </button>
+    </div>
+
+    <!-- Client app view -->
+    <div id="covey-app-view" style="display:none;flex:1;min-height:0;flex-direction:column;">
+      <a href="https://covey-tau.vercel.app" target="_blank" rel="noopener" style="
+        flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
+        background:#F0FDF4;border-bottom:1px solid #BBF7D0;padding:10px 16px;
+        text-decoration:none;
+      ">
+        <span style="font-size:12px;color:#065F46;font-weight:600;">📲 Get the full experience — install Covey as an app</span>
+        <span style="font-size:11px;color:#059669;font-weight:700;white-space:nowrap;">Open →</span>
+      </a>
+      <iframe
+        id="covey-iframe"
+        src="about:blank"
+        title="Covey by Partridg3"
+        style="flex:1;border:none;width:100%;background:#F9FAFB;"
+        loading="lazy"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var COVEY_URL = 'https://covey-tau.vercel.app';
+  var PRACTITIONER_URL = 'https://collabs.partridg3.vercel.app/login?mode=register&track=TAX_PRACTITIONER';
+  var ADVISER_URL = 'https://collabs.partridg3.vercel.app/login?mode=register&track=ADVISER';
+  var coveyLoaded = false;
+
+  function showChooser() {
+    document.getElementById('covey-chooser').style.display = 'flex';
+    document.getElementById('covey-app-view').style.display = 'none';
+    document.getElementById('covey-window-title').textContent = 'Partridg3';
+  }
+  function showApp() {
+    document.getElementById('covey-chooser').style.display = 'none';
+    document.getElementById('covey-app-view').style.display = 'flex';
+    document.getElementById('covey-window-title').innerHTML = 'Covey <span style="color:rgba(255,255,255,0.4);font-weight:600;">by Partridg3</span>';
+    if (!coveyLoaded) {
+      document.getElementById('covey-iframe').src = COVEY_URL;
+      coveyLoaded = true;
+    }
+  }
+
+  window.selectTrack = function(track) {
+    if (track === 'client') {
+      showApp();
+    } else if (track === 'practitioner') {
+      window.open(PRACTITIONER_URL, '_blank', 'noopener');
+      window.closeCoveyModal();
+    } else if (track === 'adviser') {
+      window.open(ADVISER_URL, '_blank', 'noopener');
+      window.closeCoveyModal();
+    }
+  };
+
+  // The router — every generic "Sign up" entry point opens here, chooser first.
+  window.openSignupModal = function() {
+    showChooser();
+    document.getElementById('covey-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+  // Direct shortcut into the client app — used by "Client login" links that
+  // already know which platform they want, skipping the router.
+  window.openCoveyModal = function() {
+    showApp();
+    document.getElementById('covey-modal').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  };
+  window.closeCoveyModal = function(e) {
+    if (e && e.target !== e.currentTarget) return;
+    document.getElementById('covey-modal').style.display = 'none';
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && document.getElementById('covey-modal').style.display === 'flex') window.closeCoveyModal();
+  });
+})();
+</script>

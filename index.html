@@ -3,72 +3,81 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>Partridg3 | Financial advice that feels like home</title>
-<meta name="description" content="Independent financial advisers for South African families. Free calculators, daily insights, and a direct connection to a FAIS-licensed adviser."/>
+<title>Partridg3 | Independent advice, built for you.</title>
+<meta name="description" content="Independent financial advisers for every South African. Free calculators, daily insights, and a direct connection to a FAIS-licensed adviser."/>
 <meta name="robots" content="index,follow"/>
 <meta property="og:type" content="website"/>
-<meta property="og:title" content="Partridg3 | Financial advice that feels like home"/>
+<meta property="og:title" content="Partridg3 | Independent advice, built for you."/>
 <meta property="og:description" content="Free financial tools, daily insights, and independent South African advisers. No product bias. No hidden agendas."/>
 <meta property="og:url" content="https://landing-three-vert-77.vercel.app"/>
 <meta property="og:site_name" content="Partridg3"/>
 <meta property="og:locale" content="en_ZA"/>
+<meta property="og:image" content="https://landing-three-vert-77.vercel.app/assets/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Partridg3 | Independent advice, built for you."/>
+<meta name="twitter:description" content="Free financial tools, daily insights, and independent South African advisers. No product bias. No hidden agendas."/>
+<meta name="twitter:image" content="https://landing-three-vert-77.vercel.app/assets/og-image.png"/>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 110 80'><rect width='110' height='80' fill='%230B1F17'/><path d='M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z' fill='%23047857'/><path d='M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z' fill='%23C9A96E'/><circle cx='73' cy='18' r='3.8' fill='white'/></svg>"/>
-<style>
-:root{
-  /* Dark palette — aligned with info sheet */
-  --deep:#0D2C1A;--mid:#0A2415;--card:#0C3A1C;
-  /* Forest green buttons */
-  --forest-btn:#0C3A1C;--forest-btn2:#0F4822;
-  /* Gold is primary accent; mint remapped to gold for backward-compat */
-  --gold:#C9A96E;--gold-dim:rgba(201,169,110,.10);--gold-border:rgba(201,169,110,.25);
-  --gold-ghost:rgba(201,169,110,.15);--gold-line:rgba(201,169,110,.30);
-  --mint:var(--gold);--mint-dim:var(--gold-dim);--mint-border:var(--gold-border);
-  --wa:#25D366;
-  --w100:#fff;--w70:rgba(255,255,255,.70);--w45:rgba(255,255,255,.45);
-  --w20:rgba(255,255,255,.20);--w08:rgba(255,255,255,.08);--w04:rgba(255,255,255,.04);
-  --f-display:Georgia,'Times New Roman',serif;
-  --f-body:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+<link rel="stylesheet" href="shared/theme.css?v=2"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://landing-three-vert-77.vercel.app/#organization",
+      "name": "Partridg3",
+      "legalName": "Partridg3 (Pty) Ltd",
+      "url": "https://landing-three-vert-77.vercel.app",
+      "logo": "https://landing-three-vert-77.vercel.app/assets/logo-square.png",
+      "image": "https://landing-three-vert-77.vercel.app/assets/og-image.png",
+      "description": "Partridg3 is an independent technology platform connecting South Africans with independently licensed financial advisers and tax practitioners. Partridg3 itself is not a Financial Services Provider and does not give financial advice.",
+      "sameAs": [
+        "https://www.linkedin.com/company/partridg3",
+        "https://www.instagram.com/partridg3",
+        "https://www.facebook.com/partridg3",
+        "https://www.tiktok.com/@partridg3"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://landing-three-vert-77.vercel.app/#website",
+      "url": "https://landing-three-vert-77.vercel.app",
+      "name": "Partridg3",
+      "publisher": { "@id": "https://landing-three-vert-77.vercel.app/#organization" },
+      "inLanguage": "en-ZA"
+    }
+  ]
 }
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--deep);color:var(--w100);font-family:var(--f-body);-webkit-font-smoothing:antialiased;}
-a{color:inherit;text-decoration:none;}
-
-/* Anchor-scroll targets need clearance so the fixed nav doesn't cover their heading */
-#insights,#tools,#how,#contact{scroll-margin-top:80px;}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;
-  display:flex;align-items:center;justify-content:space-between;padding:0 32px;
-  background:rgba(13,44,26,.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--w08);}
-.nav-logo{display:flex;align-items:center;gap:10px;}
-.nav-wordmark{font-size:15px;font-weight:800;letter-spacing:-.01em;}
-.nav-wordmark span{color:var(--mint);}
-.nav-links{display:flex;align-items:center;gap:24px;}
-.nav-links a{font-size:13px;color:var(--w45);font-weight:500;transition:color .15s;}
-.nav-links a:hover{color:var(--w100);}
-.nav-actions{display:flex;gap:10px;align-items:center;}
-.btn-wa-nav{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;
-  color:#fff;padding:8px 16px;border-radius:8px;background:var(--wa);border:none;cursor:pointer;}
-.btn-wa-nav:hover{opacity:.88;}
-.btn-ghost{font-size:13px;font-weight:600;color:var(--w45);padding:8px 14px;border-radius:8px;
-  border:1px solid var(--w08);background:transparent;cursor:pointer;transition:all .15s;text-decoration:none;}
-.btn-ghost:hover{color:var(--w100);background:var(--w04);}
-.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px;}
-.hamburger span{display:block;width:22px;height:2px;background:var(--w70);border-radius:2px;}
-.mobile-menu{display:none;position:fixed;inset:0;background:var(--deep);z-index:99;
-  flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:32px;}
-.mobile-menu.open{display:flex;}
-.mobile-menu a{font-size:18px;color:var(--w70);font-weight:500;}
-
+</script>
+<style>
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;
   justify-content:center;padding:120px 24px 80px;text-align:center;position:relative;}
 .hero-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;}
 .hero-glow{position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:600px;height:600px;
   border-radius:50%;background:radial-gradient(circle,rgba(201,169,110,.07) 0%,transparent 60%);pointer-events:none;}
+/* Loose line-sketches echoing the bird mascot and the pillar icon set
+   used everywhere else on the site (shield=Life Cover, growth=Investments,
+   pulse=Dread Disease, coin=Stokvel/Savings) — background texture built
+   from the brand's own vocabulary rather than a new illustration style. */
+.hero-doodles{position:absolute;inset:0;color:var(--gold);}
+.doodle{position:absolute;opacity:.4;}
+.doodle path,.doodle circle{stroke-width:2.1;}
+.doodle-bird{width:64px;top:14%;left:10%;transform:rotate(-6deg);}
+.doodle-shield{width:42px;top:22%;right:12%;transform:rotate(8deg);}
+.doodle-growth{width:46px;bottom:20%;left:8%;transform:rotate(-4deg);}
+.doodle-pulse{width:48px;top:58%;right:8%;transform:rotate(3deg);}
+.doodle-coin{width:36px;bottom:12%;right:22%;transform:rotate(-10deg);}
+@media(max-width:700px){.doodle-growth,.doodle-coin{display:none;}}
 .hero-bird{animation:float 6s ease-in-out infinite;}
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+/* A rare, quick blink — reads as alive without asking for attention. */
+.bird-eye{transform-box:fill-box;transform-origin:center;animation:blink 5.5s ease-in-out infinite;}
+@keyframes blink{0%,93%,100%{transform:scaleY(1);}94.5%{transform:scaleY(.1);}96%{transform:scaleY(1);}}
+@media(prefers-reduced-motion:reduce){.hero-bird,.bird-eye{animation:none;}}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;
   background:var(--mint-dim);border:1px solid var(--mint-border);font-size:10px;font-weight:800;
   letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:28px;}
@@ -81,20 +90,6 @@ a{color:inherit;text-decoration:none;}
 .hero-sub{font-size:clamp(14px,2vw,17px);color:var(--w45);line-height:1.72;
   max-width:520px;margin:18px auto 0;}
 .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:32px;}
-.btn-hero{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:12px;
-  font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .15s;text-decoration:none;}
-.btn-hero-primary{background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);}
-.btn-hero-primary:hover{opacity:.88;transform:translateY(-1px);}
-.btn-hero-secondary{background:transparent;color:var(--w70);border:1px solid var(--w20);}
-.btn-hero-secondary:hover{background:var(--w04);color:var(--w100);}
-.hero-share{display:flex;align-items:center;gap:12px;margin-top:20px;flex-wrap:wrap;justify-content:center;}
-.hero-share-label{font-size:11px;color:var(--w20);}
-.share-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;
-  font-size:12px;font-weight:600;cursor:pointer;border:none;transition:all .15s;}
-.share-pill-wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.25);}
-.share-pill-wa:hover{background:rgba(37,211,102,.22);}
-.share-pill-copy{background:var(--w04);color:var(--w45);border:1px solid var(--w08);}
-.share-pill-copy:hover{background:var(--w08);color:var(--w100);}
 
 /* TRUST */
 .trust{padding:16px 32px;background:rgba(201,169,110,.03);border-top:1px solid var(--w08);border-bottom:1px solid var(--w08);}
@@ -122,32 +117,40 @@ a{color:inherit;text-decoration:none;}
   color:var(--mint);margin-bottom:8px;}
 .today-title{font-family:var(--f-display);font-size:clamp(20px,3vw,32px);line-height:1.3;color:var(--w100);margin-bottom:10px;}
 .today-body{font-size:13px;color:var(--w45);line-height:1.68;max-width:640px;}
-.today-author{font-size:11px;color:var(--w20);margin-top:16px;padding-top:14px;border-top:1px solid var(--w08);}
-.today-actions{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.today-author{font-size:11px;color:var(--w45);margin-top:16px;padding-top:14px;border-top:1px solid var(--w08);}
+.today-actions{flex-shrink:0;}
+.insight-share{position:relative;}
 .btn-share-insight{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:10px;
-  font-size:13px;font-weight:600;cursor:pointer;border:none;white-space:nowrap;}
-.btn-share-insight.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.2);}
-.btn-share-insight.wa:hover{background:rgba(37,211,102,.22);}
-.btn-share-insight.story{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
-.btn-share-insight.story:hover{background:rgba(201,169,110,.18);}
-.today-empty{text-align:center;padding:40px;color:var(--w20);font-size:13px;grid-column:1/-1;}
+  font-size:13px;font-weight:600;cursor:pointer;background:var(--forest-btn);color:#fff;border:none;white-space:nowrap;}
+.btn-share-insight:hover{opacity:.88;}
+/* Deliberately not theme-tokenised — a popover menu reads as a neutral
+   white card regardless of page theme, the same way a browser's own
+   dropdowns and context menus don't follow page colours. */
+.insight-share-menu{display:none;position:absolute;top:calc(100% + 8px);right:0;z-index:10;
+  flex-direction:column;gap:4px;background:#fff;border:1px solid rgba(13,44,26,.10);border-radius:10px;
+  padding:6px;min-width:170px;box-shadow:0 12px 28px rgba(13,44,26,.18);}
+.insight-share-menu.open{display:flex;}
+.insight-share-menu button{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:7px;
+  font-size:13px;font-weight:600;color:#0D1F19;background:none;border:none;cursor:pointer;text-align:left;white-space:nowrap;}
+.insight-share-menu button:hover{background:rgba(13,44,26,.06);}
+.today-empty{text-align:center;padding:40px;color:var(--w45);font-size:13px;grid-column:1/-1;}
 
 /* INSIGHTS GRID */
 .insights{background:var(--deep);}
 .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:36px;}
 .insight-card{background:var(--w04);border:1px solid var(--w08);border-radius:14px;padding:20px;
   display:flex;flex-direction:column;gap:8px;transition:border-color .2s,transform .2s;}
-.insight-card:hover{border-color:var(--w20);transform:translateY(-2px);}
+.insight-card:hover{border-color:var(--w20);}
 .insight-ch{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--mint);}
 .insight-title{font-family:var(--f-display);font-size:15px;line-height:1.4;color:var(--w100);flex:1;}
 .insight-footer{display:flex;align-items:center;justify-content:space-between;
   margin-top:auto;padding-top:10px;border-top:1px solid var(--w08);}
-.insight-author{font-size:10px;color:var(--w20);}
+.insight-author{font-size:10px;color:var(--w45);}
 .btn-share-sm{display:inline-flex;align-items:center;gap:4px;background:rgba(37,211,102,.08);
   border:1px solid rgba(37,211,102,.14);border-radius:6px;padding:4px 10px;
   font-size:10px;font-weight:600;color:#25D366;cursor:pointer;}
 .btn-share-sm:hover{background:rgba(37,211,102,.18);}
-.insights-loading{text-align:center;color:var(--w20);font-size:13px;padding:40px;grid-column:1/-1;}
+.insights-loading{text-align:center;color:var(--w45);font-size:13px;padding:40px;grid-column:1/-1;}
 
 /* TOOLS */
 .tools{background:var(--mid);}
@@ -163,7 +166,7 @@ a{color:inherit;text-decoration:none;}
 .tool-tab:hover{color:var(--w70);}
 .tool-tab.active{color:var(--mint);border-bottom-color:var(--mint);background:var(--mint-dim);}
 .tool-tabs-hint{display:none;align-items:center;gap:4px;position:absolute;right:0;top:-22px;font-size:10px;
-  color:var(--w20);letter-spacing:.04em;}
+  color:var(--w45);letter-spacing:.04em;}
 @media(max-width:600px){.tool-tabs-hint{display:flex;}}
 .tool-panels{margin-top:28px;}
 .tool-panel{display:none;}
@@ -178,20 +181,20 @@ a{color:inherit;text-decoration:none;}
 .form-group{margin-bottom:14px;}
 .form-label{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
   color:var(--w45);margin-bottom:6px;display:block;}
-.form-hint{font-size:10px;color:var(--w20);margin-top:3px;}
+.form-hint{font-size:10px;color:var(--w45);margin-top:3px;}
 .calc-assumptions{display:flex;gap:10px;align-items:flex-start;background:var(--w04);border:1px solid var(--w08);
   border-radius:10px;padding:12px 14px;margin-bottom:18px;}
 .calc-assumptions .icon{font-size:14px;line-height:1.4;flex-shrink:0;}
 .calc-assumptions .label{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
   color:var(--w45);margin-bottom:3px;}
 .calc-assumptions p{font-size:12px;line-height:1.55;color:var(--w70);margin:0;}
-.form-input,.form-select{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--w08);
+.form-input,.form-select{width:100%;background:var(--w04);border:1px solid var(--w08);
   border-radius:8px;padding:10px 13px;font-size:13px;color:var(--w100);
   font-family:var(--f-body);outline:none;transition:border-color .15s;}
 .form-input:focus,.form-select:focus{border-color:var(--mint);}
 .form-input::placeholder{color:var(--w20);}
 .form-select{-webkit-appearance:none;cursor:pointer;}
-.form-select option{background:#0a2415;}
+.form-select option{background:var(--deep);color:var(--w100);}
 .calc-btn{width:100%;background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);border-radius:10px;
   padding:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;transition:all .15s;}
 .calc-btn:hover{opacity:.88;}
@@ -209,7 +212,7 @@ a{color:inherit;text-decoration:none;}
 .result-bar-fill.mint{background:var(--mint);}
 .result-bar-fill.gold{background:var(--gold);}
 .result-bar-fill.red{background:#ef4444;}
-.result-placeholder{text-align:center;color:var(--w20);font-size:13px;}
+.result-placeholder{text-align:center;color:var(--w45);font-size:13px;}
 .result-placeholder .big{font-size:36px;margin-bottom:10px;}
 
 /* QUIZ */
@@ -217,7 +220,7 @@ a{color:inherit;text-decoration:none;}
 .quiz-step.active{display:block;}
 .quiz-q{font-family:var(--f-display);font-size:clamp(18px,2.5vw,26px);color:var(--w100);
   margin-bottom:20px;line-height:1.3;}
-.quiz-progress{font-size:11px;color:var(--w20);margin-bottom:8px;}
+.quiz-progress{font-size:11px;color:var(--w45);margin-bottom:8px;}
 .quiz-progress-bar{height:3px;background:var(--w08);border-radius:2px;margin-bottom:24px;}
 .quiz-progress-fill{height:100%;background:var(--mint);border-radius:2px;transition:width .3s;}
 .quiz-options{display:flex;flex-direction:column;gap:8px;}
@@ -259,7 +262,10 @@ a{color:inherit;text-decoration:none;}
 .diff-card{background:var(--w04);border:1px solid var(--w08);border-radius:14px;padding:24px;}
 .diff-card.featured{background:rgba(201,169,110,.05);border-color:var(--mint-border);}
 .diff-card.featured-gold{background:rgba(201,169,110,.05);border-color:var(--gold-border);}
-.diff-icon{font-size:22px;margin-bottom:12px;}
+.diff-icon{font-size:19px;margin-bottom:14px;width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(155deg,rgba(255,255,255,.55),rgba(255,255,255,.16));
+  box-shadow:0 1px 0 rgba(255,255,255,.6) inset, 0 1px 2px rgba(8,20,15,.06), 0 8px 18px rgba(8,20,15,.10);}
 .diff-title{font-size:16px;font-weight:700;margin-bottom:7px;}
 .diff-body{font-size:13px;color:var(--w45);line-height:1.65;}
 .diff-vs{display:grid;grid-template-columns:1fr 1fr;gap:10px;grid-column:1/-1;}
@@ -285,76 +291,45 @@ a{color:inherit;text-decoration:none;}
   justify-content:center;flex-shrink:0;font-size:16px;}
 .contact-channel-icon.wa{background:rgba(37,211,102,.12);}
 .contact-channel-icon.em{background:rgba(201,169,110,.10);}
-.contact-channel-label{font-size:10px;color:var(--w20);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.contact-channel-label{font-size:10px;color:var(--w45);font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
 .contact-channel-value{font-size:13px;font-weight:600;color:var(--w100);}
 .contact-form{background:var(--w04);border:1px solid var(--w08);border-radius:16px;padding:26px;}
 .form-title{font-size:15px;font-weight:700;margin-bottom:5px;}
 .form-sub{font-size:12px;color:var(--w45);margin-bottom:18px;line-height:1.5;}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-submit{width:100%;background:var(--forest-btn);color:#fff;border:1px solid var(--gold-line);border-radius:10px;
-  padding:12px;font-size:14px;font-weight:700;cursor:pointer;transition:all .15s;margin-top:4px;}
-.form-submit:hover{opacity:.88;}
-.form-submit:disabled{opacity:.5;cursor:not-allowed;}
+.form-submit{width:100%;background:linear-gradient(155deg,var(--forest-btn2),var(--forest-btn));color:#fff;
+  border:1px solid var(--gold-line);border-radius:10px;
+  padding:12px;font-size:14px;font-weight:700;cursor:pointer;margin-top:4px;
+  box-shadow:0 1px 0 rgba(255,255,255,.14) inset, 0 1px 2px rgba(8,20,15,.20), 0 10px 24px rgba(8,20,15,.20);
+  transition:transform .15s cubic-bezier(.2,.8,.2,1),box-shadow .15s ease,opacity .15s ease;}
+.form-submit:hover{transform:translateY(-2px);
+  box-shadow:0 1px 0 rgba(255,255,255,.18) inset, 0 2px 4px rgba(8,20,15,.18), 0 16px 32px rgba(8,20,15,.24);}
+.form-submit:active{transform:translateY(0) scale(.98);transition:transform .1s ease;}
+.form-submit:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none;}
 .form-success{text-align:center;padding:20px;display:none;}
 .form-success .check{font-size:28px;margin-bottom:8px;}
 
-/* FOOTER */
-.footer{background:#060E0A;border-top:1px solid var(--w08);padding:48px 32px 28px;}
-.footer-inner{max-width:1100px;margin:0 auto;}
-.footer-top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;
-  padding-bottom:32px;border-bottom:1px solid var(--w08);}
-.footer-brand p{font-size:12px;color:var(--w45);line-height:1.65;margin-top:10px;max-width:220px;}
-.footer-col-title{font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--w20);margin-bottom:12px;}
-.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px;}
-.footer-links a{font-size:13px;color:var(--w45);transition:color .15s;}
-.footer-links a:hover{color:var(--w100);}
-.footer-bottom{padding-top:20px;display:flex;align-items:flex-start;
-  justify-content:space-between;gap:20px;flex-wrap:wrap;}
-.footer-legal{font-size:10px;color:var(--w20);line-height:1.7;max-width:560px;}
-.footer-legal a{color:var(--w45);}
-.footer-copy{font-size:11px;color:var(--w20);flex-shrink:0;}
-.footer-share{display:flex;gap:8px;margin-top:16px;}
-.footer-share-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
-  border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;border:none;}
-.footer-share-btn.wa{background:rgba(37,211,102,.12);color:#25D366;border:1px solid rgba(37,211,102,.2);}
-.footer-share-btn.wa:hover{background:rgba(37,211,102,.22);}
-.footer-share-btn.story{background:var(--gold-dim);color:var(--gold);border:1px solid var(--gold-border);}
-.footer-share-btn.story:hover{background:rgba(201,169,110,.18);}
+/* Hover/press states for this page's own card classes — declared here
+   (not theme.css) so they win the cascade cleanly, since this stylesheet
+   loads after theme.css's <link>. The base glass/shadow treatment lives
+   in theme.css; this is just the lift-and-press motion on top of it. */
+.insight-card:hover,.diff-card:hover,.how-step:hover,.calc-form:hover,
+.contact-channel:hover,.today-card:hover{
+  transform:translateY(-4px);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,.10) inset,
+    0 2px 5px rgba(8,20,15,.10),
+    0 20px 44px rgba(8,20,15,.22),
+    0 6px 16px rgba(8,20,15,.12);
+}
+.insight-card:active,.diff-card:active,.how-step:active,.calc-form:active,
+.contact-channel:active,.today-card:active{
+  transform:translateY(-1px) scale(.992);
+  transition:transform .1s ease;
+}
 
-/* FLOATING SHARE */
-.float-share{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;align-items:flex-end;gap:8px;}
-.float-share-panel{display:none;flex-direction:column;gap:6px;background:var(--mid);
-  border:1px solid var(--w08);border-radius:14px;padding:12px;min-width:180px;}
-.float-share-panel.open{display:flex;}
-.float-share-item{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;
-  font-size:13px;font-weight:600;cursor:pointer;border:none;width:100%;text-align:left;transition:background .15s;}
-.float-share-item.wa{color:#25D366;background:rgba(37,211,102,.08);}
-.float-share-item.wa:hover{background:rgba(37,211,102,.18);}
-.float-share-item.story{color:var(--gold);background:var(--gold-dim);}
-.float-share-item.story:hover{background:rgba(201,169,110,.18);}
-.float-share-item.copy{color:var(--w45);background:var(--w04);}
-.float-share-item.copy:hover{background:var(--w08);color:var(--w100);}
-.float-share-trigger{width:52px;height:52px;border-radius:50%;background:var(--wa);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .15s;}
-.float-share-trigger:hover{transform:scale(1.08);}
-
-/* TOAST */
-.toast{position:fixed;bottom:90px;right:24px;z-index:200;background:var(--mid);
-  border:1px solid var(--w08);border-radius:10px;padding:10px 16px;font-size:13px;
-  color:var(--w70);opacity:0;transform:translateY(8px);pointer-events:none;
-  transition:all .25s;max-width:240px;}
-.toast.show{opacity:1;transform:none;}
-
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease;}
-.reveal.visible{opacity:1;transform:none;}
-
-/* RESPONSIVE */
+/* RESPONSIVE (page-specific — nav/footer responsive rules live in theme.css) */
 @media(max-width:900px){
-  .nav-links{display:none;}
-  .hamburger{display:flex;}
   .how-steps{grid-template-columns:1fr;}
   .how-step:not(:last-child){border-right:none;border-bottom:1px solid var(--w08);}
   .insights-grid{grid-template-columns:1fr 1fr;}
@@ -362,15 +337,11 @@ a{color:inherit;text-decoration:none;}
   .diff-grid{grid-template-columns:1fr;}
   .diff-vs{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr 1fr;}
   .today-card{grid-template-columns:1fr;}
-  .nav{padding:0 20px;}
-  .section{padding:60px 20px;}
 }
 @media(max-width:600px){
   .insights-grid{grid-template-columns:1fr;}
   .form-row{grid-template-columns:1fr;}
-  .footer-top{grid-template-columns:1fr;}
   .trust-item{padding:6px 12px;}
   .hero-ctas{flex-direction:column;align-items:center;}
   .tool-tabs{gap:2px;}
@@ -378,49 +349,22 @@ a{color:inherit;text-decoration:none;}
 }
 </style>
 </head>
-<body>
+<body class="canvas-light">
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="/" class="nav-logo">
-    <svg width="34" height="25" viewBox="0 0 110 80" aria-hidden="true">
-      <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
-      <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
-      <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
-      <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
-      <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
-      <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
-      <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
-      <circle cx="73" cy="18" r="3.8" fill="white"/>
-      <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
-    </svg>
-    <span class="nav-wordmark">PARTRIDG<span>3</span></span>
-  </a>
-  <nav class="nav-links">
-    <a href="#insights">Insights</a>
-    <a href="#tools">Calculators</a>
-    <a href="#how">How it works</a>
-    <a href="#contact">Book a consultation</a>
-    <a href="#" onclick="openCoveyModal();return false;" class="btn-ghost">Sign in</a>
-  </nav>
-  <button class="hamburger" id="ham" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </button>
-</nav>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#insights" onclick="closeMobile()">Insights</a>
-  <a href="#tools" onclick="closeMobile()">Calculators</a>
-  <a href="#how" onclick="closeMobile()">How it works</a>
-  <a href="#contact" onclick="closeMobile()">Book a consultation</a>
-  <a href="#" onclick="closeMobile();openCoveyModal();return false;">Client sign in</a>
-  <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" class="btn-wa-nav" style="border-radius:10px;padding:12px 28px;">Join the channel</a>
-</div>
+<!-- NAV — shared partial, see shared/nav.html -->
+<div data-include="nav"></div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-decor">
     <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-doodles" aria-hidden="true">
+      <svg class="doodle doodle-bird" viewBox="0 0 28 12"><path d="M2 10 Q8 2 14 10 Q20 2 26 10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <svg class="doodle doodle-shield" viewBox="0 0 24 24"><path d="M12 2 L20 5 V11 C20 17 16 20 12 22 C8 20 4 17 4 11 V5 Z" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+      <svg class="doodle doodle-growth" viewBox="0 0 24 24"><path d="M2 19 L9 12 L13 16 L21 5 M16 5 L21 5 L21 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="doodle doodle-pulse" viewBox="0 0 24 24"><path d="M2 12 H7 L9 6 L13 18 L15 12 H22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="doodle doodle-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M9 12 Q12 8 15 12 Q12 16 9 12" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    </div>
   </div>
   <div class="hero-eyebrow"><span class="pulse" aria-hidden="true"></span>Wealth · Legacy · Community</div>
   <div class="hero-bird" aria-hidden="true">
@@ -435,9 +379,11 @@ a{color:inherit;text-decoration:none;}
       <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
       <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
       <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
-      <circle cx="73" cy="18" r="3.8" fill="white"/>
-      <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
-      <circle cx="72" cy="17.2" r="1" fill="white"/>
+      <g class="bird-eye">
+        <circle cx="73" cy="18" r="3.8" fill="white"/>
+        <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
+        <circle cx="72" cy="17.2" r="1" fill="white"/>
+      </g>
       <line x1="46" y1="70" x2="44" y2="77" stroke="#C9A96E" stroke-width="2" stroke-linecap="round"/>
       <line x1="44" y1="77" x2="38" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
       <line x1="44" y1="77" x2="44" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
@@ -448,20 +394,11 @@ a{color:inherit;text-decoration:none;}
       <line x1="62" y1="77" x2="68" y2="79" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
   </div>
-  <h1>Financial advice<br>that feels like <em>home.</em></h1>
-  <p class="hero-sub">Independent advisers for South African families. Free tools, daily insights, and advice built for your life — and your community.</p>
+  <h1>Independent advice,<br>built for <em>you</em>.</h1>
+  <p class="hero-sub">Advisers for every South African — whatever you're building, whatever stage you're at. Free tools, daily insights, and advice built for your life.</p>
   <div class="hero-ctas">
     <a href="#tools" class="btn-hero btn-hero-primary">Try our free calculators</a>
-    <a href="#insights" class="btn-hero btn-hero-secondary">Today's insight</a>
-  </div>
-  <div class="hero-share">
-    <span class="hero-share-label">Share this page:</span>
-    <button class="share-pill share-pill-wa" onclick="shareToContact()">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
-      Send to a contact
-    </button>
-    <button class="share-pill share-pill-wa" onclick="shareToStory()">✦ Share to story</button>
-    <button class="share-pill share-pill-copy" id="heroCopy" onclick="copyLink()">Copy link</button>
+    <a href="#insights" class="btn-hero btn-hero-secondary">Latest insights</a>
   </div>
 </section>
 
@@ -469,26 +406,29 @@ a{color:inherit;text-decoration:none;}
 <div class="trust">
   <div class="trust-inner">
     <div class="trust-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       FAIS Act compliant
     </div>
     <div class="trust-div"></div>
     <div class="trust-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       100% independent
     </div>
     <div class="trust-div"></div>
     <div class="trust-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      No cost to clients
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Free tools &amp; consults
     </div>
     <div class="trust-div"></div>
     <div class="trust-item">
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      Built for South Africa
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M9 11l3 3L22 4M21 12v6a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2h11" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Every adviser vetted
     </div>
     <div class="trust-div"></div>
-    <div class="trust-item">🔓 Free calculators</div>
+    <div class="trust-item">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Built for South Africa
+    </div>
   </div>
 </div>
 
@@ -942,21 +882,21 @@ a{color:inherit;text-decoration:none;}
     <div class="how-steps">
       <div class="how-step">
         <div class="how-num" aria-hidden="true">01</div>
-        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="how-title">Read and learn</div>
-        <div class="how-body">Browse daily insights from our FAIS-licensed advisers — real knowledge for real South African families.</div>
+        <div class="how-body">Browse daily insights from our FAIS-licensed advisers — real knowledge for every South African.</div>
         <span class="how-tag">Daily on this page</span>
       </div>
       <div class="how-step">
         <div class="how-num" aria-hidden="true">02</div>
-        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="how-title">Run the numbers</div>
         <div class="how-body">Use our free calculators to understand your life cover need, retirement gap, and income protection exposure before you meet an adviser.</div>
         <span class="how-tag">Free, no sign-up</span>
       </div>
       <div class="how-step">
         <div class="how-num" aria-hidden="true">03</div>
-        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="how-icon" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="how-title">Get a plan built for you</div>
         <div class="how-body">Book a free consultation. Your adviser runs a full FNA, identifies your gaps, and builds a plan — all in your Covey client portal.</div>
         <span class="how-tag">No cost, no obligation</span>
@@ -984,12 +924,22 @@ a{color:inherit;text-decoration:none;}
       <div class="diff-card featured-gold">
         <div class="diff-icon">🌍</div>
         <div class="diff-title">African-centred by design</div>
-        <div class="diff-body">Partridg3 is the English translation of <em>Nkwali</em> — our clan name. Built for South African families, in South African contexts.</div>
+        <div class="diff-body">Partridg3 is the English translation of <em>Nkwali</em> — our clan name. Built for every South African, in South African contexts.</div>
       </div>
       <div class="diff-card">
         <div class="diff-icon">⚡</div>
         <div class="diff-title">Technology that serves, not replaces</div>
         <div class="diff-body">AI handles admin. Your adviser handles advice. The system removes friction so the human relationship can be everything it's meant to be.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🎯</div>
+        <div class="diff-title">Your needs, not a sales target</div>
+        <div class="diff-body">Every recommendation starts with your gap analysis — what you actually need, not what's easiest to sell.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">🌱</div>
+        <div class="diff-title">Move at your own pace</div>
+        <div class="diff-body">Explore the calculators, read the insights, book a consultation whenever you're ready — no countdown clock, no pressure to commit today.</div>
       </div>
       <div class="diff-vs">
         <div class="diff-vs-col old">
@@ -1000,6 +950,7 @@ a{color:inherit;text-decoration:none;}
             <li>Compliance is a paper trail, not protection</li>
             <li>Relationships fade after the policy is signed</li>
             <li>Claims are a maze with no guide</li>
+            <li>Tools locked behind a sales call</li>
           </ul>
         </div>
         <div class="diff-vs-col new">
@@ -1010,6 +961,7 @@ a{color:inherit;text-decoration:none;}
             <li>FAIS-compliant at every touchpoint</li>
             <li>Retained for life — reviews at Month 6 and 11</li>
             <li>Claims guided from day one to resolution</li>
+            <li>Every calculator and insight, free and unlimited</li>
           </ul>
         </div>
       </div>
@@ -1024,7 +976,7 @@ a{color:inherit;text-decoration:none;}
     <h2 class="section-h2 reveal">Ready to meet your adviser?</h2>
     <div class="contact-grid">
       <div>
-        <p class="section-sub">Leave your details and an independent, FAIS-licensed adviser will reach out within one business day. No obligation. No pressure. Just a conversation.</p>
+        <p class="section-sub">Leave your details and an independent, FAIS-licensed adviser will reach out within one business day. No obligation, no pressure — just a real conversation with someone who takes your plan as seriously as you do.</p>
         <div class="contact-channels">
           <a href="#" id="wa-direct-contact" class="contact-channel">
             <div class="contact-channel-icon wa">
@@ -1037,7 +989,7 @@ a{color:inherit;text-decoration:none;}
           </a>
           <a href="mailto:hello@partridg3.co.za" class="contact-channel">
             <div class="contact-channel-icon em">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="#34D399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </div>
             <div>
               <div class="contact-channel-label">Email</div>
@@ -1104,95 +1056,8 @@ a{color:inherit;text-decoration:none;}
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="/" class="nav-logo" style="margin-bottom:10px;">
-          <svg width="28" height="20" viewBox="0 0 110 80" aria-hidden="true">
-            <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
-            <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
-            <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
-            <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
-            <circle cx="73" cy="18" r="3.8" fill="white"/>
-          </svg>
-          <span class="nav-wordmark" style="font-size:13px;">PARTRIDG<span>3</span></span>
-        </a>
-        <p>Protecting families. Building communities. Growing together.</p>
-        <div class="footer-share" style="margin-top:14px;">
-          <button class="footer-share-btn wa" onclick="shareToContact()">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
-            Share
-          </button>
-          <button class="footer-share-btn story" onclick="shareToStory()">✦ Story</button>
-        </div>
-      </div>
-      <div>
-        <div class="footer-col-title">Navigate</div>
-        <ul class="footer-links">
-          <li><a href="#insights">Today's insight</a></li>
-          <li><a href="#tools">Free calculators</a></li>
-          <li><a href="#how">How it works</a></li>
-          <li><a href="#contact">Book a consultation</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-col-title">Contact</div>
-        <ul class="footer-links">
-          <li><a href="#" id="wa-direct-footer">WhatsApp us</a></li>
-          <li><a href="mailto:hello@partridg3.co.za">hello@partridg3.co.za</a></li>
-          <li><a href="#" onclick="openCoveyModal();return false;">Client login</a></li>
-        </ul>
-        <div style="margin-top:18px;">
-          <div class="footer-col-title">Follow</div>
-          <ul class="footer-links">
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">TikTok</a></li>
-          </ul>
-          <button onclick="openChannelModal()" style="
-            display:inline-flex;align-items:center;gap:7px;margin-top:14px;
-            padding:9px 16px;border-radius:10px;border:1px solid rgba(37,211,102,.25);
-            background:rgba(37,211,102,.10);color:#25D366;
-            font-size:12px;font-weight:700;cursor:pointer;
-          ">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2z"/></svg>
-            📢 WhatsApp Channel
-          </button>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p class="footer-legal">
-        Partridg3 (Pty) Ltd is a technology platform and is not itself a Financial Services Provider (FSP) — it does not give financial advice. Partridg3 connects you with independent advisers who are individually licensed under the
-        <a href="https://www.fsca.co.za" target="_blank" rel="noopener">FAIS Act (No. 37 of 2002)</a>
-        and regulated by the FSCA of South Africa.
-        By submitting a consultation request, you consent to being contacted by a licensed adviser in accordance with POPIA.
-        Calculators are for guidance only, are not guaranteed accurate, and do not constitute financial advice.
-      </p>
-      <p class="footer-copy">&copy; <span id="yr"></span> Partridg3</p>
-    </div>
-  </div>
-</footer>
-
-<!-- FLOATING SHARE -->
-<div class="float-share">
-  <div class="float-share-panel" id="floatPanel">
-    <button class="float-share-item wa" onclick="shareToContact()">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
-      Send to a contact
-    </button>
-    <button class="float-share-item story" onclick="shareToStory()">✦ Share to story</button>
-    <button class="float-share-item copy" onclick="copyLink()">🔗 Copy link</button>
-  </div>
-  <button class="float-share-trigger" onclick="toggleFloatPanel()" aria-label="Share this page">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
-  </button>
-</div>
-
-<div class="toast" id="toast"></div>
+<!-- FOOTER — shared partial, see shared/footer.html (includes floating share + toast) -->
+<div data-include="footer"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script type="module">
@@ -1212,72 +1077,57 @@ const SUPA = supabase.createClient(
   'sb_publishable_Tj0xe1TlfANh5r9BnRtJYw_LGGAdgTn'
 );
 const PAGE_URL = window.location.href;
-const PAGE_TITLE = 'Partridg3 | Financial advice that feels like home';
-const SHARE_TEXT = '🌿 Free financial tools + daily insights for South African families. Check your life cover, retirement gap, and more — no sign-up needed.';
 
 // TODO: replace with the real registered WhatsApp number once set up, e.g. '27821234567'.
 // Every "message us directly" link reads from this single constant.
+// (shared/footer.html has its own separate copy of this same placeholder
+// for the footer's WhatsApp link — kept independent deliberately, see
+// shared/footer.html's comment, to avoid a load-order dependency between
+// this synchronous script and the async-injected footer partial.)
 const DIRECT_WHATSAPP_NUMBER = '27000000000';
 document.getElementById('wa-direct-contact').href =
   `https://wa.me/${DIRECT_WHATSAPP_NUMBER}?text=${encodeURIComponent("Hi, I'd like to book a free financial consultation with Partridg3.")}`;
-document.getElementById('wa-direct-footer').href = `https://wa.me/${DIRECT_WHATSAPP_NUMBER}`;
-
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-// ── NAV MOBILE ──
-const ham = document.getElementById('ham');
-const menu = document.getElementById('mobileMenu');
-ham.addEventListener('click', () => {
-  const o = menu.classList.toggle('open');
-  ham.setAttribute('aria-expanded', o);
-  document.body.style.overflow = o ? 'hidden' : '';
-});
-function closeMobile(){ menu.classList.remove('open'); document.body.style.overflow=''; }
 
 // ── REVEAL ──
 const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }), {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-// ── TOAST ──
-function showToast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2500); }
-
-// ── SHARE ──
-function shareToContact(){
-  const text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
-  window.open('https://wa.me/?text=' + text, '_blank');
-}
-function shareToStory(){
-  if(navigator.share){
-    navigator.share({ title: PAGE_TITLE, text: SHARE_TEXT, url: PAGE_URL })
-      .catch(()=>{});
-  } else {
-    // Desktop fallback — deep link attempt then clipboard
-    const text = encodeURIComponent(SHARE_TEXT + '\n\n' + PAGE_URL);
-    window.open('whatsapp://send?text=' + text, '_blank');
-    setTimeout(()=> showToast('On desktop? Copy the link and paste into WhatsApp Status.'), 800);
-  }
-}
-function copyLink(){
-  navigator.clipboard.writeText(PAGE_URL).then(()=> showToast('Link copied!')).catch(()=>{
-    const ta = document.createElement('textarea');
-    ta.value = PAGE_URL;
-    document.body.appendChild(ta);
-    ta.select();
-    document.execCommand('copy');
-    document.body.removeChild(ta);
-    showToast('Link copied!');
-  });
-}
-function toggleFloatPanel(){ document.getElementById('floatPanel').classList.toggle('open'); }
-document.addEventListener('click', e => {
-  const fp = document.querySelector('.float-share');
-  if(fp && !fp.contains(e.target)) document.getElementById('floatPanel').classList.remove('open');
-});
+// The floating share button sits fixed bottom-right and — on mobile —
+// physically overlaps the calculator's own inputs while #tools is in
+// view (confirmed: it sits directly over the Current Age field). Hide
+// it while the calculator is on screen rather than let it block the
+// page's actual primary action.
+const toolsVisibilityObserver = new IntersectionObserver(
+  es => es.forEach(e => {
+    // .float-share lives in the async-loaded footer partial — IntersectionObserver
+    // can fire its first callback before that fetch resolves, so it isn't
+    // guaranteed to exist yet on a slow connection.
+    const fs = document.querySelector('.float-share');
+    if (fs) fs.classList.toggle('hide-for-tools', e.isIntersecting);
+  }),
+  { threshold: .15 }
+);
+toolsVisibilityObserver.observe(document.getElementById('tools'));
 
 function shareInsight(title, channel){
   const text = encodeURIComponent(`💡 ${title}\n\nFrom the Partridg3 adviser network — ${channel}\n\nMore insights: ${PAGE_URL}`);
   window.open('https://wa.me/?text=' + text, '_blank');
 }
+
+function toggleInsightShare(e){
+  e.stopPropagation();
+  document.getElementById('insightShareMenu').classList.toggle('open');
+}
+function closeInsightShare(){
+  const menu = document.getElementById('insightShareMenu');
+  if (menu) menu.classList.remove('open');
+}
+document.addEventListener('click', e => {
+  const menu = document.getElementById('insightShareMenu');
+  if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !e.target.closest('.btn-share-insight')) {
+    menu.classList.remove('open');
+  }
+});
 
 // ── INSIGHTS ──
 const CH_COLOUR = { LinkedIn:'#0A66C2', Instagram:'#E1306C', Facebook:'#1877F2', TikTok:'rgba(255,255,255,.6)', Substack:'#FF6719', YouTube:'#FF0000' };
@@ -1307,11 +1157,19 @@ async function loadInsights(){
             <div class="today-author">${auth ? auth.full_name + (auth.fsp_number?' · FSP '+auth.fsp_number:'') : 'Partridg3 Network'}</div>
           </div>
           <div class="today-actions">
-            <button class="btn-share-insight wa" onclick="shareInsight(${JSON.stringify(t.title)},${JSON.stringify(t.channel||'Partridg3')})">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
-              Share to contact
-            </button>
-            <button class="btn-share-insight story" onclick="shareToStory()">✦ Share to story</button>
+            <div class="insight-share">
+              <button class="btn-share-insight" onclick="toggleInsightShare(event)">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                Share
+              </button>
+              <div class="insight-share-menu" id="insightShareMenu">
+                <button onclick="shareInsight(${JSON.stringify(t.title)},${JSON.stringify(t.channel||'Partridg3')});closeInsightShare();">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
+                  Share to contact
+                </button>
+                <button onclick="shareToStory();closeInsightShare();">✦ Share to story</button>
+              </div>
+            </div>
           </div>
         </div>`;
       io.observe(todayEl.querySelector('.today-card'));
@@ -1344,8 +1202,6 @@ async function loadInsights(){
     });
   } catch(e){ console.warn('Insights error:', e); }
 }
-loadInsights();
-
 // ── TOOL TABS ──
 const TOOL_IDS = ['life','income','disability','dread','retire','emergency','estate','budget','debt','goals','quiz'];
 function switchTool(id){
@@ -1356,16 +1212,26 @@ function switchTool(id){
   });
   document.querySelectorAll('.tool-panel').forEach(p => p.classList.toggle('active', p.id==='panel-'+id));
 }
+// Handles both #tools (land on the section, default tab) and the
+// #tools-<id> deep-link format (e.g. #tools-retire, used by services.html
+// and social-media cards) to jump straight to a specific calculator tab.
+// Deliberately run AFTER loadInsights() resolves below, not on
+// DOMContentLoaded — the Today's Insight / Insights Grid content it loads
+// from Supabase sits above #tools in the document, so scrolling before
+// that content inserts leaves the page correct for an instant, then the
+// insert pushes #tools hundreds of pixels further down than where the
+// browser already scrolled to.
+function handleToolsHash(){
+  const raw = window.location.hash;
+  if (!raw.startsWith('#tools')) return;
+  const toolId = raw.replace('#tools-', '').replace('#tools', '');
+  if (TOOL_IDS.includes(toolId)) switchTool(toolId);
+  document.getElementById('tools').scrollIntoView();
+}
+loadInsights().then(handleToolsHash);
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.form-input, .form-select').forEach(el => { el.autocomplete = 'off'; });
-  // Deep-link a specific calculator tab, e.g. #tools-retire — added 2026-08-19
-  // so social-media cards can link straight to the right tool instead of
-  // always landing on the default (Life Cover) tab.
-  const hash = window.location.hash.replace('#tools-', '');
-  if (TOOL_IDS.includes(hash)) {
-    switchTool(hash);
-    document.getElementById('tools').scrollIntoView();
-  }
 });
 
 function togglePropInput(){
@@ -1500,9 +1366,9 @@ function ctaBlock(monthlyAmount, actionLabel, note){
   return `
     <div style="margin-top:14px;padding:12px 14px;background:rgba(201,169,110,.08);border:1px solid var(--gold-border);border-radius:10px;">
       <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;">${actionLabel}</div>
-      <div style="font-size:22px;font-weight:800;color:#fff;">${fmt(monthlyAmount)}<span style="font-size:13px;font-weight:600;color:var(--w45);"> /month</span></div>
+      <div style="font-size:22px;font-weight:800;color:var(--w100);">${fmt(monthlyAmount)}<span style="font-size:13px;font-weight:600;color:var(--w45);"> /month</span></div>
       ${foodLine}
-      ${note ? `<div style="font-size:10px;color:var(--w20);margin-top:6px;">${note}</div>` : ''}
+      ${note ? `<div style="font-size:10px;color:var(--w45);margin-top:6px;">${note}</div>` : ''}
     </div>`;
 }
 
@@ -1947,165 +1813,11 @@ document.getElementById('contactForm').addEventListener('submit', async function
 });
 </script>
 
-<!-- ── WHATSAPP CHANNEL MODAL ── -->
-<div id="wa-channel-modal" style="
-  display:none;position:fixed;inset:0;z-index:9999;
-  background:rgba(0,0,0,0.60);backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;padding:24px;
-" onclick="closeChannelModal()">
-  <div style="
-    background:#fff;border-radius:24px;padding:32px 28px;
-    max-width:320px;width:100%;display:flex;flex-direction:column;align-items:center;gap:20px;
-    box-shadow:0 24px 64px rgba(0,0,0,0.25);
-  " onclick="event.stopPropagation()">
+<!-- WhatsApp channel modal + Covey sign-in modal — shared partials -->
+<div data-include="wa-channel-modal"></div>
+<div data-include="covey-modal"></div>
 
-    <div style="text-align:center">
-      <div style="font-size:16px;font-weight:800;color:#0D2C1A;letter-spacing:-0.02em;">Partridg3 WhatsApp Channel</div>
-      <div style="font-size:12px;color:#6B7280;margin-top:4px;">Scan to join · or share with someone</div>
-    </div>
-
-    <div style="padding:16px;background:#F9FAFB;border:1px solid #E5E7EB;border-radius:16px;">
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=0D2C1A&bgcolor=F9FAFB&qzone=2&data=https%3A%2F%2Fwhatsapp.com%2Fchannel%2F0029Vb8omRh5fM5epo1EwH2l"
-        alt="Partridg3 WhatsApp Channel QR Code"
-        width="180" height="180"
-        style="display:block;"
-      />
-    </div>
-
-    <a href="https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l" target="_blank" rel="noopener" style="
-      display:block;width:100%;padding:13px;border-radius:12px;
-      background:#128C7E;color:#fff;text-align:center;
-      font-size:14px;font-weight:700;text-decoration:none;
-    ">Join Channel</a>
-
-    <div style="display:flex;gap:10px;width:100%;">
-      <a id="wa-fwd-btn" href="" target="_blank" rel="noopener" style="
-        flex:1;padding:11px 8px;border-radius:12px;text-align:center;
-        font-size:12px;font-weight:600;text-decoration:none;
-        background:#F0FDF4;color:#128C7E;border:1px solid #BBF7D0;
-      ">📤 Send to Contact</a>
-      <button id="wa-copy-btn" onclick="copyChannelLink()" style="
-        flex:1;padding:11px 8px;border-radius:12px;
-        font-size:12px;font-weight:600;cursor:pointer;
-        background:#F9FAFB;color:#374151;border:1px solid #E5E7EB;
-      ">🔗 Copy Link</button>
-    </div>
-
-    <button onclick="closeChannelModal()" style="font-size:12px;color:#9CA3AF;background:none;border:none;cursor:pointer;">Close</button>
-  </div>
-</div>
-
-<script>
-  const CHANNEL_URL = 'https://whatsapp.com/channel/0029Vb8omRh5fM5epo1EwH2l';
-  const SHARE_MSG   = encodeURIComponent('Join the Partridg3 WhatsApp Channel for independent financial planning insights: ' + CHANNEL_URL);
-  document.getElementById('wa-fwd-btn').href = 'https://wa.me/?text=' + SHARE_MSG;
-
-  function openChannelModal() {
-    const m = document.getElementById('wa-channel-modal');
-    m.style.display = 'flex';
-  }
-  function closeChannelModal() {
-    document.getElementById('wa-channel-modal').style.display = 'none';
-  }
-  async function copyChannelLink() {
-    const btn = document.getElementById('wa-copy-btn');
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: 'Partridg3 WhatsApp Channel', url: CHANNEL_URL });
-        return;
-      } catch(e) { /* cancelled */ }
-    }
-    await navigator.clipboard.writeText(CHANNEL_URL);
-    btn.textContent = '✓ Copied!';
-    setTimeout(() => btn.textContent = '🔗 Copy Link', 2500);
-  }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeChannelModal(); });
-</script>
-
-<!-- ── COVEY WINDOW ── -->
-<style>
-  #covey-modal{padding:24px;}
-  @media(max-width:600px){
-    #covey-modal{padding:0;}
-    #covey-window{width:100%!important;height:100%!important;max-height:none!important;border-radius:0!important;}
-  }
-</style>
-<div id="covey-modal" style="
-  display:none;position:fixed;inset:0;z-index:9999;
-  background:rgba(0,0,0,0.65);backdrop-filter:blur(8px);
-  align-items:center;justify-content:center;
-" onclick="closeCoveyModal(event)">
-  <div id="covey-window" style="
-    background:#fff;border-radius:20px;overflow:hidden;
-    width:420px;max-width:100%;height:88vh;max-height:860px;
-    display:flex;flex-direction:column;
-    box-shadow:0 24px 64px rgba(0,0,0,0.35);
-  " onclick="event.stopPropagation()">
-
-    <!-- Header -->
-    <div style="flex-shrink:0;background:#0D2C1A;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
-      <div style="display:flex;align-items:center;gap:8px;">
-        <svg width="26" height="19" viewBox="0 0 110 80" aria-hidden="true">
-          <path d="M 27,50 C 18,38 7,24 3,16 C 7,18 16,34 27,54 Z" fill="#C9A96E"/>
-          <path d="M 27,53 C 14,49 3,45 0,43 C 4,47 14,51 27,62 Z" fill="#C9A96E" opacity=".82"/>
-          <path d="M 33,60 C 22,64 12,67 8,70 C 12,68 22,65 33,64 Z" fill="#C9A96E" opacity=".65"/>
-          <path d="M 100,16 L 83,13 C 77,7 68,5 61,8 C 55,11 49,17 43,24 C 37,31 30,40 27,53 C 25,58 31,66 44,70 C 54,74 68,72 78,64 C 86,56 90,42 87,30 C 86,26 84,24 83,24 Z" fill="#047857"/>
-          <path d="M 43,42 C 51,38 63,36 72,33 L 73,39 C 62,44 50,46 43,45 Z" fill="#94A3A8" opacity=".88"/>
-          <path d="M 60,9 C 56,2 59,0 62,1 C 67,4 65,9 63,10 Z" fill="#C9A96E"/>
-          <path d="M 83,13 L 100,16 L 83,24 Z" fill="#C9A96E"/>
-          <circle cx="73" cy="18" r="3.8" fill="white"/>
-          <circle cx="73.5" cy="19" r="2" fill="#0B1912"/>
-        </svg>
-        <span style="color:#fff;font-size:14px;font-weight:800;letter-spacing:-0.01em;">Covey <span style="color:rgba(255,255,255,0.4);font-weight:600;">by Partridg3</span></span>
-      </div>
-      <button onclick="closeCoveyModal()" aria-label="Close" style="
-        background:rgba(255,255,255,0.08);border:none;color:rgba(255,255,255,0.7);
-        width:28px;height:28px;border-radius:8px;cursor:pointer;font-size:15px;line-height:1;
-      ">✕</button>
-    </div>
-
-    <!-- Install-the-app banner -->
-    <a href="https://covey-tau.vercel.app" target="_blank" rel="noopener" style="
-      flex-shrink:0;display:flex;align-items:center;justify-content:space-between;gap:10px;
-      background:#F0FDF4;border-bottom:1px solid #BBF7D0;padding:10px 16px;
-      text-decoration:none;
-    ">
-      <span style="font-size:12px;color:#065F46;font-weight:600;">📲 Get the full experience — install Covey as an app</span>
-      <span style="font-size:11px;color:#059669;font-weight:700;white-space:nowrap;">Open →</span>
-    </a>
-
-    <!-- App iframe -->
-    <iframe
-      id="covey-iframe"
-      src="about:blank"
-      title="Covey by Partridg3"
-      style="flex:1;border:none;width:100%;background:#F9FAFB;"
-      loading="lazy"
-    ></iframe>
-  </div>
-</div>
-
-<script>
-  const COVEY_URL = 'https://covey-tau.vercel.app';
-  let coveyLoaded = false;
-
-  function openCoveyModal() {
-    if (!coveyLoaded) {
-      document.getElementById('covey-iframe').src = COVEY_URL;
-      coveyLoaded = true;
-    }
-    document.getElementById('covey-modal').style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeCoveyModal(e) {
-    if (e && e.target !== e.currentTarget) return;
-    document.getElementById('covey-modal').style.display = 'none';
-    document.body.style.overflow = '';
-  }
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && document.getElementById('covey-modal').style.display === 'flex') closeCoveyModal();
-  });
-</script>
+<!-- Loads every [data-include] placeholder above (nav, footer, both modals) -->
+<script src="shared/include.js"></script>
 </body>
 </html>
