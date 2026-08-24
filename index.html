@@ -1132,6 +1132,21 @@ document.addEventListener('click', e => {
 // ── INSIGHTS ──
 const CH_COLOUR = { LinkedIn:'#0A66C2', Instagram:'#E1306C', Facebook:'#1877F2', TikTok:'rgba(255,255,255,.6)', Substack:'#FF6719', YouTube:'#FF0000' };
 
+// Insight title/body/channel and collaborator full_name/fsp_number are all
+// submitted by advisers/practitioners through the Collaborator Hub, then
+// rendered here via innerHTML for every visitor of the public site. Escape
+// before interpolating so an approved-but-malicious (or compromised)
+// collaborator account can't stored-XSS every homepage visitor.
+function escHtml(s){
+  return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+// For values placed inside an inline onclick="..." attribute: JSON.stringify
+// escapes for JS-string syntax, but the HTML parser reads the attribute
+// value first and doesn't know about JS's backslash escapes — a bare `"`
+// produced by JSON.stringify (as \") still terminates the attribute early.
+// escHtml() on top of JSON.stringify() closes that gap.
+function escJsAttr(v){ return escHtml(JSON.stringify(v)); }
+
 async function loadInsights(){
   try {
     const [insRes, colRes] = await Promise.all([
@@ -1151,10 +1166,10 @@ async function loadInsights(){
         <div class="today-card reveal">
           <div>
             <div class="today-badge">✦ Latest insight</div>
-            <div class="today-channel" style="color:${colClr}">${t.channel||'Insight'}</div>
-            <div class="today-title">${t.title}</div>
-            ${t.body ? `<div class="today-body">${t.body.substring(0,280)}${t.body.length>280?'…':''}</div>` : ''}
-            <div class="today-author">${auth ? auth.full_name + (auth.fsp_number?' · FSP '+auth.fsp_number:'') : 'Partridg3 Network'}</div>
+            <div class="today-channel" style="color:${colClr}">${escHtml(t.channel||'Insight')}</div>
+            <div class="today-title">${escHtml(t.title)}</div>
+            ${t.body ? `<div class="today-body">${escHtml(t.body.substring(0,280))}${t.body.length>280?'…':''}</div>` : ''}
+            <div class="today-author">${auth ? escHtml(auth.full_name) + (auth.fsp_number?' · FSP '+escHtml(auth.fsp_number):'') : 'Partridg3 Network'}</div>
           </div>
           <div class="today-actions">
             <div class="insight-share">
@@ -1163,7 +1178,7 @@ async function loadInsights(){
                 Share
               </button>
               <div class="insight-share-menu" id="insightShareMenu">
-                <button onclick="shareInsight(${JSON.stringify(t.title)},${JSON.stringify(t.channel||'Partridg3')});closeInsightShare();">
+                <button onclick="shareInsight(${escJsAttr(t.title)},${escJsAttr(t.channel||'Partridg3')});closeInsightShare();">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
                   Share to contact
                 </button>
@@ -1188,11 +1203,11 @@ async function loadInsights(){
       const card = document.createElement('article');
       card.className = 'insight-card reveal';
       card.innerHTML = `
-        <div class="insight-ch" style="color:${clr}">${ins.channel||'Insight'}</div>
-        <div class="insight-title">${ins.title}</div>
+        <div class="insight-ch" style="color:${clr}">${escHtml(ins.channel||'Insight')}</div>
+        <div class="insight-title">${escHtml(ins.title)}</div>
         <div class="insight-footer">
-          <div class="insight-author">${auth?auth.full_name:'Partridg3 Network'}</div>
-          <button class="btn-share-sm" onclick="shareInsight(${JSON.stringify(ins.title)},${JSON.stringify(ins.channel||'Partridg3')})">
+          <div class="insight-author">${auth?escHtml(auth.full_name):'Partridg3 Network'}</div>
+          <button class="btn-share-sm" onclick="shareInsight(${escJsAttr(ins.title)},${escJsAttr(ins.channel||'Partridg3')})">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/><path d="M12.004 2C6.476 2 2 6.476 2 12.004c0 1.774.476 3.508 1.374 5.033L2 22l5.088-1.334A10.054 10.054 0 0012.004 22C17.528 22 22 17.524 22 12.004 22 6.476 17.528 2 12.004 2zm0 18.198a8.237 8.237 0 01-4.18-1.14l-.3-.178-3.02.792.806-2.95-.196-.31a8.21 8.21 0 01-1.262-4.404C3.852 7.47 7.47 3.852 12.004 3.852c2.199 0 4.265.857 5.819 2.413a8.177 8.177 0 012.407 5.823c-.004 4.537-3.622 8.11-8.226 8.11z"/></svg>
             Share
           </button>
