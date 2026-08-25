@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+# auto-deploy verification
 
 Sitemap: https://landing-three-vert-77.vercel.app/sitemap.xml
